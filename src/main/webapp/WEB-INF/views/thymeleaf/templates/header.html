@@ -1,29 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.css}"/>
-    <link rel="stylesheet" th:href="@{/css/main.css}"/>
-</head>
 <header>
-    <nav class="navbar">
-        <div class="logo">
-            <i class="fa-solid fa-paw"></i>
-            <a href="#">LOGO</a>
+<nav class="navbar navbar-expand-lg navbar-light custom">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white fw-bold" href="#">LOGO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav ms-auto me-3 mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link fs-6 me-4 text-white" href="#">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-6 me-4 text-white" href="#">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fs-6 me-4 text-white" href="#">En Adopción</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <button type="button" class="btn-logIn">Log In</button>
+            </form>
         </div>
-        <div class="menu">
-            <div class="menu-links">
-                <a href="">Inicio</a>
-                <a href="">Nosotros</a>
-                <a href="">En Adopción</a>
-                <a href="">Dar en Adopción</a>
-            </div>
-            <button class="log-in">Log In</button>
-        </div>
-        <div class="menu-btn">
-            <i class="fa-solid fa-bars"></i>
-        </div>
-    </nav>
+    </div>
+</nav>
 </header>
-</html>

@@ -1,19 +1,28 @@
-body {
-  padding-top: 5rem;
-}
-.starter-template {
-  padding: 3rem 1.5rem;
-  text-align: center;
+.btn-logIn {
+    border: 0;
+    outline: none;
+    font-size: inherit;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 12px 22px;
+    background-color: transparent;
+    color: #ffffff;
+    border-radius: 10px;
+    border: 2px solid #0aa5ff;
+    transition: 0.2s;
+    font-family: 'Poppins', sans-serif;
 }
 
-h1{
-	color:#0000FF;
+.btn-logIn:hover {
+    background-color: #0aa5ff;
+    color: white;
+    font-family: 'Poppins', sans-serif;
 }
 
-h2{
-	color:#FF0000;
-}
-
-.navbar-brand{
-    margin:0 2rem;
+.custom {
+    background-color: #5d3a9b;
+    font-family: 'Poppins', sans-serif;
+    height: 90px;
+    background-color: #5d3a9b;
+    padding: 20px 40px;
 }
