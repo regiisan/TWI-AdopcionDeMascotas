@@ -1,4 +1,9 @@
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
 .btn-logIn {
+    text-decoration: none;
     border: 0;
     outline: none;
     font-size: inherit;
@@ -25,4 +30,10 @@
     height: 90px;
     background-color: #5d3a9b;
     padding: 20px 40px;
+}
+
+.btn-primary{
+    background-color: #5d3a9b;
+    color: white;
+    border-color: #5d3a9b;
 }
