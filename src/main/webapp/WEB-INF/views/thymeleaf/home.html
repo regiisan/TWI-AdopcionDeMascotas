@@ -3,33 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
   <title>Taller Web I</title>
-
-  <!-- Boostrap core css -->
   <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
-
-  <!-- custom style -->
   <link rel="stylesheet" th:href="@{/css/main.css}"/>
-
 </head>
 
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="#">UNLAM</a>
-</nav>
+<header th:insert="templates/header :: header"></header>
 
-<main role="main" class="container">
-  <div class = "container">
-    <h1>Bienvenidos a Taller Web 1</h1>
+<main>
 
-    <a href="login.html" class="btn btn-lg btn-primary btn-block">Volver</a>
+  <div class="position-relative text-white">
+    <img th:src="@{/images/ImgHero.jpg}" class="img-fluid w-100" alt="Imagen hero" style="height: 600px; object-fit: cover;">
+      <div class="position-absolute top-50 text-start translate-middle-y" style="left: 10%; max-width: 600px;">
+        <h1 class="display-4 fw-bold">ADOPCIÓN RESPONSABLE</h1>
+        <p class="lead">Conectamos hogares con animales en busca de un nuevo comienzo.</p>
+        <a th:href="@{/mascotas.html}" class="btn btn-primary mt-3">Ver mascotas</a>
+      </div>
   </div>
-</main>
-<!-- /.container -->
 
-<!-- Boostrap core js -->
+</main>
+
 <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
 </body>
 </html>
