@@ -1,12 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Taller Web I</title>
-  <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.0/css/bootstrap.min.css}"/>
-  <link rel="stylesheet" th:href="@{/css/main.css}"/>
-</head>
+<head th:insert="templates/head :: head"></head>
 
 <body>
 
@@ -18,10 +12,25 @@
     <img th:src="@{/images/ImgHero.jpg}" class="img-fluid w-100" alt="Imagen hero" style="height: 600px; object-fit: cover;">
       <div class="position-absolute top-50 text-start translate-middle-y" style="left: 10%; max-width: 600px;">
         <h1 class="display-4 fw-bold">ADOPCIÓN RESPONSABLE</h1>
-        <p class="lead">Conectamos hogares con animales en busca de un nuevo comienzo.</p>
-        <a th:href="@{/mascotas.html}" class="btn btn-primary mt-3">Ver mascotas</a>
+      <!--<p class="lead">Conectamos hogares con animales en busca de un nuevo comienzo.</p>-->
+          <a th:href="@{/mascotas.html}" class="btn btn-primary mt-3">Ver mascotas</a>
       </div>
   </div>
+
+  <section class="container mt-5">
+    <div class="row g-4">
+      <h4 class="text-center mb-4"> <a th:href="@{/mascotas}" class="text-decoration-none" style="color: #5d3a9b;">Mascotas en adopción:</a></h4>
+      <div th:each="mascota : ${mascotas}" class="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="card shadow-lg border-0" style="border-radius: 1rem">
+          <img th:src="@{'/images/' + ${mascota.img}}" class="card-img-top" alt="Mascota" style="height: 280px; object-fit: cover; border-top-left-radius: 1em; border-top-right-radius: 1rem;"/>
+          <div class="card-body text-center">
+            <h5 th:text="${mascota.nombre}" class="card-title" style="color: #5d3a9b; font-weight: bold;"></h5>
+            <p th:text="'Edad: ' + ${mascota.edad} + ' años'" class="card-text" style="color: #333; font-size: 0.9rem;"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 </main>
 
