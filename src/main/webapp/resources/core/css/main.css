@@ -15,18 +15,15 @@
     border-radius: 10px;
     border: 2px solid #0aa5ff;
     transition: 0.2s;
-    font-family: 'Poppins', sans-serif;
 }
 
 .btn-logIn:hover {
     background-color: #0aa5ff;
     color: white;
-    font-family: 'Poppins', sans-serif;
 }
 
 .custom {
     background-color: #5d3a9b;
-    font-family: 'Poppins', sans-serif;
     height: 90px;
     background-color: #5d3a9b;
     padding: 20px 40px;
@@ -36,4 +33,9 @@
     background-color: #5d3a9b;
     color: white;
     border-color: #5d3a9b;
+}
+
+.btn-primary:hover {
+    background-color: #0aa5ff;
+    color: white;
 }

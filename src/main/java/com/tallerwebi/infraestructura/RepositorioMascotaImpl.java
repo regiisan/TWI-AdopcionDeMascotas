@@ -31,4 +31,13 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
         Criteria criteria = session.createCriteria(Mascota.class);
         return criteria.list();
     }
+
+    @Override
+    public List<Mascota> listarMascotasDestacadas() {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Mascota.class);
+        return criteria.setMaxResults(4).list();
+    }
+
+
 }

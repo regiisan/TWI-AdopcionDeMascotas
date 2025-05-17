@@ -28,4 +28,13 @@ public class ControladorMascota {
         model.addObject("mascotas",mascotas);
         return model;
     }
+
+    @RequestMapping(path = "/home", method = RequestMethod.GET)
+    public ModelAndView mostrarMascotasDestacadas(){
+
+        List<Mascota> mascotasDestacadas = servicioMascota.obtenerMascotasDestacadas();
+        ModelAndView model = new ModelAndView("home");
+        model.addObject("mascotas",mascotasDestacadas);
+        return model;
+    }
 }
