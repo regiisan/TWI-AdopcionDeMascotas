@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Adopción</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body class="container mt-4">
+<h2>Formulario de Pre-Adopción</h2>
+
+<form th:action="@{/mascota/{id}/adoptar/guardar(id=${mascota.id})}" th:object="${solicitud}" method="post">
+  <div class="mb-3">
+    <label class="form-label">Nombre completo:</label>
+    <input type="text" class="form-control" th:field="*{nombre}" required />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Email:</label>
+    <input type="email" class="form-control" th:field="*{email}" required />
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Tipo de vivienda:</label>
+    <select class="form-select" th:field="*{tipoVivienda}">
+      <option value="Casa">Casa</option>
+      <option value="Departamento">Departamento</option>
+      <option value="Otro">Otro</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">¿Tenés otros animales?</label>
+    <select class="form-select" th:field="*{otrosAnimales}">
+      <option value="true">Sí</option>
+      <option value="false">No</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Experiencia con mascotas:</label>
+    <textarea class="form-control" th:field="*{experiencia}" rows="3"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Espacio disponible para la mascota:</label>
+    <textarea class="form-control" th:field="*{espacioDisponible}" rows="2"></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+  <a th:href="@{/mascotas}" class="btn btn-secondary">Cancelar</a>
+</form>
+</body>
+</html>

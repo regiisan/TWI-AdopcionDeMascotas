@@ -14,11 +14,66 @@
                 <div class="card-body text-center">
                     <h5 th:text="${mascota.nombre}" class="card-title" style="color: #5d3a9b; font-weight: bold;"></h5>
                     <p th:text="'Edad: ' + ${mascota.edad} + ' años'" class="card-text" style="color: #333; font-size: 0.9rem;"></p>
+                    <button class="btn btn-outline-primary mt-2 ver-detalle"
+                            th:attr="data-nombre=${mascota.nombre},
+                                     data-id=${mascota.id},
+                                     data-edad=${mascota.edad},
+                                     data-salud=${mascota.salud},
+                                     data-comportamiento=${mascota.comportamiento},
+                                     data-img=@{'/images/' + ${mascota.img}},
+                                     data-descripcion=${mascota.descripcion}">
+                                     Datos
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modalMascota" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalNombreMascota">Nombre</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImagenMascota" src="" class="img-fluid rounded mb-3" style="max-height: 300px; object-fit: cover; width: 100%;"/>
+                <p id="modalEdadMascota"></p>
+                <p id="modalSaludMascota"></p>
+                <p id="modalComportamientoMascota"></p>
+                <p id="modalDescripcionMascota"></p>
+                <a id="modalAdoptarBtn" href="#" class="btn btn-outline-primary mt-2">Adoptar</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".ver-detalle").forEach(function (btn) {
+            btn.addEventListener("click", function () {
+                const nombre = this.getAttribute("data-nombre");
+                const edad = this.getAttribute("data-edad");
+                const img = this.getAttribute("data-img");
+                const descripcion = this.getAttribute("data-descripcion");
+                const salud = this.getAttribute("data-salud");
+                const comportamiento = this.getAttribute("data-comportamiento");
+                const id = this.getAttribute("data-id");
+
+                document.getElementById("modalNombreMascota").textContent = nombre;
+                document.getElementById("modalEdadMascota").textContent = "Edad: " + edad + " años";
+                document.getElementById("modalDescripcionMascota").textContent = descripcion;
+                document.getElementById("modalImagenMascota").src = img;
+                document.getElementById("modalSaludMascota").textContent = "Salud: " + salud;
+                document.getElementById("modalComportamientoMascota").textContent = "Comportamiento: " + comportamiento;
+                document.getElementById("modalAdoptarBtn").href = `/mascota/${id}/adoptar`;
+
+                new bootstrap.Modal(document.getElementById('modalMascota')).show();
+            });
+        });
+    });
+</script>
 
 </body>
 </html>

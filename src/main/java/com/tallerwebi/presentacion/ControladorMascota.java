@@ -4,6 +4,7 @@ import com.tallerwebi.dominio.Mascota;
 import com.tallerwebi.dominio.ServicioMascota;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,4 +38,14 @@ public class ControladorMascota {
         model.addObject("mascotas",mascotasDestacadas);
         return model;
     }
+
+//    @RequestMapping(path = "/mascota/{id}/adoptar", method = RequestMethod.GET)
+//    public ModelAndView adoptarMascota(@PathVariable Long id) {
+//        Mascota mascota = servicioMascota.obtenerMascotaPorId(id);
+//        ModelAndView model = new ModelAndView("adopcion");
+//        model.addObject("mascota", mascota);
+//        return model;
+//    }
+
+
 }
