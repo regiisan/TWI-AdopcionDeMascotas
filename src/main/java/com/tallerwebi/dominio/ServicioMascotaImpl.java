@@ -31,4 +31,9 @@ public class ServicioMascotaImpl implements ServicioMascota {
     public List<Mascota> obtenerMascotasDestacadas() {
         return repositorioMascota.listarMascotasDestacadas();
     }
+
+    @Override
+    public Mascota obtenerMascotaPorId(Long id) {
+        return repositorioMascota.buscarPorId(id);
+    }
 }

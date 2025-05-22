@@ -10,8 +10,8 @@ public class Mascota {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+    private Long id;
     private String nombre;
     private String tipo;
     private Integer edad;
@@ -19,6 +19,8 @@ public class Mascota {
     private String descripcion;
     private Boolean adoptado;
     private String img;
+    private String salud;
+    private String comportamiento;
 
     public Long getId() {
         return id;
@@ -83,4 +85,12 @@ public class Mascota {
     public void setImg(String img) {
         this.img = img;
     }
+
+    public String getSalud() {return salud;}
+
+    public void setSalud(String salud) {this.salud = salud;}
+
+    public String getComportamiento() {return comportamiento;}
+
+    public void setComportamiento(String comportamiento) {this.comportamiento = comportamiento;}
 }

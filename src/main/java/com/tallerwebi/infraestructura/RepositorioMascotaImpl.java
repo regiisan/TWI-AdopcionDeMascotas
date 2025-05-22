@@ -39,5 +39,10 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
         return criteria.setMaxResults(4).list();
     }
 
+    @Override
+    public Mascota buscarPorId(Long id) {
+        return (Mascota) sessionFactory.getCurrentSession().get(Mascota.class, id);
+    }
+
 
 }

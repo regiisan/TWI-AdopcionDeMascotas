@@ -6,4 +6,6 @@ public interface ServicioMascota {
     void guardar(Mascota mascota);
     List<Mascota> obtenerMascotas();
     List<Mascota> obtenerMascotasDestacadas();
+    Mascota obtenerMascotaPorId(Long id);
+
 }
