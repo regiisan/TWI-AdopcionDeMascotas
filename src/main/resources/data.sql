@@ -19,7 +19,7 @@ INSERT INTO Mascota (id, nombre, edad, sexo, tipo, descripcion, img, adoptado, s
 VALUES (null, 'MICHI', 2, 'Hembra', 'Gato', 'Rescatado de la calle.','gato1.jpg', false,'Vacunada, desparasitada', 'Muy dócil y sociable');
 
 INSERT INTO Mascota (id, nombre, edad, sexo, tipo, descripcion, img, adoptado, salud, comportamiento)
-VALUES (null, 'TOTO', 2, 'Macho', 'Perro', 'Rescatado de la calle.','perro8.webp', false,'Sano, con todas las vacunas', 'Muy activo y cariñoso');
+VALUES (null, 'TOTO', 2, 'Macho', 'Perro', 'Rescatado de la calle.','mascotas/perro8.webp', false,'Sano, con todas las vacunas', 'Muy activo y cariñoso');
 
 INSERT INTO Mascota (id, nombre, edad, sexo, tipo, descripcion, img, adoptado, salud, comportamiento)
 VALUES (null, 'TOBY', 3, 'Macho', 'Perro', 'Rescatado de la calle.','perro1.jpg', false,'Sano, con todas las vacunas', 'Muy activo y cariñoso');

@@ -1,13 +1,12 @@
 package com.tallerwebi.presentacion;
 
-import com.tallerwebi.dominio.Mascota;
-import com.tallerwebi.dominio.ServicioMascota;
+import com.tallerwebi.dominio.entidades.Mascota;
+import com.tallerwebi.dominio.servicios.ServicioMascota;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.servlet.ModelAndView;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 
 

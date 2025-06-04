@@ -1,9 +1,10 @@
 package com.tallerwebi.dominio;
 
-import com.tallerwebi.presentacion.ControladorMascota;
+import com.tallerwebi.dominio.entidades.Mascota;
+import com.tallerwebi.dominio.repositorios.RepositorioMascota;
+import com.tallerwebi.dominio.servicios.ServicioMascota;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +12,6 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
 

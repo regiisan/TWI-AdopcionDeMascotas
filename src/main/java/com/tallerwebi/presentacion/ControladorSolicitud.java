@@ -1,10 +1,9 @@
 package com.tallerwebi.presentacion;
 
-import com.tallerwebi.dominio.Mascota;
-import com.tallerwebi.dominio.RepositorioMascota;
-import com.tallerwebi.dominio.RepositorioSolicitud;
-import com.tallerwebi.dominio.SolicitudAdopcion;
-import com.tallerwebi.infraestructura.RepositorioSolicitudImpl;
+import com.tallerwebi.dominio.entidades.Mascota;
+import com.tallerwebi.dominio.repositorios.RepositorioMascota;
+import com.tallerwebi.dominio.repositorios.RepositorioSolicitud;
+import com.tallerwebi.dominio.entidades.SolicitudAdopcion;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

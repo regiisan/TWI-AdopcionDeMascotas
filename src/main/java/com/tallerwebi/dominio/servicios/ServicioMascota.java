@@ -1,4 +1,6 @@
-package com.tallerwebi.dominio;
+package com.tallerwebi.dominio.servicios;
+
+import com.tallerwebi.dominio.entidades.Mascota;
 
 import java.util.List;
 

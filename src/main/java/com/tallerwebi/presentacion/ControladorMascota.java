@@ -1,10 +1,9 @@
 package com.tallerwebi.presentacion;
 
-import com.tallerwebi.dominio.Mascota;
-import com.tallerwebi.dominio.ServicioMascota;
+import com.tallerwebi.dominio.entidades.Mascota;
+import com.tallerwebi.dominio.servicios.ServicioMascota;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;

@@ -1,4 +1,4 @@
-package com.tallerwebi.dominio;
+package com.tallerwebi.dominio.entidades;
 
 public class SolicitudAdopcion {
     private String nombre;
