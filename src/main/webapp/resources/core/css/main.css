@@ -39,3 +39,32 @@
     background-color: #0aa5ff;
     color: white;
 }
+
+html,
+body {
+    height: 100%;
+}
+
+.btn-violeta {
+    background-color: #fff;
+    color: #5E3A9C;
+    border: 1px solid #5E3A9C;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-violeta:hover {
+    background-color: #5E3A9C;
+    color: white;
+}
+
+.btn-violeta-invertida {
+    background-color: #5E3A9C;
+    color: white;
+    border: 1px solid #5E3A9C;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-violeta-invertida:hover {
+    background-color: white;
+    color: #5E3A9C;
+}
