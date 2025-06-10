@@ -1,26 +1,37 @@
-<header>
-<nav class="navbar navbar-expand-lg navbar-light custom">
-    <div class="container-fluid">
-        <a class="navbar-brand text-white fw-bold" href="home.html">LOGO</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <body>
+    <header th:fragment="encabezado">
+      <nav class="navbar navbar-expand-lg navbar-light custom">
+        <div class="container-fluid">
+          <a class="navbar-brand text-white fw-bold" th:href="@{/home}">LOGO</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul class="navbar-nav ms-auto me-3 mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link fs-6 me-4 text-white" href="home.html">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-6 me-4 text-white" href="#">Nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fs-6 me-4 text-white" href="mascotas.html">En Adopción</a>
-                </li>
+              <li class="nav-item">
+                <a class="nav-link fs-6 me-4 text-white" th:href="@{/home}">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fs-6 me-4 text-white" th:href="@{/nosotros}">Nosotros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link fs-6 me-4 text-white" th:href="@{/mascotas}">En Adopción</a>
+              </li>
+              <li class="nav-item" th:if="${session.idUsuario != null}">
+                <a class="nav-link fs-6 me-4 text-white" th:href="@{/perfil}">Mi Perfil</a>
+              </li>
             </ul>
-            <form class="d-flex">
-                <a href="login.html" class="btn-logIn">Log In</a>
-            </form>
+            <div class="d-flex">
+
+              <a th:if="${session.idUsuario == null}" th:href="@{/login}" class="btn-logIn">Log In</a>
+
+            </div>
+          </div>
         </div>
-    </div>
-</nav>
-</header>
+      </nav>
+    </header>
+  </body>
+</html>
+

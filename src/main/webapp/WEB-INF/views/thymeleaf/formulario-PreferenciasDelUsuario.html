@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="templates/head :: head"></head>
+<body>
+
+<header th:insert="templates/header :: header"></header>
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow rounded-4">
+                <div class="card-header text-center py-4">
+                    <div class="mb-3">
+                        <i class="fas fa-heart text-danger me-2"></i>
+                        <i class="fa-solid fa-paw" style="color: #A2D2FF;"></i>
+                    </div>
+                    <h3 class="mb-2 fw-bold">Encontrá a tu mascota ideal</h3>
+                    <!--<p class="mb-0" style="font-size: 0.9rem;">Contanos qué tipo de mascota estás buscando para encontrar tu mascota perfecta</p>-->
+                </div>
+                <div class="card-body p-5">
+                    <form th:action="@{/guardar-preferencias}" th:object="${usuario}" method="post">
+                        <input type="hidden" th:field="*{id}"/>
+
+                        <div class="mb-4">
+                            <label class="form-label">
+                                <i class="fas fa-dog me-2"></i>Tipo de mascota
+                            </label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check mb-2" th:each="tipo : ${tipos}">
+                                        <input class="form-check-input" type="radio" th:field="*{tipoPreferido}" th:value="${tipo}" th:id="${'tipo_' + tipo}" required/>
+                                        <label class="form-check-label" th:for="${'tipo_' + tipo}" th:text="${tipo}"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">
+                                <i class="fas fa-venus-mars me-2"></i>Sexo
+                            </label>
+                            <div class="d-flex gap-4 flex-wrap">
+                                <div class="form-check" th:each="sexo : ${sexos}">
+                                    <input class="form-check-input" type="radio" th:field="*{sexoPreferido}" th:value="${sexo}" th:id="${'sexo_' + sexo}" required/>
+                                    <label class="form-check-label" th:for="${'sexo_' + sexo}" th:text="${sexo}"></label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="tamano" class="form-label">
+                                <i class="fas fa-ruler me-2"></i>Tamaño
+                            </label>
+                            <select id="tamano" class="form-select" th:field="*{tamanoPreferido}" required>
+                                <option value="" disabled>Seleccioná una opción</option>
+                                <option th:each="tam : ${tamanos}" th:value="${tam}" th:text="${tam}"></option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="edadMaxima" class="form-label">
+                                <i class="fas fa-calendar-alt me-2"></i>Edad preferida
+                            </label>
+                            <input id="edadMaxima" type="number" class="form-control" th:field="*{edadPreferida}" min="0" required/>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="energia" class="form-label">
+                                <i class="fas fa-bolt me-2"></i>Nivel de energía
+                            </label>
+                            <p class="text-muted small mb-3">¿Qué tan activa te gustaría que fuera tu mascota?</p>
+                            <select id="energia" class="form-select" th:field="*{nivelEnergiaPreferido}" required>
+                                <option value="" disabled>Seleccioná una opción</option>
+                                <option th:each="energia : ${energias}" th:value="${energia}" th:text="${energia}"></option>
+                            </select>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end pt-3">
+                            <button type="submit" class="btn btn-primary rounded-pill px-3 fw-bold">
+                                <i class="fas fa-search me-2"></i>Buscar Mascotas
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

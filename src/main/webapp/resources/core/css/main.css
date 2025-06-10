@@ -2,6 +2,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
 .btn-logIn {
     text-decoration: none;
     border: 0;
@@ -13,12 +17,12 @@
     background-color: transparent;
     color: #ffffff;
     border-radius: 10px;
-    border: 2px solid #0aa5ff;
+    border: 2px solid #A2D2FF;
     transition: 0.2s;
 }
 
 .btn-logIn:hover {
-    background-color: #0aa5ff;
+    background-color: #A2D2FF;
     color: white;
 }
 
@@ -38,4 +42,49 @@
 .btn-primary:hover {
     background-color: #0aa5ff;
     color: white;
+}
+
+.card {
+    border-radius: 20px !important;
+    overflow: hidden;
+}
+
+.card-header {
+    background: #5d3a9b !important;
+    color: white !important;
+}
+
+.card-mascota:hover {
+    transform: translateY(-2px) scale(1.005);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+.card-mascota {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btnPrincipal{
+    background-color: #A2D2FF !important;
+    border-color: #A2D2FF !important;
+}
+
+.btnPrincipal:hover {
+    background-color: #5cb0eb !important;
+    border-color: #5cb0eb !important;
+}
+
+.custom-select select {
+    border: 2px solid #5d3a9b;
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    color: #5d3a9b;
+    background-color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+.custom-select select:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(93, 58, 155, 0.25);
+    border-color: #7c5cc4;
 }

@@ -1,6 +1,7 @@
 package com.tallerwebi.infraestructura;
 
 import com.tallerwebi.dominio.entidades.Mascota;
+import com.tallerwebi.dominio.entidades.Usuario;
 import com.tallerwebi.dominio.repositorios.RepositorioMascota;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
