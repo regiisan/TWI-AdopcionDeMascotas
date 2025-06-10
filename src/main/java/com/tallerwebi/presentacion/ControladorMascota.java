@@ -66,7 +66,6 @@ public class ControladorMascota {
         return model;
     }
 
-
     @RequestMapping(path = "/home", method = RequestMethod.GET)
     public ModelAndView mostrarMascotasDestacadas(){
         List<MascotaDto> mascotasDestacadas = servicioMascota.obtenerMascotasDestacadas();
@@ -75,6 +74,13 @@ public class ControladorMascota {
         model.addObject("mascotas",mascotasDestacadas);
 
         return model;
+    }
+
+    @RequestMapping(path = "/mascota/nueva", method = RequestMethod.GET)
+    public ModelAndView mostrarFormularioAdopcion() {
+        ModelAndView mav = new ModelAndView("formulario-dar-en-adopcion");
+        mav.addObject("mascota", new Mascota());
+        return mav;
     }
 
 }
