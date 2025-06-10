@@ -1,6 +1,7 @@
 package com.tallerwebi.dominio;
 
 import com.tallerwebi.dominio.entidades.Mascota;
+import com.tallerwebi.dominio.entidades.MascotaDto;
 import com.tallerwebi.dominio.repositorios.RepositorioMascota;
 import com.tallerwebi.dominio.servicios.ServicioMascota;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,7 +30,9 @@ public class ServicioMascotaImplTest {
     @Test
     public void dadoQueNoExistanMascotasDebeDevolverUnaListaVacia(){
         when(repositorioMascotaMock.listarMascotas()).thenReturn(new ArrayList<>());
-        List<Mascota> mascotas = servicioMascota.obtenerMascotas();
+
+        List<MascotaDto> mascotas = servicioMascota.obtenerMascotas();
+
         assertThat(mascotas, empty());
     }
 
@@ -38,21 +41,22 @@ public class ServicioMascotaImplTest {
         List<Mascota> mascotasMock = Arrays.asList(mock(Mascota.class), mock(Mascota.class));
         when(repositorioMascotaMock.listarMascotas()).thenReturn(mascotasMock);
 
-        List<Mascota> mascotas = servicioMascota.obtenerMascotas();
+        List<MascotaDto> mascotas = servicioMascota.obtenerMascotas();
 
         assertThat(mascotas.size(), is(2));
-        assertThat(mascotas, is(mascotasMock));
+        assertThat(mascotas.get(0), instanceOf(MascotaDto.class));
     }
 
     @Test
     public void debeObtenerMascotasDestacadas() {
-        List<Mascota> mascotasDestacadas = Arrays.asList(mock(Mascota.class), mock(Mascota.class));
-        when(repositorioMascotaMock.listarMascotasDestacadas()).thenReturn(mascotasDestacadas);
+        List<Mascota> mascotasDestacadasMock = Arrays.asList(mock(Mascota.class), mock(Mascota.class));
+        when(repositorioMascotaMock.listarMascotasDestacadas()).thenReturn(mascotasDestacadasMock);
 
-        List<Mascota> resultado = servicioMascota.obtenerMascotasDestacadas();
+        List<MascotaDto> mascotas = servicioMascota.obtenerMascotasDestacadas();
 
-        assertThat(mascotasDestacadas.size(), is(2));
-        assertThat(resultado, is(mascotasDestacadas));
+        assertThat(mascotas.size(), is(2));
+        assertThat(mascotas.get(0), instanceOf(MascotaDto.class));
+        assertThat(mascotas.get(1), instanceOf(MascotaDto.class));
     }
 
 }

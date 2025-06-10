@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Formulario de Adopción</title>
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-</head>
+<head th:insert="templates/head :: head"></head>
 <body class="container mt-4">
-<h2>Formulario de Pre-Adopción</h2>
 
+<h2>Formulario de Pre-Adopción</h2>
 <form th:action="@{/mascota/{id}/adoptar/guardar(id=${mascota.id})}" th:object="${solicitud}" method="post">
+  <input type="hidden" th:field="*{mascotaId}" />
   <div class="mb-3">
     <label class="form-label">Nombre completo:</label>
     <input type="text" class="form-control" th:field="*{nombre}" required />

@@ -12,25 +12,62 @@
     <img th:src="@{/images/ImgHero.jpg}" class="img-fluid w-100" alt="Imagen hero" style="height: 600px; object-fit: cover;">
       <div class="position-absolute top-50 text-start translate-middle-y" style="left: 10%; max-width: 600px;">
         <h1 class="display-4 fw-bold">ADOPCIÓN RESPONSABLE</h1>
-      <!--<p class="lead">Conectamos hogares con animales en busca de un nuevo comienzo.</p>-->
-          <a th:href="@{/mascotas.html}" class="btn btn-primary mt-3">Ver mascotas</a>
+          <p class="lead">Conectamos hogares con animales en busca de un nuevo comienzo.</p>
+          <a th:href="@{/mascotas}" class="btn btn-primary rounded-pill px-3 fw-bold">Conocer mascotas</a>
       </div>
   </div>
 
+  <!-- Seccion mascotas -->
   <section class="container mt-5">
+    <h3 class="text-center mb-4">Mascotas en adopción:</h3>
     <div class="row g-4">
-      <h4 class="text-center mb-4"> <a th:href="@{/mascotas}" class="text-decoration-none" style="color: #5d3a9b;">Mascotas en adopción:</a></h4>
       <div th:each="mascota : ${mascotas}" class="col-12 col-sm-6 col-md-4 col-lg-3">
-        <div class="card shadow-lg border-0" style="border-radius: 1rem">
+        <a th:href="@{/mascotas}" class="text-decoration-none" style="color: #5d3a9b;">
+        <div class="card card-mascota shadow-lg border-0" style="border-radius: 1rem">
           <img th:src="@{'/images/' + ${mascota.img}}" class="card-img-top" alt="Mascota" style="height: 280px; object-fit: cover; border-top-left-radius: 1em; border-top-right-radius: 1rem;"/>
           <div class="card-body text-center">
             <h5 th:text="${mascota.nombre}" class="card-title" style="color: #5d3a9b; font-weight: bold;"></h5>
             <p th:text="'Edad: ' + ${mascota.edad} + ' años'" class="card-text" style="color: #333; font-size: 0.9rem;"></p>
           </div>
         </div>
+        </a>
+      </div>
+      <div class="text-center mt-4">
+        <a th:href="@{/mascotas}" class="btn btn-outline-primary rounded-pill px-4">Ver todas las mascotas</a>
       </div>
     </div>
   </section>
+
+  <!-- Seccion como adoptar? -->
+  <section class="container-fluid py-5 mt-5" style="background-color: #f8f9fa;">
+    <div class="container">
+      <h3 class="text-center mb-4">¿Cómo funciona?</h3>
+      <div class="row g-4">
+        <div class="col-md-4 text-center">
+          <div class="bg-white rounded-circle mx-auto d-flex align-items-center justify-content-center mb-5" style="width: 100px; height: 100px; color: #5d3a9b;">
+            <i class="fa-solid fa-magnifying-glass fa-2x"></i>
+          </div>
+          <h4 class="fw-semibold" style="color: #5d3a9b;">1. Encontrá a tu compañero ideal</h4>
+          <p class="px-3">Explorá las mascotas disponibles para adopción y encontrá tu compañero ideal.</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="bg-white rounded-circle mx-auto d-flex align-items-center justify-content-center mb-5" style="width: 100px; height: 100px; color: #5d3a9b;">
+            <i class="fas fa-pen fa-2x"></i>
+          </div>
+          <h4 class="fw-semibold" style="color: #5d3a9b;">2. Completá el formulario</h4>
+          <p class="px-3">Contanos sobre vos y por qué querés adoptar. Vas a recibir un mail confirmando tu solicitud.</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <div class="bg-white rounded-circle mx-auto d-flex align-items-center justify-content-center mb-5" style="width: 100px; height: 100px; color: #5d3a9b;">
+            <i class="fas fa-thumbs-up fa-2x"></i>
+          </div>
+          <h4 class="fw-semibold" style="color: #5d3a9b;">3. Esperá la respuesta</h4>
+          <p class="px-3">Nuestro equipo evaluará tu solicitud y se pondrá en contacto con vos si es aprobada.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
 </main>
 

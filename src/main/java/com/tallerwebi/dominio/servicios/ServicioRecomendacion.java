@@ -8,9 +8,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Transactional
-public interface ServicioMascota {
-    void guardar(Mascota mascota);
-    List<MascotaDto> obtenerMascotas();
-    List<MascotaDto> obtenerMascotasDestacadas();
-    Mascota obtenerMascotaPorId(Long id);
+public interface ServicioRecomendacion {
+    List<MascotaDto> obtenerMascotasRecomendadas(Usuario usuario);
 }
