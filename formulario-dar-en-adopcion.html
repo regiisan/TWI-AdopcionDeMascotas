@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="templates/head :: head">
+</head>
+<link rel="stylesheet" href="../../../resources/core/css/main.css">
+
+<body>
+
+    <header th:insert="templates/header :: header"></header>
+
+    <main role="main"
+          class="d-flex align-items-center justify-content-center vh-100">
+        <div class="container">
+            <div id="formularioAdopcion"
+                 class="mx-auto p-4 rounded-3 shadow"
+                 style="max-width: 500px; background-color: rgba(94, 58, 156, 0.9);">
+                <form action="#"
+                      th:action="@{/mascota/guardar}"
+                      method="POST"
+                      enctype="multipart/form-data"
+                      th:object="${mascota}">
+                    <h3 class="text-center text-white">
+                        Dar mascota en adopción
+                    </h3>
+                    <hr class="colorgraph" />
+                    <br />
+
+                    <input th:field="*{nombre}"
+                           type="text"
+                           placeholder="Nombre"
+                           class="form-control mb-3"
+                           required />
+
+                    <input th:field="*{tipo}"
+                           type="text"
+                           placeholder="Tipo (perro, gato, etc)"
+                           class="form-control mb-3"
+                           required />
+
+                    <input th:field="*{edad}"
+                           type="number"
+                           placeholder="Edad"
+                           class="form-control mb-3"
+                           required />
+
+                    <select th:field="*{sexo}"
+                            class="form-control mb-3"
+                            required>
+                        <option value="">Seleccione sexo</option>
+                        <option value="Macho">Macho</option>
+                        <option value="Hembra">Hembra</option>
+                    </select>
+
+                    <input th:field="*{salud}"
+                           type="text"
+                           placeholder="Estado de salud"
+                           class="form-control mb-3"
+                           required />
+
+                    <input th:field="*{comportamiento}"
+                           type="text"
+                           placeholder="Comportamiento"
+                           class="form-control mb-3"
+                           required />
+
+                    <textarea th:field="*{descripcion}"
+                              placeholder="Descripción"
+                              class="form-control mb-3"
+                              rows="3"
+                              required></textarea>
+
+                    <label class="text-white mb-2">Foto</label>
+                    <input type="file"
+                           name="foto"
+                           class="form-control mb-4"
+                           accept="image/*"
+                           required />
+
+                    <button type="submit"
+                            class="btn btn-lg btn-violeta-invertida w-100 mb-3">
+                        Publicar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{js/main.js}"></script>
+
+</body>
+</html>
