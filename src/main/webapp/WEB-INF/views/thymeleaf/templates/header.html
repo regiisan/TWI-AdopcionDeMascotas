@@ -2,9 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <body>
     <header th:fragment="encabezado">
+
       <nav class="navbar navbar-expand-lg navbar-light custom">
         <div class="container-fluid">
-          <a class="navbar-brand text-white fw-bold" th:href="@{/home}">LOGO</a>
+          <a class="navbar-brand text-white fw-bold" th:href="@{/home}">ADOPETS</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -19,11 +20,11 @@
               <li class="nav-item">
                 <a class="nav-link fs-6 me-4 text-white" th:href="@{/mascotas}">En Adopción</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link fs-6 me-4 text-white" th:href="@{/mascota/nueva}">Dar en Adopción</a>
+              </li>
               <li class="nav-item" th:if="${session.idUsuario != null}">
                 <a class="nav-link fs-6 me-4 text-white" th:href="@{/perfil}">Mi Perfil</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" th:href="@{/mascota/nueva}">Dar en Adopción</a>
               </li>
             </ul>
             <div class="d-flex">
@@ -34,6 +35,7 @@
           </div>
         </div>
       </nav>
+
     </header>
   </body>
 </html>

@@ -28,11 +28,6 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
     }
 
     @Override
-    public void guardar(Usuario usuario) {
-        sessionFactory.getCurrentSession().save(usuario);
-    }
-
-    @Override
     public Usuario buscarPorId(Long id) {
         return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
                 .add(Restrictions.eq("id", id))
@@ -44,6 +39,11 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
         return (Usuario) sessionFactory.getCurrentSession().createCriteria(Usuario.class)
                 .add(Restrictions.eq("email", email))
                 .uniqueResult();
+    }
+
+    @Override
+    public void guardar(Usuario usuario) {
+        sessionFactory.getCurrentSession().save(usuario);
     }
 
     @Override

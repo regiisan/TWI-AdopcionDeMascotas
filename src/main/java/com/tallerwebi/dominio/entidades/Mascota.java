@@ -1,6 +1,7 @@
 package com.tallerwebi.dominio.entidades;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Mascota {
@@ -85,4 +86,16 @@ public class Mascota {
 
     public NivelEnergia getNivelEnergia() { return nivelEnergia; }
     public void setNivelEnergia(NivelEnergia nivelEnergia) { this.nivelEnergia = nivelEnergia; }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Mascota mascota = (Mascota) o;
+        return Objects.equals(id, mascota.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
 }

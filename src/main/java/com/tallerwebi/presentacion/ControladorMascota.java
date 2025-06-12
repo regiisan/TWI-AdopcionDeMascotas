@@ -22,11 +22,9 @@ public class ControladorMascota {
 
     @Autowired
     public ControladorMascota(ServicioMascota servicioMascota, ServicioRecomendacion servicioRecomendacion, ServicioUsuario servicioUsuario) {
-
         this.servicioMascota = servicioMascota;
         this.servicioRecomendacion = servicioRecomendacion;
         this.servicioUsuario = servicioUsuario;
-
     }
 
     /*

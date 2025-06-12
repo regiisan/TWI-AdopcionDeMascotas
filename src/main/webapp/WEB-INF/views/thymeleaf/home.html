@@ -11,7 +11,7 @@
   <div class="position-relative text-white">
     <img th:src="@{/images/ImgHero.jpg}" class="img-fluid w-100" alt="Imagen hero" style="height: 600px; object-fit: cover;">
       <div class="position-absolute top-50 text-start translate-middle-y" style="left: 10%; max-width: 600px;">
-        <h1 class="display-4 fw-bold">ADOPCIÓN RESPONSABLE</h1>
+        <h1 class="display-4 fw-bold titulo-principal">ADOPCIÓN RESPONSABLE</h1>
           <p class="lead">Conectamos hogares con animales en busca de un nuevo comienzo.</p>
           <a th:href="@{/mascotas}" class="btn btn-primary rounded-pill px-3 fw-bold">Conocer mascotas</a>
       </div>
@@ -33,7 +33,7 @@
         </a>
       </div>
       <div class="text-center mt-4">
-        <a th:href="@{/mascotas}" class="btn btn-outline-primary rounded-pill px-4">Ver todas las mascotas</a>
+        <a th:href="@{/mascotas}" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold">Ver todas las mascotas</a>
       </div>
     </div>
   </section>
@@ -41,33 +41,101 @@
   <!-- Seccion como adoptar? -->
   <section class="container-fluid py-5 mt-5" style="background-color: #f8f9fa;">
     <div class="container">
-      <h3 class="text-center mb-4">¿Cómo funciona?</h3>
+      <h3 class="text-center mb-4">¿Cómo adoptar?</h3>
       <div class="row g-4">
         <div class="col-md-4 text-center">
           <div class="bg-white rounded-circle mx-auto d-flex align-items-center justify-content-center mb-5" style="width: 100px; height: 100px; color: #5d3a9b;">
             <i class="fa-solid fa-magnifying-glass fa-2x"></i>
           </div>
           <h4 class="fw-semibold" style="color: #5d3a9b;">1. Encontrá a tu compañero ideal</h4>
-          <p class="px-3">Explorá las mascotas disponibles para adopción y encontrá tu compañero ideal.</p>
+          <p class="text-muted px-3">Explorá las mascotas disponibles para adopción y encontrá tu compañero ideal.</p>
         </div>
         <div class="col-md-4 text-center">
           <div class="bg-white rounded-circle mx-auto d-flex align-items-center justify-content-center mb-5" style="width: 100px; height: 100px; color: #5d3a9b;">
-            <i class="fas fa-pen fa-2x"></i>
+            <i class="fa-solid fa-pen fa-2x"></i>
           </div>
           <h4 class="fw-semibold" style="color: #5d3a9b;">2. Completá el formulario</h4>
-          <p class="px-3">Contanos sobre vos y por qué querés adoptar. Vas a recibir un mail confirmando tu solicitud.</p>
+          <p class="text-muted px-3">Contanos sobre vos y por qué querés adoptar. Vas a recibir un mail confirmando tu solicitud.</p>
         </div>
         <div class="col-md-4 text-center">
           <div class="bg-white rounded-circle mx-auto d-flex align-items-center justify-content-center mb-5" style="width: 100px; height: 100px; color: #5d3a9b;">
             <i class="fas fa-thumbs-up fa-2x"></i>
           </div>
           <h4 class="fw-semibold" style="color: #5d3a9b;">3. Esperá la respuesta</h4>
-          <p class="px-3">Nuestro equipo evaluará tu solicitud y se pondrá en contacto con vos si es aprobada.</p>
+          <p class="text-muted px-3">Nuestro equipo evaluará tu solicitud y se pondrá en contacto con vos si es aprobada.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- Seccion dar en adopción -->
+  <section class="container text-center mt-5 py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <h3 class="mb-3">¿Tenés una mascota que necesita un nuevo hogar?</h3>
+        <p class="lead mb-4" style="color: #6c757d;">
+          Completá nuestro formulario para sumarla a la lista de adopción.
+        </p>
+        <a th:href="@{/mascota/nueva}" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold">Dar en adopción</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark text-white py-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 mb-4 mb-lg-0">
+          <h5 class="mb-3">Adopción Responsable</h5>
+          <p class="text-muted">Trabajamos para conectar mascotas abandonadas con familias amorosas que les brinden un hogar para siempre.</p>
+          <div class="d-flex gap-3 mt-3">
+            <a href="#" class="text-white"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-instagram fs-5"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-twitter fs-5"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-youtube fs-5"></i></a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-2 mb-4 mb-lg-0">
+          <h5 class="mb-3">Enlaces</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Inicio</a></li>
+            <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Mascotas</a></li>
+            <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Sobre nosotros</a></li>
+            <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
+          <h5 class="mb-3">Recursos</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Guía de cuidados</a></li>
+            <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Preguntas frecuentes</a></li>
+            <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Blog</a></li>
+            <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Donaciones</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <h5 class="mb-3">Contacto</h5>
+          <ul class="list-unstyled text-muted">
+            <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>Florencio Varela 1903, San Justo.</li>
+            <li class="mb-2"><i class="bi bi-telephone me-2"></i>011 4480-8900</li>
+            <li class="mb-2"><i class="bi bi-envelope me-2"></i>Adopets@hotmail.com</li>
+            <li class="mb-2"><i class="bi bi-clock me-2"></i> Lun-Vie: 9AM - 10PM</li>
+          </ul>
+        </div>
+      </div>
+      <hr class="my-4">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="small text-muted mb-0">&copy; 2025 Adopción Responsable. Todos los derechos reservados.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <p class="small text-muted mb-0">
+            <a href="#" class="text-muted text-decoration-none">Política de privacidad</a> |
+            <a href="#" class="text-muted text-decoration-none">Términos de uso</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
 </main>
 

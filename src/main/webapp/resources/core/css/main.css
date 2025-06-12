@@ -1,14 +1,39 @@
-*{
-    font-family: 'Poppins', sans-serif;
+html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, label, li {
+    font-family: 'Poppins', sans-serif !important;
 }
 
-body{
-    font-family: 'Poppins', sans-serif;
+.titulo-principal {
+    font-family: 'Ubuntu', sans-serif !important;
+}
+
+.nav-link {
+    position: relative;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #d0ebc4   ;
+    transition: width 0.4s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #d0ebc4    !important;
 }
 
 .btn-logIn {
     text-decoration: none;
-    border: 0;
     outline: none;
     font-size: inherit;
     cursor: pointer;
@@ -17,12 +42,12 @@ body{
     background-color: transparent;
     color: #ffffff;
     border-radius: 10px;
-    border: 2px solid #A2D2FF;
+    border: 2px solid #0d6efd;
     transition: 0.2s;
 }
 
 .btn-logIn:hover {
-    background-color: #A2D2FF;
+    background-color: #0d6efd;
     color: white;
 }
 
@@ -40,19 +65,13 @@ body{
 }
 
 .btn-primary:hover {
-    background-color: #0aa5ff;
-    color: white;
-}
-
-
-.card {
-    border-radius: 20px !important;
-    overflow: hidden;
+    background-color: #d0ebc4  ;
+    border-color: #d0ebc4  ;
+    color: black;
 }
 
 .card-header {
     background: #5d3a9b !important;
-    color: white !important;
 }
 
 .card-mascota:hover {
