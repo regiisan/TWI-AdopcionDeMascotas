@@ -137,3 +137,9 @@ body {
     background-color: white;
     color: #5E3A9C;
 }
+
+.card-perfil {
+    background-color: #5e3a9c;
+    color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
