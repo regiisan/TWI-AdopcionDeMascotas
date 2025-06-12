@@ -64,4 +64,39 @@ public class ControladorUsuario {
 
         return new ModelAndView("redirect:/mascotas");
     }
+
+    @GetMapping("/perfil")
+    public ModelAndView mostrarPerfil(HttpSession session) {
+        ModelMap modelo = new ModelMap();
+
+        Long id = (Long) session.getAttribute("idUsuario");
+
+        if (id == null) {
+            return new ModelAndView("redirect:/login");
+        }
+
+        Usuario usuario = servicioUsuario.buscarPorId(id);
+        modelo.put("usuario", usuario);
+
+        return new ModelAndView("perfil", modelo);
+    }
+
+    @PostMapping("/editar-perfil")
+    public ModelAndView editarPerfil(@ModelAttribute("usuario") Usuario formUsuario,
+                                     HttpSession session) {
+        Long id = (Long) session.getAttribute("idUsuario");
+
+        if (id == null) {
+            return new ModelAndView("redirect:/login");
+        }
+
+        Usuario usuario = servicioUsuario.buscarPorId(id);
+
+
+
+        servicioUsuario.modificar(usuario);
+
+        return new ModelAndView("redirect:/perfil");
+    }
+
 }
