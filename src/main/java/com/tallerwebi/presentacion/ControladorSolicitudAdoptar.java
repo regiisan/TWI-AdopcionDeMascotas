@@ -43,24 +43,5 @@ public class ControladorSolicitudAdoptar {
         return "redirect:/mascotas";
     }
 
-/*
-    @PostMapping("/mascota/{id}/adoptar")
-    public String procesarFormularioAdopcion(
-            @PathVariable Long id, @ModelAttribute SolicitudAdopcion solicitud) {
-
-        Mascota mascota = repoMascota.buscarPorId(id);
-        if (mascota == null) {
-            return "redirect:/mascotas";
-        }
-
-        solicitud.setMascotaId(id);
-        solicitud.setEstado("pendiente");
-
-        repoSolicitud.guardar(solicitud);
-
-        return "redirect:/mascotas?solicitud_enviada";
-    }*/
-
-
 }
 

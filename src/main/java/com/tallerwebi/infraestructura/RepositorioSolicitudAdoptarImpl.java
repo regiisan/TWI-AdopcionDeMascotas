@@ -16,8 +16,6 @@ import java.util.List;
 public class RepositorioSolicitudAdoptarImpl implements RepositorioSolicitudAdoptar {
 
     private SessionFactory sessionFactory;
-    /*private final List<SolicitudAdopcion> solicitudes = new ArrayList<>();
-     */
 
     @Autowired
     public RepositorioSolicitudAdoptarImpl(SessionFactory sessionFactory){
@@ -28,7 +26,6 @@ public class RepositorioSolicitudAdoptarImpl implements RepositorioSolicitudAdop
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(SolicitudAdopcion.class);
         return criteria.list();
-        //return solicitudes;
     }
 
     @Override

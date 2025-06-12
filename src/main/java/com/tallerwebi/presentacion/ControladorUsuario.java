@@ -92,8 +92,6 @@ public class ControladorUsuario {
 
         Usuario usuario = servicioUsuario.buscarPorId(id);
 
-
-
         servicioUsuario.modificar(usuario);
 
         return new ModelAndView("redirect:/perfil");

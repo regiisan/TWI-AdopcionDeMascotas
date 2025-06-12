@@ -100,7 +100,6 @@ public class RepositorioMascotaTest {
     @Test
     @Rollback
     public void dadoQueHayaMenosDe4MascotasEnLaBDListarMascotasDestacadasDevuelveTodas() {
-        // Dado: creo 3 mascotas
         for (int i = 1; i <= 3; i++) {
             Mascota m = new Mascota();
             this.sessionFactory.getCurrentSession().save(m);
