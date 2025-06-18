@@ -1,0 +1,36 @@
+
+services:
+  db:
+    build:
+      context: .
+      dockerfile: DockerfileSQL
+    container_name: tallerwebi_db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: tallerwebi
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - tallerwebi_net
+
+  app:
+    build:
+      context: .
+      dockerfile: DockerfileTomcat
+    container_name: tallerwebi_app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - tallerwebi_net
+
+volumes:
+  db_data:
+
+networks:
+  tallerwebi_net:
