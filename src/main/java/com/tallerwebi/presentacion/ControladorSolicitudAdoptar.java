@@ -23,8 +23,9 @@ public class ControladorSolicitudAdoptar {
     @GetMapping("/mascota/{id}/adoptar")
     public ModelAndView mostrarFormularioAdopcion(@PathVariable Long id) {
         SolicitudAdopcion solicitud = new SolicitudAdopcion();
-        solicitud.setMascotaId(id);
+        // solicitud.setMascotaId(id);
         Mascota mascota = servicioMascota.obtenerMascotaPorId(id);
+        solicitud.setMascota(mascota);
 
         ModelAndView model = new ModelAndView("formulario-adopcion");
         model.addObject("mascota", mascota);
@@ -35,7 +36,9 @@ public class ControladorSolicitudAdoptar {
 
     @PostMapping("/mascota/{id}/adoptar/guardar")
     public String guardarSolicitudAdopcion(@ModelAttribute("solicitud") SolicitudAdopcion solicitud, @PathVariable Long id) {
-        solicitud.setMascotaId(id);
+        // solicitud.setMascotaId(id);
+        Mascota mascota = servicioMascota.obtenerMascotaPorId(id);
+        solicitud.setMascota(mascota);
         solicitud.setEstado("Pendiente");
 
         servicioSolicitudAdoptar.guardar(solicitud);

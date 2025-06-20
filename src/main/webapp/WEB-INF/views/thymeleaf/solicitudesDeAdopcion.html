@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="templates/head :: head"></head>
+
+<body>
+
+<header th:insert="templates/header :: header"></header>
+
+<div class="container py-4">
+    <h3 class="mb-4 fw-bold">Solicitudes de Adopción</h3>
+    <!-- Estadísticas
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-clock-history text-warning" style="font-size: 2rem;"></i>
+                    <h6>Pendientes</h6>
+                    <p class="h4 fw-bold mb-0" th:text="${estadisticas.pendientes}">12</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-check-circle-fill text-success" style="font-size: 2rem;"></i>
+                    <h6>Aprobadas</h6>
+                    <p class="h4 fw-bold mb-0" th:text="${estadisticas.aprobadas}">25</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <i class="bi bi-x-circle-fill text-danger" style="font-size: 2rem;"></i>
+                    <h6>Rechazadas</h6>
+                    <p class="h4 fw-bold mb-0" th:text="${estadisticas.rechazadas}">5</p>
+                </div>
+            </div>
+        </div>
+    </div>-->
+
+    <!-- Filtros -->
+    <form th:action="@{/admin/solicitudes}" method="get" class="row g-2 mb-4">
+        <div class="col-sm-4">
+            <select class="form-select" name="estado" th:value="${filtroEstado}">
+                <option value="">Todas</option>
+                <option value="PENDIENTE" th:selected="${filtroEstado == 'PENDIENTE'}">Pendientes</option>
+                <option value="APROBADA" th:selected="${filtroEstado == 'APROBADA'}">Aprobadas</option>
+                <option value="RECHAZADA" th:selected="${filtroEstado == 'RECHAZADA'}">Rechazadas</option>
+            </select>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </div>
+    </form>
+
+    <!-- Solicitudes -->
+    <div th:each="solicitud : ${solicitudes}" class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #5d3a9b;">
+            <div>
+                <strong class="text-white">Solicitud #</strong><span class="text-white" th:text="${solicitud.id}"></span>
+                <span th:text="${solicitud.nombre}" class="text-white">Juan Pérez</span>
+            </div>
+            <span th:switch="${solicitud.estado}">
+            <span th:case="'Pendiente'" class="badge bg-warning text-dark rounded-pill px-2 py-1 fw-semibold" style="font-size: 0.9rem;"><i class="bi bi-clock me-1"></i>PENDIENTE</span>
+            <span th:case="'Aprobada'" class="badge bg-success text-white rounded-pill px-2 py-1 fw-semibold" style="font-size: 0.9rem;"><i class="bi bi-check-circle me-1"></i>APROBADA</span>
+            <span th:case="'Rechazada'" class="badge bg-danger text-white rounded-pill px-2 py-1 fw-semibold" style="font-size: 0.9rem;"><i class="bi bi-x-circle me-1"></i>RECHAZADA</span>
+            </span>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <!-- Mascota -->
+                <div class="col-md-6 mb-3">
+                    <div class="border rounded p-3" style="background-color: #faf8fe !important;">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fa-solid fa-paw me-2" style="color: #5d3a9b;"></i>
+                            <h6 class="mb-0 fw-bold" style="color: #5d3a9b;">Mascota</h6>
+                        </div>
+                        <div class="d-flex mb-2">
+                            <img th:src="@{'/images/' + ${solicitud.mascota.img}}"
+                                 th:alt="${solicitud.mascota.nombre}" class="mascota-img me-3">
+                            <div class="flex-grow-1">
+                                <div class="info-item">
+                                    <strong>Nombre:</strong> <span th:text="${solicitud.mascota.nombre}"></span>
+                                </div>
+                                <div class="info-item">
+                                    <strong>Descripción:</strong> <span th:text="${solicitud.mascota.descripcion}"></span>
+                                </div>
+                                <div class="info-item">
+                                    <strong>Edad:</strong> <span th:text="${solicitud.mascota.edad}"></span>
+                                </div>
+                                <div class="info-item">
+                                    <strong>Tamaño:</strong> <span th:text="${solicitud.mascota.tamano}"></span>
+                                </div>
+                                <div class="info-item">
+                                    <strong>Nivel de Energía:</strong> <span th:text="${solicitud.mascota.nivelEnergia}"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Solicitante -->
+                <div class="col-md-6 mb-3">
+                    <div class="border rounded p-3" style="background-color: #faf8fe !important;">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fa-solid fa-user me-2" style="color: #5d3a9b;"></i>
+                            <h6 class="mb-0 fw-bold" style="color: #5d3a9b;">Información del Solicitante</h6>
+                        </div>
+                        <div class="info-item">
+                            <strong>Email:</strong> <span th:text="${solicitud.email}"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Tipo de vivienda:</strong> <span th:text="${solicitud.tipoVivienda}"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Espacio disponible:</strong> <span th:text="${solicitud.espacioDisponible}"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Otros animales:</strong> <span th:text="${solicitud.otrosAnimales}"></span>
+                        </div>
+                        <div class="info-item">
+                            <strong>Experiencia:</strong> <span th:text="${solicitud.experiencia}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Acciones-->
+            <div th:if="${solicitud.estado == 'PENDIENTE'}" class="mt-2">
+                <button type="button" class="btn btn-outline-success btn-sm rounded-pill">
+                    <i class="bi bi-check-lg"></i> Aprobar
+                </button>
+                <button type="button" class="btn btn-outline-danger btn-sm rounded-pill">
+                    <i class="bi bi-x-lg"></i> Rechazar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Estado vacío
+    <div th:if="${#lists.isEmpty(solicitudes.content)}" class="text-center text-muted mt-5">
+        <i class="bi bi-inbox" style="font-size: 3rem;"></i>
+        <p class="mt-2">No hay solicitudes para mostrar</p>
+    </div>-->
+</div>
+
+</body>
+</html>
