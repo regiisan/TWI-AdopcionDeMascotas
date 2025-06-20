@@ -32,6 +32,10 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
     color: #d0ebc4    !important;
 }
 
+.nav-link.active {
+    color: #d0ebc4 !important;
+}
+
 .btn-logIn {
     text-decoration: none;
     outline: none;
@@ -142,4 +146,26 @@ body {
     background-color: #5e3a9c;
     color: white;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.info-item {
+    margin-bottom: 0.8rem;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 8px;
+}
+
+.mascota-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 15px;
+    border: 3px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+@media (max-width: 768px) {
+    .mascota-img {
+        width: 80px;
+        height: 80px;
+    }
 }

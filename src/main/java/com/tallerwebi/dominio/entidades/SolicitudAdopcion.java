@@ -1,9 +1,6 @@
 package com.tallerwebi.dominio.entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class SolicitudAdopcion {
@@ -17,10 +14,21 @@ public class SolicitudAdopcion {
     private String espacioDisponible;
     private boolean otrosAnimales;
     private String experiencia;
+
+    // Relación entre las tablas
+    @ManyToOne
+    @JoinColumn(name="fk_mascota")
+    private Mascota mascota;
+
+    // Esto ya no va
     private Long mascotaId;
+
     private String estado;
 
     // Getters y Setters
+    public Mascota getMascota() { return mascota; }
+    public void setMascota(Mascota mascota) { this.mascota = mascota; }
+
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

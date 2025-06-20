@@ -23,9 +23,9 @@
                             </label>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-check mb-2" th:each="tipo : ${tipos}">
-                                        <input class="form-check-input" type="radio" th:field="*{tipoPreferido}" th:value="${tipo}" th:id="${'tipo_' + tipo}" required/>
-                                        <label class="form-check-label" th:for="${'tipo_' + tipo}" th:text="${tipo}"></label>
+                                    <div class="form-check mb-2" th:each="tipo : ${T(com.tallerwebi.dominio.entidades.Tipo).values()}">
+                                        <input class="form-check-input" type="radio" th:field="*{tipoPreferido}" th:value="${tipo}" th:id="${'tipo_' + tipo.name()}" required/>
+                                        <label class="form-check-label" th:for="${'tipo_' + tipo.name()}" th:text="${tipo.displayValue}"></label>
                                     </div>
                                 </div>
                             </div>
@@ -36,9 +36,9 @@
                                 <i class="fas fa-venus-mars me-2"></i>Sexo
                             </label>
                             <div class="d-flex gap-4 flex-wrap">
-                                <div class="form-check" th:each="sexo : ${sexos}">
-                                    <input class="form-check-input" type="radio" th:field="*{sexoPreferido}" th:value="${sexo}" th:id="${'sexo_' + sexo}" required/>
-                                    <label class="form-check-label" th:for="${'sexo_' + sexo}" th:text="${sexo}"></label>
+                                <div class="form-check" th:each="sexo : ${T(com.tallerwebi.dominio.entidades.Sexo).values()}">
+                                    <input class="form-check-input" type="radio" th:field="*{sexoPreferido}" th:value="${sexo}" th:id="${'sexo_' + sexo.name()}" required/>
+                                    <label class="form-check-label" th:for="${'sexo_' + sexo.name()}" th:text="${sexo.displayValue}"></label>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                             </label>
                             <select id="tamano" class="form-select" th:field="*{tamanoPreferido}" required>
                                 <option value="" disabled>Seleccioná una opción</option>
-                                <option th:each="tam : ${tamanos}" th:value="${tam}" th:text="${tam}"></option>
+                                <option th:each="tam : ${T(com.tallerwebi.dominio.entidades.Tamano).values()}" th:value="${tam}" th:text="${tam.displayValue}"></option>
                             </select>
                         </div>
 
@@ -67,7 +67,7 @@
                             <p class="text-muted small mb-3">¿Qué tan activa te gustaría que fuera tu mascota?</p>
                             <select id="energia" class="form-select" th:field="*{nivelEnergiaPreferido}" required>
                                 <option value="" disabled>Seleccioná una opción</option>
-                                <option th:each="energia : ${energias}" th:value="${energia}" th:text="${energia}"></option>
+                                <option th:each="energia : ${T(com.tallerwebi.dominio.entidades.NivelEnergia).values()}" th:value="${energia}" th:text="${energia.displayValue}"></option>
                             </select>
                         </div>
 

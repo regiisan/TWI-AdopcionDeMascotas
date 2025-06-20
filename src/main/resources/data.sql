@@ -14,6 +14,11 @@ VALUES
     (null, 'BRUNO', 'Bruno es un perro que estuvo en un hogar temporal donde demostró ser muy juguetón y amigable con los niños.', false, 'mascotas/perro3.jpg', 'sano y vacunado', 'social', 2, 'PERRO', 'MACHO', 'MEDIANO', 'ALTO'),
     (null, 'SIRA', 'Sira es una perra independiente que vivía en la calle, pero se adaptó rápido a la vida en hogares y busca un espacio tranquilo.', false, 'mascotas/perro2.jpg', 'salud perfecta', 'calma', 4, 'PERRO', 'HEMBRA', 'CHICO', 'BAJO'),
     (null, 'COCO', 'Coco fue rescatado de una situación de abandono y necesita una familia activa que pueda brindarle mucho tiempo y cariño.', false, 'mascotas/perro1.jpg', 'sano, desparasitado', 'activo', 6, 'PERRO', 'MACHO', 'MEDIANO', 'ALTO');
+
+INSERT INTO SolicitudAdopcion
+(id, nombre, email, tipoVivienda, espacioDisponible, otrosAnimales, experiencia,fk_mascota, mascotaId, estado)
+VALUES
+    (null, 'Juan Pérez', 'juan@example.com', 'Casa', 'Patio grande', 1, '5 años con perros grandes', 1, 1,'PENDIENTE');
 /*
 INSERT INTO Mascota (id, nombre, edad, sexo, tipo, descripcion, img, adoptado, salud, comportamiento)
 VALUES (null, 'LUNA', 5, 'HEMBRA', 'PERRO', 'Rescatada de la calle.','perro6.jpg', false,'Vacunada, desparasitada', 'Muy dócil y sociable');
