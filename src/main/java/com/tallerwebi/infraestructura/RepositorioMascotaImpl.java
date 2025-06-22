@@ -59,5 +59,26 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
         return criteria.list();
     }
 
+    @Override
+    public List<Mascota> listarMascotasFiltradas(String tipo, String sexo, String tamano, String energia) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Mascota.class);
+
+        if (tipo != null && !tipo.isEmpty()) {
+            criteria.add(Restrictions.eq("tipo", Tipo.valueOf(tipo.toLowerCase())));
+        }
+        if (sexo != null && !sexo.isEmpty()) {
+            criteria.add(Restrictions.eq("sexo", Sexo.valueOf(sexo.toLowerCase())));
+        }
+        if (tamano != null && !tamano.isEmpty()) {
+            criteria.add(Restrictions.eq("tamano", Tamano.valueOf(tamano.toLowerCase())));
+        }
+        if (energia != null && !energia.isEmpty()) {
+            criteria.add(Restrictions.eq("nivelEnergia", NivelEnergia.valueOf(energia.toLowerCase())));
+        }
+
+        return criteria.list();
+    }
+
 
 }

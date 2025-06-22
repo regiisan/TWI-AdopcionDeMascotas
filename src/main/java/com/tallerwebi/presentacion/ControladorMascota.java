@@ -119,4 +119,18 @@ public class ControladorMascota {
         return model;
     }
 
+    @RequestMapping(path = "/mascotas/filtrar", method = RequestMethod.GET)
+    public ModelAndView filtrarMascotas(@RequestParam(required = false) Tipo tipo,
+                                        @RequestParam(required = false) Sexo sexo,
+                                        @RequestParam(required = false) Tamano tamano,
+                                        @RequestParam(required = false) NivelEnergia energia,
+                                        HttpSession session) {
+
+        List<MascotaDto> mascotasFiltradas = servicioMascota.obtenerMascotasFiltradas(tipo, sexo, tamano, energia);
+        ModelAndView model = new ModelAndView("mascotas");
+        model.addObject("mascotas", mascotasFiltradas);
+        model.addObject("mostrarSugerenciaDePreferencias", true);
+        return model;
+    }
+
 }

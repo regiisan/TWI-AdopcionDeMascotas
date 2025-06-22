@@ -12,4 +12,6 @@ public interface ServicioMascota {
     List<MascotaDto> obtenerMascotasDestacadas();
     Mascota obtenerMascotaPorId(Long id);
     List<MascotaDto> obtenerMascotasFiltradas(Tipo tipo, Sexo sexo, Tamano tamano, NivelEnergia energia);
+
+
 }
