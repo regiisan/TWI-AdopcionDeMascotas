@@ -5,6 +5,7 @@ import com.tallerwebi.dominio.servicios.ServicioLogin;
 import com.tallerwebi.dominio.servicios.ServicioUsuario;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.ui.Model;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
@@ -29,6 +30,8 @@ public class ControladorUsuarioTest {
         sessionMock = mock(HttpSession.class);
         controladorUsuario = new ControladorUsuario(servicioUsuarioMock);
     }
+
+
 
     @Test
     public void debeRetornarFormularioPreferenciasSiElUsuarioEstaLogeado(){
@@ -87,6 +90,59 @@ public class ControladorUsuarioTest {
         ModelAndView modelAndView = controladorUsuario.guardarPreferencias(usuarioMock, sessionMock);
 
         assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect:/login"));
+    }
+
+    @Test
+    public void debeMostrarPerfilSiElUsuarioEstaLogeado() {
+        long idUsuario = 2L;
+        when(sessionMock.getAttribute("idUsuario")).thenReturn(idUsuario);
+        when(servicioUsuarioMock.buscarPorId(idUsuario)).thenReturn(usuarioMock);
+
+        ModelAndView modelAndView = controladorUsuario.mostrarPerfil(sessionMock);
+
+        assertThat(modelAndView.getViewName(), equalToIgnoringCase("perfil"));
+        assertThat(modelAndView.getModel().get("usuario"), is(usuarioMock));
+    }
+
+    @Test
+    public void debeRedirigirAlLoginSiElUsuarioNoEstaLogeadoAlVerPerfil() {
+        when(sessionMock.getAttribute("idUsuario")).thenReturn(null);
+
+        ModelAndView modelAndView = controladorUsuario.mostrarPerfil(sessionMock);
+
+        assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect:/login"));
+    }
+
+    @Test
+    public void debeEditarPerfilSiElUsuarioEstaLogeado() {
+        Long idUsuario = 3L;
+        Usuario formUsuario = new Usuario();
+        formUsuario.setEdadPreferida(5);
+        formUsuario.setTipoPreferido(Tipo.GATO);
+        formUsuario.setTamanoPreferido(Tamano.MEDIANO);
+        formUsuario.setPassword("nuevaPassword123");
+
+        Usuario usuarioExistente = new Usuario();
+        when(sessionMock.getAttribute("idUsuario")).thenReturn(idUsuario);
+        when(servicioUsuarioMock.buscarPorId(idUsuario)).thenReturn(usuarioExistente);
+
+        ModelAndView modelAndView = controladorUsuario.editarPerfil(formUsuario, sessionMock);
+
+        assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect:/perfil"));
+        assertThat(usuarioExistente.getEdadPreferida(), is(5));
+        assertThat(usuarioExistente.getTipoPreferido(), is(Tipo.GATO));
+        assertThat(usuarioExistente.getTamanoPreferido(), is(Tamano.MEDIANO));
+        assertThat(usuarioExistente.getPassword(), is("nuevaPassword123"));
+        verify(servicioUsuarioMock).modificar(usuarioExistente);
+    }
+
+    @Test
+    public void debeRedirigirAlLoginSiElUsuarioNoEstaLogeadoAlEditarPerfil() {
+        when(sessionMock.getAttribute("idUsuario")).thenReturn(null);
+
+        ModelAndView modelAndView = controladorUsuario.editarPerfil(new Usuario(), sessionMock);
+
+        assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect/login"));
     }
 
 }
