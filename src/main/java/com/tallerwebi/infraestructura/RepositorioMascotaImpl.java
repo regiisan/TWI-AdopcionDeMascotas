@@ -1,11 +1,11 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.entidades.Mascota;
-import com.tallerwebi.dominio.entidades.Usuario;
+import com.tallerwebi.dominio.entidades.*;
 import com.tallerwebi.dominio.repositorios.RepositorioMascota;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -37,12 +37,26 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
     public List<Mascota> listarMascotasDestacadas() {
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(Mascota.class);
+
         return criteria.setMaxResults(4).list();
     }
 
     @Override
     public Mascota buscarPorId(Long id) {
         return (Mascota) sessionFactory.getCurrentSession().get(Mascota.class, id);
+    }
+
+    @Override
+    public List<Mascota> buscarPorFiltros(Tipo tipo, Sexo sexo, Tamano tamano, NivelEnergia energia) {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(Mascota.class);
+
+        if(tipo != null) criteria.add(Restrictions.eq("tipo", tipo));
+        if(sexo != null) criteria.add(Restrictions.eq("sexo", sexo));
+        if(tamano != null) criteria.add(Restrictions.eq("tamano", tamano));
+        if(energia != null) criteria.add(Restrictions.eq("nivelEnergia", energia));
+
+        return criteria.list();
     }
 
 

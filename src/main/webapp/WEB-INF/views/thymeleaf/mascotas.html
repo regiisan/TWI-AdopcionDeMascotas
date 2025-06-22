@@ -16,14 +16,14 @@
                     </div>
                     <h5 class="card-title text-primary-emphasis fw-bold mb-2">¿Cómo sería tu mascota ideal?</h5>
                     <p class="card-text text-secondary mb-3" style="color: #333; font-size: 0.9rem;">Indicá tus preferencias para mejorar las coincidencias.</p>
-                    <a href="/preferencias" class="btn btn-primary fw-bold rounded-pill px-3 py-2 fw-bold">Comenzar</a>
+                    <a href="/spring/preferencias" class="btn btn-primary fw-bold rounded-pill px-3 py-2 fw-bold">Comenzar</a>
                 </div>
             </div>
 
             <div class="px-2">
-            <form class="mt-1">
+            <form class="mt-1" method="GET" action="/spring/mascotas">
                 <div class="custom-select mb-3">
-                    <select class="form-select" id="tipoSelect">
+                    <select class="form-select" name="tipo" onchange="this.form.submit()">
                         <option selected disabled>Tipo</option>
                         <option value="perro">Perro</option>
                         <option value="garo">Gato</option>
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="custom-select mb-3">
-                    <select class="form-select" id="sexoSelect">
+                    <select class="form-select" name="sexo" onchange="this.form.submit()">
                         <option selected disabled>Sexo</option>
                         <option value="hembra">Hembra</option>
                         <option value="macho">Macho</option>
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="custom-select mb-3">
-                    <select class="form-select" id="tamanoSelect">
+                    <select class="form-select" name="tamano" onchange="this.form.submit()">
                         <option selected disabled>Tamaño</option>
                         <option value="chico">Chico</option>
                         <option value="mediano">Mediano</option>
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="custom-select mb-3">
-                    <select class="form-select" id="energiaSelect">
+                    <select class="form-select" name="energia" onchange="this.form.submit()">
                         <option selected disabled>Nivel de energía</option>
                         <option value="bajo">Bajo</option>
                         <option value="medio">Medio</option>
@@ -129,6 +129,19 @@
                 document.getElementById("modalAdoptarBtn").href = `/spring/mascota/${id}/adoptar`;
 
                 new bootstrap.Modal(document.getElementById('modalMascota')).show();
+            });
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const selects = document.querySelectorAll("form select");
+
+        selects.forEach(function (select) {
+            select.addEventListener("change", function () {
+                // Envía el formulario automáticamente al cambiar una opción
+                this.form.submit();
             });
         });
     });
