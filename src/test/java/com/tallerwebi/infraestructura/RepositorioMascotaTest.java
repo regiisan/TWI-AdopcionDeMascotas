@@ -1,6 +1,6 @@
 package com.tallerwebi.infraestructura;
 
-import com.tallerwebi.dominio.entidades.Mascota;
+import com.tallerwebi.dominio.entidades.*;
 import com.tallerwebi.dominio.repositorios.RepositorioMascota;
 import com.tallerwebi.infraestructura.config.HibernateInfraestructuraTestConfig;
 import org.hibernate.SessionFactory;
@@ -18,7 +18,8 @@ import javax.transaction.Transactional;
 import java.util.Arrays;
 import java.util.List;
 
-import static net.bytebuddy.matcher.ElementMatchers.is;
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.jupiter.api.Assertions.*;
@@ -109,6 +110,22 @@ public class RepositorioMascotaTest {
         List<Mascota> mascotasDestacadas = this.repositorioMascota.listarMascotasDestacadas();
 
         assertEquals(3, mascotasDestacadas.size());
+    }
+
+    @Test
+    public void debeFiltrarMascotasPorTipoSexoTamanoEnergia() {
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Toby");
+        mascota.setTipo(Tipo.PERRO);
+        mascota.setSexo(Sexo.MACHO);
+        mascota.setTamano(Tamano.MEDIANO);
+        mascota.setNivelEnergia(NivelEnergia.MEDIO);
+        repositorioMascota.guardar(mascota);
+
+        List<Mascota> resultado = repositorioMascota.listarMascotasFiltradas("perro", "macho", "mediano", "medio");
+
+        assertThat(resultado.size(), is(1));
+        assertThat(resultado.get(0).getNombre(), is("Toby"));
     }
 
 }
