@@ -91,7 +91,6 @@ public class ControladorMascota {
             model.addObject("mostrarSugerenciaDePreferencias", true);
         }
 
-        // Filtro en memoria (puede hacerse a nivel de repositorio también)
         if (tipo != null) {
             mascotas = mascotas.stream()
                     .filter(m -> m.getTipo().name().equalsIgnoreCase(tipo))
