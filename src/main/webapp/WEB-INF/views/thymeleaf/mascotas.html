@@ -21,12 +21,12 @@
             </div>
 
             <div class="px-2">
-            <form class="mt-1" method="GET" action="/spring/mascotas">
+            <form class="mt-1" method="GET" th:href="@{/mascotas}">
                 <div class="custom-select mb-3">
                     <select class="form-select" name="tipo" onchange="this.form.submit()">
                         <option selected disabled>Tipo</option>
                         <option value="perro">Perro</option>
-                        <option value="garo">Gato</option>
+                        <option value="gato">Gato</option>
                     </select>
                 </div>
 

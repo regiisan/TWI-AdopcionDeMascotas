@@ -44,9 +44,9 @@ public class VistaLoginE2E {
     }
 
     @Test
-    void deberiaDecirUNLAMEnElNavbar() {
+    void deberiaDecirADOPETSEnElNavbar() {
         String texto = vistaLogin.obtenerTextoDeLaBarraDeNavegacion();
-        assertThat("UNLAM", equalToIgnoringCase(texto));
+        assertThat("ADOPETS", equalToIgnoringCase(texto));
     }
 
     @Test
@@ -64,6 +64,6 @@ public class VistaLoginE2E {
         vistaLogin.escribirClave("test");
         vistaLogin.darClickEnIniciarSesion();
         String url = vistaLogin.obtenerURLActual();
-        assertThat(url, containsStringIgnoringCase("/spring/home"));
+        assertThat(url, containsStringIgnoringCase("/home"));
     }
 }

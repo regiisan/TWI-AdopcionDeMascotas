@@ -18,7 +18,7 @@ VALUES
 INSERT INTO SolicitudAdopcion
 (id, nombre, email, tipoVivienda, espacioDisponible, otrosAnimales, experiencia,fk_mascota, mascotaId, estado)
 VALUES
-    (null, 'Juan Pérez', 'juan@example.com', 'Casa', 'Patio grande', 1, '5 años con perros grandes', 1, 1,'PENDIENTE');
+    (null, 'Juan Pérez', 'juan@example.com', 'Casa', 'Patio grande', 1, '5 años con perros grandes', 1, 1,'Pendiente');
 /*
 INSERT INTO Mascota (id, nombre, edad, sexo, tipo, descripcion, img, adoptado, salud, comportamiento)
 VALUES (null, 'LUNA', 5, 'HEMBRA', 'PERRO', 'Rescatada de la calle.','perro6.jpg', false,'Vacunada, desparasitada', 'Muy dócil y sociable');
