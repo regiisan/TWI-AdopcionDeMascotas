@@ -1,36 +1,51 @@
 
 services:
-  db:
+  mysql:
     build:
       context: .
       dockerfile: DockerfileSQL
-    container_name: tallerwebi_db
+      args:
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    container_name: tallerwebi-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: tallerwebi
-      MYSQL_USER: user
-      MYSQL_PASSWORD: user
     volumes:
-      - db_data:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     networks:
-      - tallerwebi_net
+      - tallerwebi-network
+    restart: unless-stopped
 
-  app:
+  jetty-app:
     build:
       context: .
-      dockerfile: DockerfileTomcat
-    container_name: tallerwebi_app
+      dockerfile: DockerfileJetty
+    container_name: tallerwebi-jetty
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      - mysql
     networks:
-      - tallerwebi_net
+      - tallerwebi-network
+    restart: unless-stopped
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
 
 volumes:
-  db_data:
+  mysql_data:
+    driver: local
 
 networks:
-  tallerwebi_net:
+  tallerwebi-network:
+    driver: bridge 

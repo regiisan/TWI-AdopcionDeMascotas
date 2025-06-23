@@ -6,6 +6,8 @@ import com.tallerwebi.dominio.servicios.ServicioSolicitudAdoptar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service("servicioSolicitudAdoptar")
 public class ServicioSolicitudAdoptarImpl implements ServicioSolicitudAdoptar {
 
@@ -25,4 +27,10 @@ public class ServicioSolicitudAdoptarImpl implements ServicioSolicitudAdoptar {
     public SolicitudAdopcion buscarPorId(Long id) {
         return repositorioSolicitudAdoptar.buscarSolicitudPorId(id);
     }
+
+    @Override
+    public List<SolicitudAdopcion> obtenerSolicitudes() {
+        return repositorioSolicitudAdoptar.listarSolicitudes();
+    }
+
 }

@@ -1,9 +1,11 @@
 package com.tallerwebi.infraestructura;
 
 
+import com.tallerwebi.dominio.entidades.Mascota;
 import com.tallerwebi.dominio.repositorios.RepositorioSolicitudAdoptar;
 import com.tallerwebi.dominio.entidades.SolicitudAdopcion;
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -16,8 +18,6 @@ import java.util.List;
 public class RepositorioSolicitudAdoptarImpl implements RepositorioSolicitudAdoptar {
 
     private SessionFactory sessionFactory;
-    /*private final List<SolicitudAdopcion> solicitudes = new ArrayList<>();
-     */
 
     @Autowired
     public RepositorioSolicitudAdoptarImpl(SessionFactory sessionFactory){
@@ -28,7 +28,6 @@ public class RepositorioSolicitudAdoptarImpl implements RepositorioSolicitudAdop
         Session session = sessionFactory.getCurrentSession();
         Criteria criteria = session.createCriteria(SolicitudAdopcion.class);
         return criteria.list();
-        //return solicitudes;
     }
 
     @Override
@@ -41,5 +40,15 @@ public class RepositorioSolicitudAdoptarImpl implements RepositorioSolicitudAdop
     public void guardar(SolicitudAdopcion solicitud) {
         sessionFactory.getCurrentSession().save(solicitud);
     }
+
+    @Override
+    public List<SolicitudAdopcion> listarSolicitudes() {
+        Session session = sessionFactory.getCurrentSession();
+        Criteria criteria = session.createCriteria(SolicitudAdopcion.class);
+        criteria.setFetchMode("mascota", FetchMode.JOIN);
+        return criteria.list();
+    }
+
+
 }
 

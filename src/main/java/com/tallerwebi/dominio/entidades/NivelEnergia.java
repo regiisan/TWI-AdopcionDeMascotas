@@ -1,7 +1,17 @@
 package com.tallerwebi.dominio.entidades;
 
 public enum NivelEnergia {
-    BAJO,
-    MEDIO,
-    ALTO
+    BAJO("Bajo"),
+    MEDIO("Medio"),
+    ALTO("Alto");
+
+    private final String displayValue;
+
+    private NivelEnergia(String displayValue) {
+        this.displayValue = displayValue;
+    }
+
+    public String getDisplayValue() {
+        return displayValue;
+    }
 }
