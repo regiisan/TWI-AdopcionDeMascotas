@@ -69,7 +69,7 @@ public class ServicioMascotaImplTest {
         mascota.setTamano(Tamano.CHICO);
         mascota.setNivelEnergia(NivelEnergia.BAJO);
 
-        when(repositorioMascotaMock.listarMascotasFiltradas("GATO", "HEMBRA", "CHICO", "BAJO"))
+        when(repositorioMascotaMock.buscarPorFiltros(Tipo.GATO, Sexo.HEMBRA, Tamano.CHICO, NivelEnergia.BAJO))
                 .thenReturn(List.of(mascota));
 
         List<MascotaDto> resultado = servicioMascota.obtenerMascotasFiltradas(Tipo.GATO, Sexo.HEMBRA, Tamano.CHICO, NivelEnergia.BAJO);

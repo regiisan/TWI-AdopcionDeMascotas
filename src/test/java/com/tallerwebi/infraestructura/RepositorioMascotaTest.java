@@ -121,7 +121,8 @@ public class RepositorioMascotaTest {
         mascota.setNivelEnergia(NivelEnergia.MEDIO);
         repositorioMascota.guardar(mascota);
 
-        List<Mascota> resultado = repositorioMascota.listarMascotasFiltradas("perro", "macho", "mediano", "medio");
+        List<Mascota> resultado = repositorioMascota
+                .listarMascotasFiltradas(Tipo.PERRO.name(), Sexo.MACHO.name(), Tamano.MEDIANO.name(), NivelEnergia.MEDIO.name());
 
         assertThat(resultado.size(), is(1));
         assertThat(resultado.get(0).getNombre(), is("Toby"));

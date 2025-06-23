@@ -142,7 +142,7 @@ public class ControladorUsuarioTest {
 
         ModelAndView modelAndView = controladorUsuario.editarPerfil(new Usuario(), sessionMock);
 
-        assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect/login"));
+        assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect:/login"));
     }
 
 }

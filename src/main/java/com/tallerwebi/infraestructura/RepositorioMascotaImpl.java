@@ -65,16 +65,16 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
         Criteria criteria = session.createCriteria(Mascota.class);
 
         if (tipo != null && !tipo.isEmpty()) {
-            criteria.add(Restrictions.eq("tipo", Tipo.valueOf(tipo.toLowerCase())));
+            criteria.add(Restrictions.eq("tipo", Tipo.valueOf(tipo.toUpperCase())));
         }
         if (sexo != null && !sexo.isEmpty()) {
-            criteria.add(Restrictions.eq("sexo", Sexo.valueOf(sexo.toLowerCase())));
+            criteria.add(Restrictions.eq("sexo", Sexo.valueOf(sexo.toUpperCase())));
         }
         if (tamano != null && !tamano.isEmpty()) {
-            criteria.add(Restrictions.eq("tamano", Tamano.valueOf(tamano.toLowerCase())));
+            criteria.add(Restrictions.eq("tamano", Tamano.valueOf(tamano.toUpperCase())));
         }
         if (energia != null && !energia.isEmpty()) {
-            criteria.add(Restrictions.eq("nivelEnergia", NivelEnergia.valueOf(energia.toLowerCase())));
+            criteria.add(Restrictions.eq("nivelEnergia", NivelEnergia.valueOf(energia.toUpperCase())));
         }
 
         return criteria.list();
