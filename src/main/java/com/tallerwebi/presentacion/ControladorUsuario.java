@@ -82,8 +82,7 @@ public class ControladorUsuario {
     }
 
     @PostMapping("/editar-perfil")
-    public ModelAndView editarPerfil(@ModelAttribute("usuario") Usuario formUsuario,
-                                     HttpSession session) {
+    public ModelAndView editarPerfil(@ModelAttribute("usuario") Usuario formUsuario, HttpSession session) {
         Long id = (Long) session.getAttribute("idUsuario");
 
         if (id == null) {
@@ -91,6 +90,16 @@ public class ControladorUsuario {
         }
 
         Usuario usuario = servicioUsuario.buscarPorId(id);
+
+        // Actualizar los campos editables
+        usuario.setEdadPreferida(formUsuario.getEdadPreferida());
+        usuario.setTipoPreferido(formUsuario.getTipoPreferido());
+        usuario.setTamanoPreferido(formUsuario.getTamanoPreferido());
+
+        // (Opcional) cambiar contraseña si vino algo nuevo
+        if (formUsuario.getPassword() != null && !formUsuario.getPassword().isBlank()) {
+            usuario.setPassword(formUsuario.getPassword());
+        }
 
         servicioUsuario.modificar(usuario);
 

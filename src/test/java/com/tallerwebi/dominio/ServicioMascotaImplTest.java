@@ -1,7 +1,6 @@
 package com.tallerwebi.dominio;
 
-import com.tallerwebi.dominio.entidades.Mascota;
-import com.tallerwebi.dominio.entidades.MascotaDto;
+import com.tallerwebi.dominio.entidades.*;
 import com.tallerwebi.dominio.repositorios.RepositorioMascota;
 import com.tallerwebi.dominio.servicios.ServicioMascota;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.*;
@@ -57,6 +58,24 @@ public class ServicioMascotaImplTest {
         assertThat(mascotas.size(), is(2));
         assertThat(mascotas.get(0), instanceOf(MascotaDto.class));
         assertThat(mascotas.get(1), instanceOf(MascotaDto.class));
+    }
+
+    @Test
+    public void debeObtenerMascotasFiltradasComoDto() {
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Luna");
+        mascota.setTipo(Tipo.GATO);
+        mascota.setSexo(Sexo.HEMBRA);
+        mascota.setTamano(Tamano.CHICO);
+        mascota.setNivelEnergia(NivelEnergia.BAJO);
+
+        when(repositorioMascotaMock.buscarPorFiltros(Tipo.GATO, Sexo.HEMBRA, Tamano.CHICO, NivelEnergia.BAJO))
+                .thenReturn(List.of(mascota));
+
+        List<MascotaDto> resultado = servicioMascota.obtenerMascotasFiltradas(Tipo.GATO, Sexo.HEMBRA, Tamano.CHICO, NivelEnergia.BAJO);
+
+        assertEquals(1, resultado.size());
+        assertEquals("Luna", resultado.get(0).getNombre());
     }
 
 }

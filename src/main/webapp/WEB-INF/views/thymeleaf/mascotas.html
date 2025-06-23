@@ -21,9 +21,9 @@
             </div>
 
             <div class="px-2">
-            <form class="mt-1">
+            <form class="mt-1" method="GET" action="/spring/mascotas">
                 <div class="custom-select mb-3">
-                    <select class="form-select" id="tipoSelect">
+                    <select class="form-select" name="tipo" onchange="this.form.submit()">
                         <option selected disabled>Tipo</option>
                         <option value="perro">Perro</option>
                         <option value="garo">Gato</option>
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="custom-select mb-3">
-                    <select class="form-select" id="sexoSelect">
+                    <select class="form-select" name="sexo" onchange="this.form.submit()">
                         <option selected disabled>Sexo</option>
                         <option value="hembra">Hembra</option>
                         <option value="macho">Macho</option>
@@ -39,7 +39,7 @@
                 </div>
 
                 <div class="custom-select mb-3">
-                    <select class="form-select" id="tamanoSelect">
+                    <select class="form-select" name="tamano" onchange="this.form.submit()">
                         <option selected disabled>Tamaño</option>
                         <option value="chico">Chico</option>
                         <option value="mediano">Mediano</option>
@@ -48,7 +48,7 @@
                 </div>
 
                 <div class="custom-select mb-3">
-                    <select class="form-select" id="energiaSelect">
+                    <select class="form-select" name="energia" onchange="this.form.submit()">
                         <option selected disabled>Nivel de energía</option>
                         <option value="bajo">Bajo</option>
                         <option value="medio">Medio</option>
@@ -134,5 +134,19 @@
     });
 
 </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const selects = document.querySelectorAll("form select");
+
+        selects.forEach(function (select) {
+            select.addEventListener("change", function () {
+                // Envía el formulario automáticamente al cambiar una opción
+                this.form.submit();
+            });
+        });
+    });
+</script>
+
 </body>
 </html>

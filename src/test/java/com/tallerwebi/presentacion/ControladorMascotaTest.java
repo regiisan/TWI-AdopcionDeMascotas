@@ -112,4 +112,16 @@ public class ControladorMascotaTest
         assertThat(modelAndView.getModel().get("mostrarSugerenciaDePreferencias"), is(true));
     }
 
+    @Test
+    public void debeFiltrarMascotasSegunParametrosYRetornarVista() {
+        List<MascotaDto> mascotasFiltradas = Arrays.asList(mock(MascotaDto.class));
+        when(servicioMascotaMock.obtenerMascotasFiltradas(Tipo.PERRO, Sexo.MACHO, Tamano.MEDIANO, NivelEnergia.ALTO))
+                .thenReturn(mascotasFiltradas);
+
+        ModelAndView modelAndView = controladorMascota.filtrarMascotas(Tipo.PERRO, Sexo.MACHO, Tamano.MEDIANO, NivelEnergia.ALTO, sessionMock);
+
+        assertThat(modelAndView.getViewName(), equalToIgnoringCase("mascotas"));
+        assertThat(modelAndView.getModel().get("mascotas"), is(mascotasFiltradas));
+    }
+
 }

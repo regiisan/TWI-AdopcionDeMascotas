@@ -1,8 +1,6 @@
 package com.tallerwebi.dominio.servicios;
 
-import com.tallerwebi.dominio.entidades.Mascota;
-import com.tallerwebi.dominio.entidades.MascotaDto;
-import com.tallerwebi.dominio.entidades.Usuario;
+import com.tallerwebi.dominio.entidades.*;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -13,4 +11,7 @@ public interface ServicioMascota {
     List<MascotaDto> obtenerMascotas();
     List<MascotaDto> obtenerMascotasDestacadas();
     Mascota obtenerMascotaPorId(Long id);
+    List<MascotaDto> obtenerMascotasFiltradas(Tipo tipo, Sexo sexo, Tamano tamano, NivelEnergia energia);
+
+
 }
