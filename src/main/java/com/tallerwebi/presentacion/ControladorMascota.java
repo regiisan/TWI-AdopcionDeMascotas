@@ -29,19 +29,6 @@ public class ControladorMascota {
         this.servicioUsuario = servicioUsuario;
     }
 
-    /*
-    @RequestMapping(path = "/mascotas", method = RequestMethod.GET)
-    public ModelAndView mostrarMascotas(){
-        List<MascotaDto> mascotas = servicioMascota.obtenerMascotas();
-        boolean mostrarSugerenciaDePreferencias = true;
-
-        ModelAndView model = new ModelAndView("mascotas");
-        model.addObject("mascotas",mascotas);
-        model.addObject("mostrarSugerenciaDePreferencias",mostrarSugerenciaDePreferencias);
-
-        return model;
-    }*/
-
     // ✅ Método original sin filtros (llamado por los tests y por navegación simple)
     @RequestMapping(path = "/mascotas", method = RequestMethod.GET, params = {"!tipo", "!sexo", "!tamano", "!energia"})
     public ModelAndView mostrarMascotas(HttpSession session) {
