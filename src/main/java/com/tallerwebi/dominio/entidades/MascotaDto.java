@@ -197,5 +197,4 @@ public class MascotaDto {
         return mascota;
     }
 
-
 }

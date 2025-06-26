@@ -28,7 +28,8 @@ public class ControladorMascota {
     private ServicioMascota servicioMascota;
     private ServicioRecomendacion servicioRecomendacion;
     private ServicioUsuario servicioUsuario;
-    private final String UPLOAD_DIRECTORY = "src/main/webapp/resources/core/images/mascotas/";
+    //private final String UPLOAD_DIRECTORY = "src/main/webapp/resources/core/images/mascotas/";
+    private final String UPLOAD_DIRECTORY = "/app/uploads/mascotas/";
 
     @Autowired
     public ControladorMascota(ServicioMascota servicioMascota, ServicioRecomendacion servicioRecomendacion, ServicioUsuario servicioUsuario) {
@@ -98,7 +99,7 @@ public class ControladorMascota {
             Files.write(rutaCompleta, imagen.getBytes());
             
             // Actualizar el campo img de la mascota con la ruta relativa
-            mascota.setImg("mascotas/" + nombreArchivo);
+            mascota.setImg("uploads/mascotas/" + nombreArchivo);
             
             Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
             mascota.setUsuario(usuario);
