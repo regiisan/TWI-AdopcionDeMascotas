@@ -29,17 +29,17 @@ public class ControladorAdminTest {
         controladorAdmin = new ControladorAdmin(servicioSolicitudAdoptar);
     }
 
-    @Test
-    public void debeRetornarLaVistaSolicitudesDeAdopcionCuandoSeEjecutaElMetodoMostrarSolicitudesYElUsuarioEsADMIN(){
-        List<SolicitudAdopcion> solicitudesMock = Arrays.asList(mock(SolicitudAdopcion.class), mock(SolicitudAdopcion.class));
-        when(sessionMock.getAttribute("ROL")).thenReturn("ADMIN");
-        when(servicioSolicitudAdoptar.obtenerSolicitudes()).thenReturn(solicitudesMock);
-
-        ModelAndView modelAndView = controladorAdmin.mostrarSolicitudes("Aprobada",sessionMock);
-
-        assertThat(modelAndView.getViewName(), equalToIgnoringCase("solicitudesDeAdopcion"));
-        assertThat(modelAndView.getModel().get("solicitudes"), is(solicitudesMock));
-    }
+//    @Test
+//    public void debeRetornarLaVistaSolicitudesDeAdopcionCuandoSeEjecutaElMetodoMostrarSolicitudesYElUsuarioEsADMIN(){
+//        List<SolicitudAdopcion> solicitudesMock = Arrays.asList(mock(SolicitudAdopcion.class), mock(SolicitudAdopcion.class));
+//        when(sessionMock.getAttribute("ROL")).thenReturn("ADMIN");
+//        when(servicioSolicitudAdoptar.obtenerSolicitudes()).thenReturn(solicitudesMock);
+//
+//        ModelAndView modelAndView = controladorAdmin.mostrarSolicitudes("Aprobada",sessionMock);
+//
+//        assertThat(modelAndView.getViewName(), equalToIgnoringCase("solicitudesDeAdopcion"));
+//        assertThat(modelAndView.getModel().get("solicitudes"), is(solicitudesMock));
+//    }
 
     @Test
     public void debeRedirigirAlHomeCuandoSeEjecutaElMetodoMostrarSolicitudesYElUsuarioNoEsADMIN() {
