@@ -23,12 +23,22 @@ public class ServicioMascotaImpl implements ServicioMascota {
 
     @Override
     public void guardar(Mascota mascota) {
+        // Si el usuario es admin, la mascota se aprueba automáticamente
+        if (mascota.getUsuario() != null && 
+            mascota.getUsuario().getRol() != null && 
+            mascota.getUsuario().getRol().equals("ADMIN")) {
+            mascota.setEstado("Aprobada");
+        } else {
+            // Si no es admin o no tiene rol, la mascota queda pendiente
+            mascota.setEstado("Pendiente");
+        }
         repositorioMascota.guardar(mascota);
     }
 
     @Override
     public List<MascotaDto> obtenerMascotas() {
         return repositorioMascota.listarMascotas().stream()
+                .filter(m -> "Aprobada".equals(m.getEstado()))
                 .map(MascotaDto::new)
                 .collect(Collectors.toList());
     }
@@ -36,6 +46,7 @@ public class ServicioMascotaImpl implements ServicioMascota {
     @Override
     public List<MascotaDto> obtenerMascotasDestacadas() {
         return repositorioMascota.listarMascotasDestacadas().stream()
+                .filter(m -> "Aprobada".equals(m.getEstado()))
                 .map(MascotaDto::new)
                 .collect(Collectors.toList());
     }
@@ -49,7 +60,41 @@ public class ServicioMascotaImpl implements ServicioMascota {
     public List<MascotaDto> obtenerMascotasFiltradas(Tipo tipo, Sexo sexo, Tamano tamano, NivelEnergia energia) {
         return repositorioMascota.buscarPorFiltros(tipo, sexo, tamano, energia)
                 .stream()
+                .filter(m -> "Aprobada".equals(m.getEstado()))
                 .map(MascotaDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void aprobarMascota(Long id) {
+        Mascota mascota = repositorioMascota.buscarPorId(id);
+        if (mascota != null) {
+            mascota.setEstado("Aprobada");
+            repositorioMascota.modificar(mascota);
+        }
+    }
+
+    @Override
+    public void rechazarMascota(Long id) {
+        Mascota mascota = repositorioMascota.buscarPorId(id);
+        if (mascota != null) {
+            mascota.setEstado("Rechazada");
+            repositorioMascota.modificar(mascota);
+        }
+    }
+
+    @Override
+    public List<MascotaDto> obtenerMascotasPorEstado(String estado) {
+        return repositorioMascota.listarMascotas().stream()
+                .filter(m -> estado.equals(m.getEstado()))
+                .map(MascotaDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Mascota> obtenerMascotasPorEstadoEntidad(String estado) {
+        return repositorioMascota.listarMascotas().stream()
+                .filter(m -> estado.equals(m.getEstado()))
                 .collect(Collectors.toList());
     }
 }

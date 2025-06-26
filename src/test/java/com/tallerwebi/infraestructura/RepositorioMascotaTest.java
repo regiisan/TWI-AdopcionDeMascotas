@@ -39,10 +39,16 @@ public class RepositorioMascotaTest {
         this.repositorioMascota = new RepositorioMascotaImpl(this.sessionFactory);
     }
 
+    private Mascota crearMascota() {
+        Mascota mascota = new Mascota();
+        mascota.setEstado("Aprobada");
+        return mascota;
+    }
+
     @Test
     @Rollback
     public void dadoQueExistaUnaMascotaEnLaBDCuandoLaObtengoPorIdDevuelveLaMascotaCorrespondiente(){
-        Mascota mascota = new Mascota();
+        Mascota mascota = crearMascota();
         mascota.setNombre("Luna");
         this.sessionFactory.getCurrentSession().save(mascota);
 
@@ -67,8 +73,8 @@ public class RepositorioMascotaTest {
     @Test
     @Rollback
     public void dadoQueHayaMascotasEnLaBDListarMascotasDevuelveTodas() {
-        Mascota mascota1 = new Mascota();
-        Mascota mascota2 = new Mascota();
+        Mascota mascota1 = crearMascota();
+        Mascota mascota2 = crearMascota();
         this.sessionFactory.getCurrentSession().save(mascota1);
         this.sessionFactory.getCurrentSession().save(mascota2);
 
@@ -89,7 +95,7 @@ public class RepositorioMascotaTest {
     @Rollback
     public void dadoQueHayaMasDe4MascotasEnLaBDListarMascotasDestacadasDevuelveSolo4() {
         for (int i = 1; i <= 6; i++) {
-            Mascota m = new Mascota();
+            Mascota m = crearMascota();
             this.sessionFactory.getCurrentSession().save(m);
         }
 
@@ -102,7 +108,7 @@ public class RepositorioMascotaTest {
     @Rollback
     public void dadoQueHayaMenosDe4MascotasEnLaBDListarMascotasDestacadasDevuelveTodas() {
         for (int i = 1; i <= 3; i++) {
-            Mascota m = new Mascota();
+            Mascota m = crearMascota();
             this.sessionFactory.getCurrentSession().save(m);
         }
 
@@ -113,7 +119,7 @@ public class RepositorioMascotaTest {
 
     @Test
     public void debeFiltrarMascotasPorTipoSexoTamanoEnergia() {
-        Mascota mascota = new Mascota();
+        Mascota mascota = crearMascota();
         mascota.setNombre("Toby");
         mascota.setTipo(Tipo.PERRO);
         mascota.setSexo(Sexo.MACHO);

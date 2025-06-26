@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service("servicioRecomendacion")
@@ -24,7 +25,9 @@ public class ServicioRecomendacionImpl implements ServicioRecomendacion {
 
     @Override
     public List<MascotaDto> obtenerMascotasRecomendadas(Usuario usuario) {
-        List<Mascota> mascotas = repositorioMascota.listarMascotas();
+        List<Mascota> mascotas = repositorioMascota.listarMascotas().stream()
+                .filter(m -> "Aprobada".equals(m.getEstado()))
+                .collect(Collectors.toList());
         List<MascotaDto> mascotasDtos = new ArrayList<>();
 
         for (Mascota mascota : mascotas) {

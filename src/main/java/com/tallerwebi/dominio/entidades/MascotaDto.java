@@ -17,6 +17,7 @@ public class MascotaDto {
     private NivelEnergia nivelEnergia;
     private int coincidencias;
     private boolean esMatch;
+    private Usuario usuario;
 
     public MascotaDto(Mascota mascota, int coincidencias) {
         this.id = mascota.getId();
@@ -33,6 +34,7 @@ public class MascotaDto {
         this.nivelEnergia = mascota.getNivelEnergia();
         this.coincidencias = coincidencias;
         this.esMatch = coincidencias > 3;
+        this.usuario = mascota.getUsuario();
     }
 
     public MascotaDto(Mascota mascota) {
@@ -50,6 +52,7 @@ public class MascotaDto {
         this.nivelEnergia = mascota.getNivelEnergia();
         this.coincidencias = 0;
         this.esMatch = false;
+        this.usuario = mascota.getUsuario();
     }
 
     public Long getId() {
@@ -164,6 +167,14 @@ public class MascotaDto {
         this.comportamiento = comportamiento;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     public Mascota obtenerEntidad() {
         Mascota mascota = new Mascota();
         return this.obtenerEntidad(mascota);
@@ -182,6 +193,7 @@ public class MascotaDto {
         mascota.setSexo(this.sexo);
         mascota.setTamano(this.tamano);
         mascota.setNivelEnergia(this.nivelEnergia);
+        mascota.setUsuario(this.usuario);
         return mascota;
     }
 

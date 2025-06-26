@@ -1,92 +1,128 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head th:insert="templates/head :: head">
-</head>
-<link rel="stylesheet" href="../../../resources/core/css/main.css">
+<head th:insert="templates/head :: head"></head>
 
 <body>
+<header th:insert="templates/header :: header"></header>
 
-    <header th:insert="templates/header :: header"></header>
+<div class="container py-4">
+    <div class="row">
+        <!-- Formulario de dar en adopción -->
+        <div class="col-md-6">
+            <div class="card p-4 rounded-4" style="background-color: rgba(94, 58, 156, 0.9); color: white;">
+                <h3 class="text-center mb-4">Dar en Adopción</h3>
+                <form th:action="@{/mascota/guardar}" method="POST" th:object="${mascota}" enctype="multipart/form-data">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
+                    </div>
 
-    <main role="main"
-          class="d-flex align-items-center justify-content-center vh-100">
-        <div class="container">
-            <div id="formularioAdopcion"
-                 class="mx-auto p-4 rounded-3 shadow"
-                 style="max-width: 500px; background-color: rgba(94, 58, 156, 0.9);">
-                <form action="#"
-                      th:action="@{/mascota/guardar}"
-                      method="POST"
-                      enctype="multipart/form-data"
-                      th:object="${mascota}">
-                    <h3 class="text-center text-white">
-                        Dar mascota en adopción
-                    </h3>
-                    <hr class="colorgraph" />
-                    <br />
+                    <div class="mb-3">
+                        <label for="edad" class="form-label">Edad</label>
+                        <input type="number" class="form-control" id="edad" th:field="*{edad}" required>
+                    </div>
 
-                    <input th:field="*{nombre}"
-                           type="text"
-                           placeholder="Nombre"
-                           class="form-control mb-3"
-                           required />
+                    <div class="mb-3">
+                        <label for="tipo" class="form-label">Tipo</label>
+                        <select class="form-select" id="tipo" th:field="*{tipo}" required>
+                            <option value="">Seleccione un tipo</option>
+                            <option th:each="tipo : ${T(com.tallerwebi.dominio.entidades.Tipo).values()}"
+                                    th:value="${tipo}" th:text="${tipo}"></option>
+                        </select>
+                    </div>
 
-                    <input th:field="*{tipo}"
-                           type="text"
-                           placeholder="Tipo (perro, gato, etc)"
-                           class="form-control mb-3"
-                           required />
+                    <div class="mb-3">
+                        <label for="sexo" class="form-label">Sexo</label>
+                        <select class="form-select" id="sexo" th:field="*{sexo}" required>
+                            <option value="">Seleccione un sexo</option>
+                            <option th:each="sexo : ${T(com.tallerwebi.dominio.entidades.Sexo).values()}"
+                                    th:value="${sexo}" th:text="${sexo}"></option>
+                        </select>
+                    </div>
 
-                    <input th:field="*{edad}"
-                           type="number"
-                           placeholder="Edad"
-                           class="form-control mb-3"
-                           required />
+                    <div class="mb-3">
+                        <label for="tamano" class="form-label">Tamaño</label>
+                        <select class="form-select" id="tamano" th:field="*{tamano}" required>
+                            <option value="">Seleccione un tamaño</option>
+                            <option th:each="tamano : ${T(com.tallerwebi.dominio.entidades.Tamano).values()}"
+                                    th:value="${tamano}" th:text="${tamano}"></option>
+                        </select>
+                    </div>
 
-                    <select th:field="*{sexo}"
-                            class="form-control mb-3"
-                            required>
-                        <option value="">Seleccione sexo</option>
-                        <option value="Macho">Macho</option>
-                        <option value="Hembra">Hembra</option>
-                    </select>
+                    <div class="mb-3">
+                        <label for="nivelEnergia" class="form-label">Nivel de Energía</label>
+                        <select class="form-select" id="nivelEnergia" th:field="*{nivelEnergia}" required>
+                            <option value="">Seleccione un nivel de energía</option>
+                            <option th:each="energia : ${T(com.tallerwebi.dominio.entidades.NivelEnergia).values()}"
+                                    th:value="${energia}" th:text="${energia}"></option>
+                        </select>
+                    </div>
 
-                    <input th:field="*{salud}"
-                           type="text"
-                           placeholder="Estado de salud"
-                           class="form-control mb-3"
-                           required />
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcion" th:field="*{descripcion}" rows="3" required></textarea>
+                    </div>
 
-                    <input th:field="*{comportamiento}"
-                           type="text"
-                           placeholder="Comportamiento"
-                           class="form-control mb-3"
-                           required />
+                    <div class="mb-3">
+                        <label for="salud" class="form-label">Estado de Salud</label>
+                        <textarea class="form-control" id="salud" th:field="*{salud}" rows="2" required></textarea>
+                    </div>
 
-                    <textarea th:field="*{descripcion}"
-                              placeholder="Descripción"
-                              class="form-control mb-3"
-                              rows="3"
-                              required></textarea>
+                    <div class="mb-3">
+                        <label for="comportamiento" class="form-label">Comportamiento</label>
+                        <textarea class="form-control" id="comportamiento" th:field="*{comportamiento}" rows="2" required></textarea>
+                    </div>
 
-                    <label class="text-white mb-2">Foto</label>
-                    <input type="file"
-                           name="foto"
-                           class="form-control mb-4"
-                           accept="image/*"
-                           required />
+                    <div class="mb-3">
+                        <label for="imagen" class="form-label">Imagen de la Mascota</label>
+                        <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" required>
+                        <small class="form-text text-light">Formatos aceptados: JPG, PNG, JPEG, WEBP</small>
+                    </div>
 
-                    <button type="submit"
-                            class="btn btn-lg btn-violeta-invertida w-100 mb-3">
-                        Publicar
-                    </button>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-light">Publicar</button>
+                    </div>
                 </form>
             </div>
         </div>
-    </main>
 
-    <script type="text/javascript" th:src="@{webjars/bootstrap/5.2.0/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{js/main.js}"></script>
+        <!-- Lista de mascotas pendientes (solo para admin) -->
+        <div class="col-md-6" th:if="${session.ROL == 'ADMIN' and mascotasPendientes != null}">
+            <div class="card p-4 rounded-4">
+                <h3 class="text-center mb-4">Mascotas Pendientes de Aprobación</h3>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Tipo</th>
+                                <th>Usuario</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="mascota : ${mascotasPendientes}">
+                                <td th:text="${mascota.nombre}"></td>
+                                <td th:text="${mascota.tipo}"></td>
+                                <td th:text="${mascota.usuario?.nombre}"></td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <form th:action="@{/admin/mascotas/{id}/aprobar(id=${mascota.id})}" method="POST" style="display: inline;">
+                                            <button type="submit" class="btn btn-success btn-sm">Aprobar</button>
+                                        </form>
+                                        <form th:action="@{/admin/mascotas/{id}/rechazar(id=${mascota.id})}" method="POST" style="display: inline;">
+                                            <button type="submit" class="btn btn-danger btn-sm">Rechazar</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

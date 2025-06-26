@@ -8,4 +8,5 @@ public interface RepositorioSolicitudAdoptar {
     SolicitudAdopcion buscarSolicitudPorId(Long id);
     void guardar(SolicitudAdopcion solicitud);
     List<SolicitudAdopcion> listarSolicitudes();
+    void modificar(SolicitudAdopcion solicitud);
 }

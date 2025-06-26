@@ -32,6 +32,11 @@ public class ServicioRecomendacionImplTest {
         usuarioMock = mock(Usuario.class);
     }
 
+    private Mascota crearMascota() {
+        Mascota mascota = new Mascota();
+        mascota.setEstado("Aprobada");
+        return mascota;
+    }
 
     @Test
     public void dadoQueNoExistanMascotasDebeDevolverUnaListaVacia(){
@@ -51,14 +56,14 @@ public class ServicioRecomendacionImplTest {
         usuario.setTamanoPreferido(Tamano.GRANDE);
         usuario.setNivelEnergiaPreferido(NivelEnergia.ALTO);
 
-        Mascota mascota1 = new Mascota();
+        Mascota mascota1 = crearMascota();
         mascota1.setTipo(Tipo.GATO);
         mascota1.setSexo(Sexo.HEMBRA);
         mascota1.setEdad(5);
         mascota1.setTamano(Tamano.GRANDE);
         mascota1.setNivelEnergia(NivelEnergia.MEDIO);
 
-        Mascota mascota2 = new Mascota();
+        Mascota mascota2 = crearMascota();
         mascota2.setTipo(Tipo.GATO);
         mascota2.setSexo(Sexo.MACHO);
         mascota2.setEdad(2);
@@ -84,14 +89,14 @@ public class ServicioRecomendacionImplTest {
         usuario.setTamanoPreferido(Tamano.GRANDE);
         usuario.setNivelEnergiaPreferido(NivelEnergia.ALTO);
 
-        Mascota mascota = new Mascota();
+        Mascota mascota = crearMascota();
         mascota.setTipo(Tipo.PERRO);
         mascota.setSexo(Sexo.MACHO);
         mascota.setEdad(1);
         mascota.setTamano(Tamano.CHICO);
         mascota.setNivelEnergia(NivelEnergia.MEDIO);
 
-        List<Mascota> mascotas = Arrays.asList(mascota); //mock?
+        List<Mascota> mascotas = Arrays.asList(mascota);
         when(repositorioMascotaMock.listarMascotas()).thenReturn(mascotas);
 
         List<MascotaDto> mascotasRecomendadas = servicioRecomendacion.obtenerMascotasRecomendadas(usuario);
