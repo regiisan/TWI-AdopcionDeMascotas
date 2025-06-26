@@ -1,10 +1,7 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.entidades.SolicitudAdopcion;
-import com.tallerwebi.dominio.servicios.ServicioMascota;
-import com.tallerwebi.dominio.servicios.ServicioRecomendacion;
 import com.tallerwebi.dominio.servicios.ServicioSolicitudAdoptar;
-import com.tallerwebi.dominio.servicios.ServicioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -32,8 +32,14 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
     color: #d0ebc4    !important;
 }
 
-.nav-link.active {
-    color: #d0ebc4 !important;
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #d0ebc4;
 }
 
 .btn-logIn {
@@ -46,12 +52,12 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
     background-color: transparent;
     color: #ffffff;
     border-radius: 10px;
-    border: 2px solid #0d6efd;
+    border: 2px solid #d0ebc4;
     transition: 0.2s;
 }
 
 .btn-logIn:hover {
-    background-color: #0d6efd;
+    background-color: #d0ebc4;
     color: white;
 }
 
