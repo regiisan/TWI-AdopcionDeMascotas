@@ -67,7 +67,7 @@
                             <span th:if="${mascotaDto.esMatch}" class="badge rounded-pill bg-primary position-absolute top-0 end-0 m-3" style="background-color: #d0ebc4 !important; color: #333;" >
                                 <i class="fa-solid fa-star"></i> Recomendado
                             </span>
-                            <img th:src="@{'/images/' + ${mascotaDto.img}}" class="card-img-top" alt="Mascota" style="height: 280px; object-fit: cover; border-top-left-radius: 1em; border-top-right-radius: 1rem;"/>
+                            <img th:src="@{'/' + ${mascotaDto.img}}" class="card-img-top" alt="Mascota" style="height: 280px; object-fit: cover; border-top-left-radius: 1em; border-top-right-radius: 1rem;"/>
                             <div class="card-body text-center">
                                 <h5 th:text="${mascotaDto.nombre}" class="card-title fw-bold" style="color: #5d3a9b !important;"></h5>
                                 <p th:text="'Edad: ' + ${mascotaDto.edad} + ' años'" class="card-text" style="color: #333; font-size: 0.9rem;"></p>
@@ -80,7 +80,7 @@
                                      data-sexo=${mascotaDto.sexo.displayValue},
                                      data-salud=${mascotaDto.salud},
                                      data-comportamiento=${mascotaDto.comportamiento},
-                                     data-img=@{'/images/' + ${mascotaDto.img}},
+                                     data-img=@{'/' + ${mascotaDto.img}},
                                      data-descripcion=${mascotaDto.descripcion}">
                                     Datos
                                 </button>
