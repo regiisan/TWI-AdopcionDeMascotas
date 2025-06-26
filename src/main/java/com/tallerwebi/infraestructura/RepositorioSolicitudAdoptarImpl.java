@@ -49,6 +49,10 @@ public class RepositorioSolicitudAdoptarImpl implements RepositorioSolicitudAdop
         return criteria.list();
     }
 
+    @Override
+    public void modificar(SolicitudAdopcion solicitud) {
+        sessionFactory.getCurrentSession().update(solicitud);
+    }
 
 }
 

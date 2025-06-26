@@ -8,11 +8,18 @@
 
       <a class="navbar-brand text-white fw-bold" th:href="@{/home}">ADOPETS</a>
 
+<<<<<<< HEAD
+              <a th:if="${session.idUsuario == null}" th:href="@{/login}" class="btn-logIn">Log In</a>
+              <form th:if="${session.idUsuario != null}" th:action="@{/logout}" method="POST" class="m-0">
+                <button type="submit" class="btn-logIn">Cerrar sesión</button>
+              </form>
+=======
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
               data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
               aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+>>>>>>> origin/main
 
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02"
            th:with="uri=${#httpServletRequest.requestURI.substring(#httpServletRequest.contextPath.length())}">

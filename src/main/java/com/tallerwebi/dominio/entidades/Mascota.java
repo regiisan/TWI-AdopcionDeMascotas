@@ -16,6 +16,11 @@ public class Mascota {
     private String salud;
     private String comportamiento;
     private Integer edad;
+    private String estado = "Pendiente"; // Pendiente, Aprobada, Rechazada
+    
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
     @Enumerated(EnumType.STRING)
     private Tipo tipo;
@@ -86,6 +91,12 @@ public class Mascota {
 
     public NivelEnergia getNivelEnergia() { return nivelEnergia; }
     public void setNivelEnergia(NivelEnergia nivelEnergia) { this.nivelEnergia = nivelEnergia; }
+
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
+
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 
     @Override
     public boolean equals(Object o) {
