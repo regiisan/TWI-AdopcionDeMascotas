@@ -42,11 +42,11 @@
     <!-- Filtros -->
     <form th:action="@{/admin/solicitudes}" method="get" class="row g-2 mb-4">
         <div class="col-sm-4">
-            <select class="form-select" name="estado" th:value="${filtroEstado}">
-                <option value="">Todas</option>
-                <option value="Pendiente" th:selected="${filtroEstado == 'Pendiente'}">Pendientes</option>
-                <option value="Aprobada" th:selected="${filtroEstado == 'Aprobada'}">Aprobadas</option>
-                <option value="Rechazada" th:selected="${filtroEstado == 'Rechazada'}">Rechazadas</option>
+            <select class="form-select" name="estado">
+                <option value="" th:selected="${estadoSeleccionado == null or estadoSeleccionado == ''}">Todas</option>
+                <option value="Pendiente" th:selected="${estadoSeleccionado == 'Pendiente'}">Pendientes</option>
+                <option value="Aprobada" th:selected="${estadoSeleccionado == 'Aprobada'}">Aprobadas</option>
+                <option value="Rechazada" th:selected="${estadoSeleccionado == 'Rechazada'}">Rechazadas</option>
             </select>
         </div>
         <div class="col-auto">
@@ -90,10 +90,10 @@
                                     <strong>Edad:</strong> <span th:text="${solicitud.mascota.edad}"></span>
                                 </div>
                                 <div class="info-item">
-                                    <strong>Tamaño:</strong> <span th:text="${solicitud.mascota.tamano}"></span>
+                                    <strong>Tamaño:</strong> <span th:text="${solicitud.mascota.tamano.displayValue}"></span>
                                 </div>
                                 <div class="info-item">
-                                    <strong>Nivel de Energía:</strong> <span th:text="${solicitud.mascota.nivelEnergia}"></span>
+                                    <strong>Nivel de Energía:</strong> <span th:text="${solicitud.mascota.nivelEnergia.displayValue}"></span>
                                 </div>
                             </div>
                         </div>

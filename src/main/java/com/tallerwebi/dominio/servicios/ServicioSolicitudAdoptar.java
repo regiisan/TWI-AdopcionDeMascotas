@@ -10,6 +10,7 @@ public interface ServicioSolicitudAdoptar {
     void guardar(SolicitudAdopcion solicitud);
     SolicitudAdopcion buscarPorId(Long id);
     List<SolicitudAdopcion> obtenerSolicitudes();
+    List<SolicitudAdopcion> obtenerSolicitudesPorEstado(String estado);
     void aprobarSolicitud(Long id);
     void rechazarSolicitud(Long id);
 }

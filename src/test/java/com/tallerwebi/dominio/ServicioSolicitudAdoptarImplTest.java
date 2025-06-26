@@ -46,4 +46,24 @@ public class ServicioSolicitudAdoptarImplTest {
         assertThat(solicitudes.get(0), instanceOf(SolicitudAdopcion.class));
     }
 
+    @Test
+    public void dadoQueExistenSolicitudesConEstadoPendienteDebeDevolverSoloLasPendientes() {
+        List<SolicitudAdopcion> solicitudesMock = Arrays.asList(mock(SolicitudAdopcion.class));
+        when(repositorioSolicitudAdoptarMock.listarSolicitudesPorEstado("Pendiente")).thenReturn(solicitudesMock);
+
+        List<SolicitudAdopcion> solicitudes = servicioSolicitudAdoptar.obtenerSolicitudesPorEstado("Pendiente");
+
+        assertThat(solicitudes.size(), is(1));
+        assertThat(solicitudes.get(0), instanceOf(SolicitudAdopcion.class));
+    }
+
+    @Test
+    public void dadoQueNoExistenSolicitudesConEstadoPendienteDebeDevolverUnaListaVacia() {
+        when(repositorioSolicitudAdoptarMock.listarSolicitudesPorEstado("Pendiente")).thenReturn(null);
+
+        List<SolicitudAdopcion> solicitudes = servicioSolicitudAdoptar.obtenerSolicitudesPorEstado("Rechazada");
+
+        assertThat(solicitudes, empty());
+    }
+
 }
