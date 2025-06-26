@@ -34,6 +34,9 @@
             <div class="d-flex">
 
               <a th:if="${session.idUsuario == null}" th:href="@{/login}" class="btn-logIn">Log In</a>
+              <form th:if="${session.idUsuario != null}" th:action="@{/logout}" method="POST" class="m-0">
+                <button type="submit" class="btn-logIn">Cerrar sesión</button>
+              </form>
 
             </div>
           </div>

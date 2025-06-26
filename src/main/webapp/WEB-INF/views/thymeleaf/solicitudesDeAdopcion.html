@@ -44,9 +44,9 @@
         <div class="col-sm-4">
             <select class="form-select" name="estado" th:value="${filtroEstado}">
                 <option value="">Todas</option>
-                <option value="PENDIENTE" th:selected="${filtroEstado == 'PENDIENTE'}">Pendientes</option>
-                <option value="APROBADA" th:selected="${filtroEstado == 'APROBADA'}">Aprobadas</option>
-                <option value="RECHAZADA" th:selected="${filtroEstado == 'RECHAZADA'}">Rechazadas</option>
+                <option value="Pendiente" th:selected="${filtroEstado == 'Pendiente'}">Pendientes</option>
+                <option value="Aprobada" th:selected="${filtroEstado == 'Aprobada'}">Aprobadas</option>
+                <option value="Rechazada" th:selected="${filtroEstado == 'Rechazada'}">Rechazadas</option>
             </select>
         </div>
         <div class="col-auto">
@@ -128,12 +128,16 @@
 
             <!-- Acciones-->
             <div th:if="${solicitud.estado == 'Pendiente'}" class="mt-2">
-                <button type="button" class="btn btn-outline-success btn-sm rounded-pill">
-                    <i class="bi bi-check-lg"></i> Aprobar
-                </button>
-                <button type="button" class="btn btn-outline-danger btn-sm rounded-pill">
-                    <i class="bi bi-x-lg"></i> Rechazar
-                </button>
+                <form th:action="@{/admin/solicitudes/{id}/aprobar(id=${solicitud.id})}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-outline-success btn-sm rounded-pill">
+                        <i class="bi bi-check-lg"></i> Aprobar
+                    </button>
+                </form>
+                <form th:action="@{/admin/solicitudes/{id}/rechazar(id=${solicitud.id})}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill">
+                        <i class="bi bi-x-lg"></i> Rechazar
+                    </button>
+                </form>
             </div>
         </div>
     </div>

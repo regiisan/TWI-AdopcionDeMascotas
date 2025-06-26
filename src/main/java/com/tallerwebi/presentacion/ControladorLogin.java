@@ -68,12 +68,11 @@ public class ControladorLogin {
         return new ModelAndView("nuevo-usuario", model);
     }
 
-    /*
-    @RequestMapping(path = "/home", method = RequestMethod.GET)
-    public ModelAndView irAHome() {
-        return new ModelAndView("home");
+    @RequestMapping(path = "/logout", method = RequestMethod.POST)
+    public ModelAndView cerrarSesion(HttpServletRequest request) {
+        request.getSession().invalidate();
+        return new ModelAndView("redirect:/login");
     }
-    */
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public ModelAndView inicio() {

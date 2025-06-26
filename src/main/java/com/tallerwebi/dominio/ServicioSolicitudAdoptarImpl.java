@@ -33,4 +33,21 @@ public class ServicioSolicitudAdoptarImpl implements ServicioSolicitudAdoptar {
         return repositorioSolicitudAdoptar.listarSolicitudes();
     }
 
+    @Override
+    public void aprobarSolicitud(Long id) {
+        SolicitudAdopcion solicitud = buscarPorId(id);
+        if (solicitud != null) {
+            solicitud.setEstado("Aprobada");
+            repositorioSolicitudAdoptar.modificar(solicitud);
+        }
+    }
+
+    @Override
+    public void rechazarSolicitud(Long id) {
+        SolicitudAdopcion solicitud = buscarPorId(id);
+        if (solicitud != null) {
+            solicitud.setEstado("Rechazada");
+            repositorioSolicitudAdoptar.modificar(solicitud);
+        }
+    }
 }

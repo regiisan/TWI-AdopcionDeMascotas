@@ -115,6 +115,12 @@
             <version>${playwright.version}</version>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.5</version>
+        </dependency>
         <!-- compile only, deployed container will provide this -->
         <!--
         <dependency>

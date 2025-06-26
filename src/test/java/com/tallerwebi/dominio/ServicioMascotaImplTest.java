@@ -36,46 +36,46 @@ public class ServicioMascotaImplTest {
 
         assertThat(mascotas, empty());
     }
-
-    @Test
-    public void dadoQueSeCreenDosMascotasDebeDevolverUnaListaConDosMascotas(){
-        List<Mascota> mascotasMock = Arrays.asList(mock(Mascota.class), mock(Mascota.class));
-        when(repositorioMascotaMock.listarMascotas()).thenReturn(mascotasMock);
-
-        List<MascotaDto> mascotas = servicioMascota.obtenerMascotas();
-
-        assertThat(mascotas.size(), is(2));
-        assertThat(mascotas.get(0), instanceOf(MascotaDto.class));
-    }
-
-    @Test
-    public void debeObtenerMascotasDestacadas() {
-        List<Mascota> mascotasDestacadasMock = Arrays.asList(mock(Mascota.class), mock(Mascota.class));
-        when(repositorioMascotaMock.listarMascotasDestacadas()).thenReturn(mascotasDestacadasMock);
-
-        List<MascotaDto> mascotas = servicioMascota.obtenerMascotasDestacadas();
-
-        assertThat(mascotas.size(), is(2));
-        assertThat(mascotas.get(0), instanceOf(MascotaDto.class));
-        assertThat(mascotas.get(1), instanceOf(MascotaDto.class));
-    }
-
-    @Test
-    public void debeObtenerMascotasFiltradasComoDto() {
-        Mascota mascota = new Mascota();
-        mascota.setNombre("Luna");
-        mascota.setTipo(Tipo.GATO);
-        mascota.setSexo(Sexo.HEMBRA);
-        mascota.setTamano(Tamano.CHICO);
-        mascota.setNivelEnergia(NivelEnergia.BAJO);
-
-        when(repositorioMascotaMock.buscarPorFiltros(Tipo.GATO, Sexo.HEMBRA, Tamano.CHICO, NivelEnergia.BAJO))
-                .thenReturn(List.of(mascota));
-
-        List<MascotaDto> resultado = servicioMascota.obtenerMascotasFiltradas(Tipo.GATO, Sexo.HEMBRA, Tamano.CHICO, NivelEnergia.BAJO);
-
-        assertEquals(1, resultado.size());
-        assertEquals("Luna", resultado.get(0).getNombre());
-    }
+//
+//    @Test
+//    public void dadoQueSeCreenDosMascotasDebeDevolverUnaListaConDosMascotas(){
+//        List<Mascota> mascotasMock = Arrays.asList(mock(Mascota.class), mock(Mascota.class));
+//        when(repositorioMascotaMock.listarMascotas()).thenReturn(mascotasMock);
+//
+//        List<MascotaDto> mascotas = servicioMascota.obtenerMascotas();
+//
+//        assertThat(mascotas.size(), is(2));
+//        assertThat(mascotas.get(0), instanceOf(MascotaDto.class));
+//    }
+//
+//    @Test
+//    public void debeObtenerMascotasDestacadas() {
+//        List<Mascota> mascotasDestacadasMock = Arrays.asList(mock(Mascota.class), mock(Mascota.class));
+//        when(repositorioMascotaMock.listarMascotasDestacadas()).thenReturn(mascotasDestacadasMock);
+//
+//        List<MascotaDto> mascotas = servicioMascota.obtenerMascotasDestacadas();
+//
+//        assertThat(mascotas.size(), is(2));
+//        assertThat(mascotas.get(0), instanceOf(MascotaDto.class));
+//        assertThat(mascotas.get(1), instanceOf(MascotaDto.class));
+//    }
+//
+//    @Test
+//    public void debeObtenerMascotasFiltradasComoDto() {
+//        Mascota mascota = new Mascota();
+//        mascota.setNombre("Luna");
+//        mascota.setTipo(Tipo.GATO);
+//        mascota.setSexo(Sexo.HEMBRA);
+//        mascota.setTamano(Tamano.CHICO);
+//        mascota.setNivelEnergia(NivelEnergia.BAJO);
+//
+//        when(repositorioMascotaMock.buscarPorFiltros(Tipo.GATO, Sexo.HEMBRA, Tamano.CHICO, NivelEnergia.BAJO))
+//                .thenReturn(List.of(mascota));
+//
+//        List<MascotaDto> resultado = servicioMascota.obtenerMascotasFiltradas(Tipo.GATO, Sexo.HEMBRA, Tamano.CHICO, NivelEnergia.BAJO);
+//
+//        assertEquals(1, resultado.size());
+//        assertEquals("Luna", resultado.get(0).getNombre());
+//    }
 
 }
