@@ -42,12 +42,16 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
   background-color: #d0ebc4;
 }
 
+.nav-link.active {
+    color: #d0ebc4 !important;
+}
+
 .btn-logIn {
     text-decoration: none;
     outline: none;
     font-size: inherit;
     cursor: pointer;
-    font-weight: 500;
+    font-weight: bold;
     padding: 12px 22px;
     background-color: transparent;
     color: #ffffff;
@@ -58,7 +62,8 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
 
 .btn-logIn:hover {
     background-color: #d0ebc4;
-    color: white;
+    color: black !important;
+    font-weight: bold;
 }
 
 .custom {

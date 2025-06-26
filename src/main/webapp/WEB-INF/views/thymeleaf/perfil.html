@@ -53,6 +53,10 @@
 
                 <button type="submit" class="btn btn-violeta-invertida w-100 mb-2">Guardar cambios</button>
             </form>
+
+            <form th:if="${session.idUsuario != null}" th:action="@{/logout}" method="POST" class="m-0">
+                <button type="submit" class="btn btn-outline-light w-100">Cerrar sesión</button>
+            </form>
         </div>
     </div>
 </main>

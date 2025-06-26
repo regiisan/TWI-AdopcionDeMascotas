@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class ControladorAdmin {
@@ -30,43 +29,45 @@ public class ControladorAdmin {
         ModelAndView model;
 
         if (rol != null && rol.equalsIgnoreCase("ADMIN")) {
-            List<SolicitudAdopcion> solicitudes = servicioSolicitudAdoptar.obtenerSolicitudes();
-            
+            List<SolicitudAdopcion> solicitudes;
+
             if (estado != null && !estado.isEmpty()) {
-                solicitudes = solicitudes.stream()
-                        .filter(s -> s.getEstado().equalsIgnoreCase(estado))
-                        .collect(Collectors.toList());
+                solicitudes = servicioSolicitudAdoptar.obtenerSolicitudesPorEstado(estado);
+            } else {
+                solicitudes = servicioSolicitudAdoptar.obtenerSolicitudes();
+
             }
-            
+
             model = new ModelAndView("solicitudesDeAdopcion");
             model.addObject("solicitudes", solicitudes);
-            model.addObject("filtroEstado", estado);
+            model.addObject("estadoSeleccionado", estado);
             return model;
         } else {
             model = new ModelAndView("redirect:/home");
         }
+
         return model;
     }
 
     @RequestMapping(path = "/admin/solicitudes/{id}/aprobar", method = RequestMethod.POST)
     public ModelAndView aprobarSolicitud(@PathVariable Long id, HttpSession session) {
         String rol = (String) session.getAttribute("ROL");
-        
+
         if (rol != null && rol.equalsIgnoreCase("ADMIN")) {
             servicioSolicitudAdoptar.aprobarSolicitud(id);
         }
-        
+
         return new ModelAndView("redirect:/admin/solicitudes");
     }
 
     @RequestMapping(path = "/admin/solicitudes/{id}/rechazar", method = RequestMethod.POST)
     public ModelAndView rechazarSolicitud(@PathVariable Long id, HttpSession session) {
         String rol = (String) session.getAttribute("ROL");
-        
+
         if (rol != null && rol.equalsIgnoreCase("ADMIN")) {
             servicioSolicitudAdoptar.rechazarSolicitud(id);
         }
-        
+
         return new ModelAndView("redirect:/admin/solicitudes");
     }
 }
