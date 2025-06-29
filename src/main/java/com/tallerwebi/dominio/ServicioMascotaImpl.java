@@ -1,8 +1,18 @@
 package com.tallerwebi.dominio;
 
+<<<<<<< HEAD
+import com.tallerwebi.dominio.entidades.Mascota;
+import com.tallerwebi.dominio.entidades.MascotaDto;
+import com.tallerwebi.dominio.entidades.Usuario;
+=======
 import com.tallerwebi.dominio.entidades.*;
+>>>>>>> e74298ed02e547e84712e47f62922004fb5db00e
 import com.tallerwebi.dominio.repositorios.RepositorioMascota;
+import com.tallerwebi.dominio.servicios.ServicioMail;
 import com.tallerwebi.dominio.servicios.ServicioMascota;
+
+import jakarta.mail.MessagingException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +31,10 @@ public class ServicioMascotaImpl implements ServicioMascota {
         this.repositorioMascota = repositorioMascota;
     }
 
+    @Autowired
+    private ServicioMail servicioMail;
+
+
     @Override
     public void guardar(Mascota mascota) {
         // Si el usuario es admin, la mascota se aprueba automáticamente
@@ -33,12 +47,27 @@ public class ServicioMascotaImpl implements ServicioMascota {
             mascota.setEstado("Pendiente");
         }
         repositorioMascota.guardar(mascota);
+        if (mascota.getUsuario() != null && mascota.getUsuario().getEmail() != null) {
+    try {
+        servicioMail.enviarMail(
+            mascota.getUsuario().getEmail(),"Solicitud recibida con éxito",
+            "Tu solicitud fue recepcionada con éxito y nuestro equipo la estudiara rigurosamente"+
+            " para darte una pronta respuesta. \nEn breve nos estaremos comunicando con vos."
+        );
+    } catch (MessagingException e) {
+        e.printStackTrace(); 
+    }
+}
+
     }
 
     @Override
     public List<MascotaDto> obtenerMascotas() {
         return repositorioMascota.listarMascotas().stream()
+<<<<<<< HEAD
+=======
                 .filter(m -> "Aprobada".equals(m.getEstado()))
+>>>>>>> e74298ed02e547e84712e47f62922004fb5db00e
                 .map(MascotaDto::new)
                 .collect(Collectors.toList());
     }
@@ -46,7 +75,10 @@ public class ServicioMascotaImpl implements ServicioMascota {
     @Override
     public List<MascotaDto> obtenerMascotasDestacadas() {
         return repositorioMascota.listarMascotasDestacadas().stream()
+<<<<<<< HEAD
+=======
                 .filter(m -> "Aprobada".equals(m.getEstado()))
+>>>>>>> e74298ed02e547e84712e47f62922004fb5db00e
                 .map(MascotaDto::new)
                 .collect(Collectors.toList());
     }
