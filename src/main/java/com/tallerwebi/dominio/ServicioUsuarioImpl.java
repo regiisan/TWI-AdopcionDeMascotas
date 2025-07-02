@@ -49,4 +49,10 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
                 usuario.getNivelEnergiaPreferido() != null;
     }
 
+    @Override
+    public int contarUsuariosActivos() {
+        return repositorioUsuario.contarUsuariosActivos();
+    }
+
+
 }

@@ -1,12 +1,9 @@
 package com.tallerwebi.dominio;
 
-<<<<<<< HEAD
 import com.tallerwebi.dominio.entidades.Mascota;
 import com.tallerwebi.dominio.entidades.MascotaDto;
 import com.tallerwebi.dominio.entidades.Usuario;
-=======
 import com.tallerwebi.dominio.entidades.*;
->>>>>>> e74298ed02e547e84712e47f62922004fb5db00e
 import com.tallerwebi.dominio.repositorios.RepositorioMascota;
 import com.tallerwebi.dominio.servicios.ServicioMail;
 import com.tallerwebi.dominio.servicios.ServicioMascota;
@@ -57,17 +54,13 @@ public class ServicioMascotaImpl implements ServicioMascota {
     } catch (MessagingException e) {
         e.printStackTrace(); 
     }
-}
-
+    }
     }
 
     @Override
     public List<MascotaDto> obtenerMascotas() {
         return repositorioMascota.listarMascotas().stream()
-<<<<<<< HEAD
-=======
                 .filter(m -> "Aprobada".equals(m.getEstado()))
->>>>>>> e74298ed02e547e84712e47f62922004fb5db00e
                 .map(MascotaDto::new)
                 .collect(Collectors.toList());
     }
@@ -75,10 +68,7 @@ public class ServicioMascotaImpl implements ServicioMascota {
     @Override
     public List<MascotaDto> obtenerMascotasDestacadas() {
         return repositorioMascota.listarMascotasDestacadas().stream()
-<<<<<<< HEAD
-=======
                 .filter(m -> "Aprobada".equals(m.getEstado()))
->>>>>>> e74298ed02e547e84712e47f62922004fb5db00e
                 .map(MascotaDto::new)
                 .collect(Collectors.toList());
     }
@@ -129,4 +119,11 @@ public class ServicioMascotaImpl implements ServicioMascota {
                 .filter(m -> estado.equals(m.getEstado()))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public int contarMascotasPendientes() {
+        return repositorioMascota.contarMascotasPendientes();
+    }
+
+
 }

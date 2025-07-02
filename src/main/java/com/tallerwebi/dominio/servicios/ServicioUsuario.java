@@ -11,4 +11,5 @@ public interface ServicioUsuario {
     void guardar(Usuario usuario);
     void modificar(Usuario usuario);
     boolean tienePreferenciasCargadas(Usuario usuario);
+    int contarUsuariosActivos();
 }

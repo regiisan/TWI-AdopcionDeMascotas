@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
 <header th:fragment="encabezado">
-
   <nav class="navbar navbar-expand-lg navbar-light custom">
     <div class="container-fluid">
 
@@ -14,51 +13,47 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02"
            th:with="uri=${#httpServletRequest.requestURI.substring(#httpServletRequest.contextPath.length())}">
 
         <ul class="navbar-nav ms-auto me-3 mb-2 mb-lg-0">
 
-          <!-- Inicio -->
-          <li class="nav-item">
-            <a th:href="@{/home}"
-               th:classappend="${uri == '/' or uri == '/home'} ? ' active' : ''"
+          <!-- HOME (diferente según rol) -->
+          <li class="nav-item" th:if="${session.ROL == 'ADMIN'}">
+            <a th:href="@{/admin/home}" th:classappend="${uri == '/admin/home'} ? ' active' : ''"
+               class="nav-link fs-6 me-4 text-white">Home Admin</a>
+          </li>
+          <li class="nav-item" th:unless="${session.ROL == 'ADMIN'}">
+            <a th:href="@{/home}" th:classappend="${uri == '/' or uri == '/home'} ? ' active' : ''"
                class="nav-link fs-6 me-4 text-white">Inicio</a>
           </li>
 
-          <!-- Nosotros -->
-          <li class="nav-item">
-            <a th:href="@{/nosotros}"
-               th:classappend="${uri == '/nosotros'} ? ' active' : ''"
+          <!-- Solo usuarios comunes -->
+          <li class="nav-item" th:unless="${session.ROL == 'ADMIN'}">
+            <a th:href="@{/nosotros}" th:classappend="${uri == '/nosotros'} ? ' active' : ''"
                class="nav-link fs-6 me-4 text-white">Nosotros</a>
           </li>
 
-          <!-- En adopción -->
-          <li class="nav-item">
-            <a th:href="@{/mascotas}"
-               th:classappend="${uri.startsWith('/mascotas')} ? ' active' : ''"
+          <li class="nav-item" th:unless="${session.ROL == 'ADMIN'}">
+            <a th:href="@{/mascotas}" th:classappend="${uri.startsWith('/mascotas')} ? ' active' : ''"
                class="nav-link fs-6 me-4 text-white">En Adopción</a>
           </li>
 
-          <!-- Dar en adopción -->
+          <!-- Ambos roles -->
           <li class="nav-item">
-            <a th:href="@{/mascota/nueva}"
-               th:classappend="${uri == '/mascota/nueva'} ? ' active' : ''"
+            <a th:href="@{/mascota/nueva}" th:classappend="${uri == '/mascota/nueva'} ? ' active' : ''"
                class="nav-link fs-6 me-4 text-white">Dar en Adopción</a>
           </li>
 
-          <!-- Solicitudes (solo admin) -->
+          <!-- Solo admin -->
           <li class="nav-item" th:if="${session.ROL == 'ADMIN'}">
-            <a th:href="@{/admin/solicitudes}"
-               th:classappend="${uri == '/admin/solicitudes'} ? ' active' : ''"
+            <a th:href="@{/admin/solicitudes}" th:classappend="${uri == '/admin/solicitudes'} ? ' active' : ''"
                class="nav-link fs-6 me-4 text-white">Solicitudes</a>
           </li>
 
-          <!-- Perfil (solo logueado) -->
+          <!-- Perfil -->
           <li class="nav-item" th:if="${session.idUsuario != null}">
-            <a th:href="@{/perfil}"
-               th:classappend="${uri == '/perfil'} ? ' active' : ''"
+            <a th:href="@{/perfil}" th:classappend="${uri == '/perfil'} ? ' active' : ''"
                class="nav-link fs-6 me-4 text-white">Mi Perfil</a>
           </li>
         </ul>
@@ -66,10 +61,10 @@
         <div class="d-flex">
           <a th:if="${session.idUsuario == null}" th:href="@{/login}" class="btn-logIn">Log In</a>
         </div>
+
       </div>
     </div>
   </nav>
-
 </header>
 </body>
 </html>

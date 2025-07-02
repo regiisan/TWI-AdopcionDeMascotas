@@ -1,4 +1,4 @@
-INSERT INTO Usuario(id, email, password, rol, activo, nombre) VALUES(null, 'test@unlam.edu.ar', 'test', 'ADMIN', true, 'Administrador');
+INSERT INTO Usuario(id, email, password, rol, activo, nombre, edadPreferida, tipoPreferido,tamanoPreferido,nivelEnergiaPreferido,sexoPreferido) VALUES(null, 'test@unlam.edu.ar', 'test', 'ADMIN', true, 'Administrador', null, null, null,null,null);
 
 INSERT INTO Mascota (id, nombre, descripcion, adoptado, img, salud, comportamiento, edad, tipo, sexo, tamano, nivelEnergia, estado)
 VALUES
@@ -19,28 +19,3 @@ INSERT INTO SolicitudAdopcion
 (id, nombre, email, tipoVivienda, espacioDisponible, otrosAnimales, experiencia,fk_mascota, mascotaId, estado)
 VALUES
     (null, 'Juan Pérez', 'juan@hotmail.com', 'Casa', 'Patio grande', 1, '5 años con perros grandes', 1, 1,'Pendiente');
-/*
-INSERT INTO Mascota (id, nombre, edad, sexo, tipo, descripcion, img, adoptado, salud, comportamiento)
-VALUES (null, 'LUNA', 5, 'HEMBRA', 'PERRO', 'Rescatada de la calle.','perro6.jpg', false,'Vacunada, desparasitada', 'Muy dócil y sociable');
-
-INSERT INTO Mascota (id, nombre, edad, sexo, tipo, descripcion, img, adoptado, salud, comportamiento)
-VALUES (null, 'MILO', 3, 'MACHO', 'PERRO', 'Rescatado de la calle.','perro7.jfif', false,'Sano, con todas las vacunas', 'Muy activo y cariñoso');
-
-INSERT INTO Mascota (id, nombre, edad, sexo, tipo, descripcion, img, adoptado, salud, comportamiento)
-VALUES (null, 'NALA', 6, 'HEMBRA', 'PERRO', 'Rescatada de la calle.','perro2.jpg', false,'Vacunada, desparasitada', 'Muy dócil y sociable');
-
-INSERT INTO Mascota (id, nombre, edad, sexo, tipo, descripcion, img, adoptado, salud, comportamiento)
-VALUES (null, 'COCO', 2, 'MACHO', 'PERRO', 'Rescatado de la calle.','perro4.jpg', false,'Sano, con todas las vacunas', 'Muy activo y cariñoso');
-
-INSERT INTO Mascota (id, nombre, edad, sexo, tipo, descripcion, img, adoptado, salud, comportamiento)
-VALUES (null, 'VITO', 5, 'MACHO', 'PERRO', 'Rescatado de la calle.','perro5.jpg', false,'Sano, con todas las vacunas', 'Muy activo y cariñoso');
-
-INSERT INTO Mascota (id, nombre, edad, sexo, tipo, descripcion, img, adoptado, salud, comportamiento)
-VALUES (null, 'MICHI', 2, 'HEMBRA', 'GATO', 'Rescatado de la calle.','gato1.jpg', false,'Vacunada, desparasitada', 'Muy dócil y sociable');
-
-INSERT INTO Mascota (id, nombre, edad, sexo, tipo, descripcion, img, adoptado, salud, comportamiento)
-VALUES (null, 'TOTO', 2, 'MACHO', 'PERRO', 'Rescatado de la calle.','mascotas/perro8.webp', false,'Sano, con todas las vacunas', 'Muy activo y cariñoso');
-
-INSERT INTO Mascota (id, nombre, edad, sexo, tipo, descripcion, img, adoptado, salud, comportamiento)
-VALUES (null, 'TOBY', 3, 'MACHO', 'PERRO', 'Rescatado de la calle.','perro1.jpg', false,'Sano, con todas las vacunas', 'Muy activo y cariñoso');
-*/

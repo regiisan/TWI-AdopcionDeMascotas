@@ -13,4 +13,6 @@ public interface ServicioSolicitudAdoptar {
     List<SolicitudAdopcion> obtenerSolicitudesPorEstado(String estado);
     void aprobarSolicitud(Long id);
     void rechazarSolicitud(Long id);
+    int contarSolicitudesPendientes();
+    int contarSolicitudesAprobadas();
 }
