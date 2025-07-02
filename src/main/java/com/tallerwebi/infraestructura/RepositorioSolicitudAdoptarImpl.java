@@ -63,5 +63,26 @@ public class RepositorioSolicitudAdoptarImpl implements RepositorioSolicitudAdop
         sessionFactory.getCurrentSession().update(solicitud);
     }
 
+    @Override
+    public int contarSolicitudesPendientes() {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "SELECT COUNT(*) FROM SolicitudAdopcion WHERE estado = :estado";
+        Long count = session.createQuery(hql, Long.class)
+                .setParameter("estado", "Pendiente")
+                .uniqueResult();
+        return count.intValue();
+    }
+
+    @Override
+    public int contarSolicitudesAprobadas() {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "SELECT COUNT(*) FROM SolicitudAdopcion WHERE estado = :estado";
+        Long count = session.createQuery(hql, Long.class)
+                .setParameter("estado", "Aprobada")
+                .uniqueResult();
+        return count.intValue();
+    }
+
+
 }
 
