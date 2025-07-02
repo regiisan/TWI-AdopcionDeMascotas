@@ -91,4 +91,147 @@ public class ServicioMascotaImplTest {
         assertEquals("Luna", resultado.get(0).getNombre());
     }
 
+    @Test
+    public void alGuardarMascotaComoAdminDebeQuedarAprobada() {
+        // Preparación
+        Mascota mascota = new Mascota();
+        Usuario admin = new Usuario();
+        admin.setRol("ADMIN");
+        mascota.setUsuario(admin);
+
+        // Ejecución
+        servicioMascota.guardar(mascota);
+
+        // Verificación
+        assertThat(mascota.getEstado(), is("Aprobada"));
+        verify(repositorioMascotaMock).guardar(mascota);
+    }
+
+    @Test
+    public void alGuardarMascotaComoUsuarioNormalDebeQuedarPendiente() {
+        // Preparación
+        Mascota mascota = new Mascota();
+        Usuario usuario = new Usuario();
+        usuario.setRol("USUARIO");
+        mascota.setUsuario(usuario);
+
+        // Ejecución
+        servicioMascota.guardar(mascota);
+
+        // Verificación
+        assertThat(mascota.getEstado(), is("Pendiente"));
+        verify(repositorioMascotaMock).guardar(mascota);
+    }
+
+    @Test
+    public void alObtenerMascotasDebeRetornarSoloLasAprobadas() {
+        // Preparación
+        Mascota mascotaAprobada = new Mascota();
+        mascotaAprobada.setEstado("Aprobada");
+        Mascota mascotaPendiente = new Mascota();
+        mascotaPendiente.setEstado("Pendiente");
+        List<Mascota> todasLasMascotas = Arrays.asList(mascotaAprobada, mascotaPendiente);
+        when(repositorioMascotaMock.listarMascotas()).thenReturn(todasLasMascotas);
+
+        // Ejecución
+        List<MascotaDto> resultado = servicioMascota.obtenerMascotas();
+
+        // Verificación
+        assertThat(resultado, hasSize(1));
+    }
+
+    @Test
+    public void alObtenerMascotasPorEstadoDebeRetornarSoloLasDelEstadoIndicado() {
+        // Preparación
+        Mascota mascotaAprobada = new Mascota();
+        mascotaAprobada.setEstado("Aprobada");
+        Mascota mascotaPendiente = new Mascota();
+        mascotaPendiente.setEstado("Pendiente");
+        List<Mascota> todasLasMascotas = Arrays.asList(mascotaAprobada, mascotaPendiente);
+        when(repositorioMascotaMock.listarMascotas()).thenReturn(todasLasMascotas);
+
+        // Ejecución
+        List<MascotaDto> resultado = servicioMascota.obtenerMascotasPorEstado("Pendiente");
+
+        // Verificación
+        assertThat(resultado, hasSize(1));
+    }
+
+    @Test
+    public void alAprobarMascotaDebeActualizarSuEstado() {
+        // Preparación
+        Long id = 1L;
+        Mascota mascota = new Mascota();
+        when(repositorioMascotaMock.buscarPorId(id)).thenReturn(mascota);
+
+        // Ejecución
+        servicioMascota.aprobarMascota(id);
+
+        // Verificación
+        assertThat(mascota.getEstado(), is("Aprobada"));
+        verify(repositorioMascotaMock).modificar(mascota);
+    }
+
+    @Test
+    public void alRechazarMascotaDebeActualizarSuEstado() {
+        // Preparación
+        Long id = 1L;
+        Mascota mascota = new Mascota();
+        when(repositorioMascotaMock.buscarPorId(id)).thenReturn(mascota);
+
+        // Ejecución
+        servicioMascota.rechazarMascota(id);
+
+        // Verificación
+        assertThat(mascota.getEstado(), is("Rechazada"));
+        verify(repositorioMascotaMock).modificar(mascota);
+    }
+
+    @Test
+    public void alBuscarMascotaPorIdDebeRetornarLaMascotaCorrecta() {
+        // Preparación
+        Long id = 1L;
+        Mascota mascotaEsperada = new Mascota();
+        when(repositorioMascotaMock.buscarPorId(id)).thenReturn(mascotaEsperada);
+
+        // Ejecución
+        Mascota resultado = servicioMascota.obtenerMascotaPorId(id);
+
+        // Verificación
+        assertThat(resultado, is(mascotaEsperada));
+    }
+
+    @Test
+    public void alObtenerMascotasFiltradasDebeRetornarSoloLasAprobadas() {
+        // Preparación
+        Mascota mascotaAprobada = new Mascota();
+        mascotaAprobada.setEstado("Aprobada");
+        Mascota mascotaPendiente = new Mascota();
+        mascotaPendiente.setEstado("Pendiente");
+        List<Mascota> mascotas = Arrays.asList(mascotaAprobada, mascotaPendiente);
+        when(repositorioMascotaMock.buscarPorFiltros(any(), any(), any(), any())).thenReturn(mascotas);
+
+        // Ejecución
+        List<MascotaDto> resultado = servicioMascota.obtenerMascotasFiltradas(null, null, null, null);
+
+        // Verificación
+        assertThat(resultado, hasSize(1));
+    }
+
+    @Test
+    public void alObtenerMascotasDestacadasDebeRetornarSoloLasAprobadas() {
+        // Preparación
+        Mascota mascotaAprobada = new Mascota();
+        mascotaAprobada.setEstado("Aprobada");
+        Mascota mascotaPendiente = new Mascota();
+        mascotaPendiente.setEstado("Pendiente");
+        List<Mascota> mascotas = Arrays.asList(mascotaAprobada, mascotaPendiente);
+        when(repositorioMascotaMock.listarMascotasDestacadas()).thenReturn(mascotas);
+
+        // Ejecución
+        List<MascotaDto> resultado = servicioMascota.obtenerMascotasDestacadas();
+
+        // Verificación
+        assertThat(resultado, hasSize(1));
+    }
 }
