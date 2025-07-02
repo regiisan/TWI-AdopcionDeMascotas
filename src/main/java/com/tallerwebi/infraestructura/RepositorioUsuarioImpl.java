@@ -51,4 +51,14 @@ public class RepositorioUsuarioImpl implements RepositorioUsuario {
         sessionFactory.getCurrentSession().update(usuario);
     }
 
+    @Override
+    public int contarUsuariosActivos() {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "SELECT COUNT(*) FROM Usuario WHERE activo = true";
+        Long count = session.createQuery(hql, Long.class)
+                .uniqueResult();
+        return count.intValue();
+    }
+
+
 }

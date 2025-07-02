@@ -10,4 +10,6 @@ public interface RepositorioSolicitudAdoptar {
     List<SolicitudAdopcion> listarSolicitudes();
     List<SolicitudAdopcion> listarSolicitudesPorEstado(String estado);
     void modificar(SolicitudAdopcion solicitud);
+    int contarSolicitudesPendientes();
+    int contarSolicitudesAprobadas();
 }

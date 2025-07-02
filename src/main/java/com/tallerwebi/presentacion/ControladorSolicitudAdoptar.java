@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 public class ControladorSolicitudAdoptar {
@@ -21,9 +23,14 @@ public class ControladorSolicitudAdoptar {
     }
 
     @GetMapping("/mascota/{id}/adoptar")
-    public ModelAndView mostrarFormularioAdopcion(@PathVariable Long id) {
+    public ModelAndView mostrarFormularioAdopcion(@PathVariable Long id, HttpSession session) {
+        Long idUsuario = (Long) session.getAttribute("idUsuario");
+
+        if (idUsuario == null) {
+            return new ModelAndView("redirect:/login");
+        }
+
         SolicitudAdopcion solicitud = new SolicitudAdopcion();
-        // solicitud.setMascotaId(id);
         Mascota mascota = servicioMascota.obtenerMascotaPorId(id);
         solicitud.setMascota(mascota);
 
@@ -36,7 +43,6 @@ public class ControladorSolicitudAdoptar {
 
     @PostMapping("/mascota/{id}/adoptar/guardar")
     public String guardarSolicitudAdopcion(@ModelAttribute("solicitud") SolicitudAdopcion solicitud, @PathVariable Long id) {
-        // solicitud.setMascotaId(id);
         Mascota mascota = servicioMascota.obtenerMascotaPorId(id);
         solicitud.setMascota(mascota);
         solicitud.setEstado("Pendiente");

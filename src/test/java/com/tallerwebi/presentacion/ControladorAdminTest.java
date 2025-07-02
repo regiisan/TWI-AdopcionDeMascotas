@@ -1,7 +1,9 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.entidades.SolicitudAdopcion;
+import com.tallerwebi.dominio.servicios.ServicioMascota;
 import com.tallerwebi.dominio.servicios.ServicioSolicitudAdoptar;
+import com.tallerwebi.dominio.servicios.ServicioUsuario;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,14 +19,18 @@ import static org.hamcrest.Matchers.*;
 public class ControladorAdminTest {
 
     private ControladorAdmin controladorAdmin;
-    private ServicioSolicitudAdoptar servicioSolicitudAdoptarMock;
+    private ServicioSolicitudAdoptar servicioSolicitudAdoptar;
+    private ServicioMascota servicioMascota;
+    private ServicioUsuario servicioUsuario;
     private HttpSession sessionMock;
 
     @BeforeEach
-    public void init() {
-        servicioSolicitudAdoptarMock = mock(ServicioSolicitudAdoptar.class);
+    public void init(){
+        servicioSolicitudAdoptar = mock(ServicioSolicitudAdoptar.class);
+        servicioMascota = mock(ServicioMascota.class);
+        servicioUsuario = mock(ServicioUsuario.class);
         sessionMock = mock(HttpSession.class);
-        controladorAdmin = new ControladorAdmin(servicioSolicitudAdoptarMock);
+        controladorAdmin = new ControladorAdmin(servicioSolicitudAdoptar,servicioMascota, servicioUsuario);
     }
 
 

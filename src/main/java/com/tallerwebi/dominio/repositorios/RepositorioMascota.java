@@ -12,4 +12,5 @@ public interface RepositorioMascota {
     List<Mascota> buscarPorFiltros(Tipo tipo, Sexo sexo, Tamano tamano, NivelEnergia energia);
     List<Mascota> listarMascotasFiltradas(String tipo, String sexo, String tamano, String energia);
     void modificar(Mascota mascota);
+    int contarMascotasPendientes();
 }
