@@ -41,9 +41,14 @@ services:
       DB_NAME: ${DB_NAME}
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
+      UPLOAD_DIR: /app/uploads/mascotas/
+    volumes:
+          - uploads_data:/app/uploads
 
 volumes:
   mysql_data:
+    driver: local
+  uploads_data:
     driver: local
 
 networks:

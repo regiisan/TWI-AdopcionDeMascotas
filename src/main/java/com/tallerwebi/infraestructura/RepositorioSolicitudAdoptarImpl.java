@@ -50,6 +50,15 @@ public class RepositorioSolicitudAdoptarImpl implements RepositorioSolicitudAdop
     }
 
     @Override
+    public List<SolicitudAdopcion> listarSolicitudesPorEstado(String estado) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "FROM SolicitudAdopcion WHERE estado = :estado";
+        return session.createQuery(hql, SolicitudAdopcion.class)
+                .setParameter("estado", estado)
+                .getResultList();
+    }
+
+    @Override
     public void modificar(SolicitudAdopcion solicitud) {
         sessionFactory.getCurrentSession().update(solicitud);
     }

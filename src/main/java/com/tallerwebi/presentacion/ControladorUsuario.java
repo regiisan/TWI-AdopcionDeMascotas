@@ -70,39 +70,47 @@ public class ControladorUsuario {
         ModelMap modelo = new ModelMap();
 
         Long id = (Long) session.getAttribute("idUsuario");
-
         if (id == null) {
             return new ModelAndView("redirect:/login");
         }
 
         Usuario usuario = servicioUsuario.buscarPorId(id);
-        modelo.put("usuario", usuario);
+
+        modelo.addAttribute("usuario", usuario);
+
+        //  ➜  enviamos los enums para poblar los <select>
+        modelo.addAttribute("tipos", Tipo.values());
+        modelo.addAttribute("sexos", Sexo.values());
+        modelo.addAttribute("tamanos", Tamano.values());
+        modelo.addAttribute("nivelesEnergia", NivelEnergia.values());
 
         return new ModelAndView("perfil", modelo);
     }
 
     @PostMapping("/editar-perfil")
-    public ModelAndView editarPerfil(@ModelAttribute("usuario") Usuario formUsuario, HttpSession session) {
-        Long id = (Long) session.getAttribute("idUsuario");
+    public ModelAndView editarPerfil(@ModelAttribute("usuario") Usuario formUsuario,
+                                     HttpSession session) {
 
+        Long id = (Long) session.getAttribute("idUsuario");
         if (id == null) {
             return new ModelAndView("redirect:/login");
         }
 
         Usuario usuario = servicioUsuario.buscarPorId(id);
 
-        // Actualizar los campos editables
+        // ► actualizamos TODOS los campos editables
+        usuario.setEmail(formUsuario.getEmail());
         usuario.setEdadPreferida(formUsuario.getEdadPreferida());
         usuario.setTipoPreferido(formUsuario.getTipoPreferido());
         usuario.setTamanoPreferido(formUsuario.getTamanoPreferido());
+        usuario.setSexoPreferido(formUsuario.getSexoPreferido());
+        usuario.setNivelEnergiaPreferido(formUsuario.getNivelEnergiaPreferido());
 
-        // (Opcional) cambiar contraseña si vino algo nuevo
         if (formUsuario.getPassword() != null && !formUsuario.getPassword().isBlank()) {
             usuario.setPassword(formUsuario.getPassword());
         }
 
         servicioUsuario.modificar(usuario);
-
         return new ModelAndView("redirect:/perfil");
     }
 

@@ -27,7 +27,7 @@
                         <select class="form-select" id="tipo" th:field="*{tipo}" required>
                             <option value="">Seleccione un tipo</option>
                             <option th:each="tipo : ${T(com.tallerwebi.dominio.entidades.Tipo).values()}"
-                                    th:value="${tipo}" th:text="${tipo}"></option>
+                                    th:value="${tipo}" th:text="${tipo.displayValue}"></option>
                         </select>
                     </div>
 
@@ -36,7 +36,7 @@
                         <select class="form-select" id="sexo" th:field="*{sexo}" required>
                             <option value="">Seleccione un sexo</option>
                             <option th:each="sexo : ${T(com.tallerwebi.dominio.entidades.Sexo).values()}"
-                                    th:value="${sexo}" th:text="${sexo}"></option>
+                                    th:value="${sexo}" th:text="${sexo.displayValue}"></option>
                         </select>
                     </div>
 
@@ -45,7 +45,7 @@
                         <select class="form-select" id="tamano" th:field="*{tamano}" required>
                             <option value="">Seleccione un tamaño</option>
                             <option th:each="tamano : ${T(com.tallerwebi.dominio.entidades.Tamano).values()}"
-                                    th:value="${tamano}" th:text="${tamano}"></option>
+                                    th:value="${tamano}" th:text="${tamano.displayValue}"></option>
                         </select>
                     </div>
 
@@ -54,7 +54,7 @@
                         <select class="form-select" id="nivelEnergia" th:field="*{nivelEnergia}" required>
                             <option value="">Seleccione un nivel de energía</option>
                             <option th:each="energia : ${T(com.tallerwebi.dominio.entidades.NivelEnergia).values()}"
-                                    th:value="${energia}" th:text="${energia}"></option>
+                                    th:value="${energia}" th:text="${energia.displayValue}"></option>
                         </select>
                     </div>
 
@@ -103,7 +103,7 @@
                         <tbody>
                             <tr th:each="mascota : ${mascotasPendientes}">
                                 <td th:text="${mascota.nombre}"></td>
-                                <td th:text="${mascota.tipo}"></td>
+                                <td th:text="${mascota.tipo.displayValue}"></td>
                                 <td th:text="${mascota.usuario?.nombre}"></td>
                                 <td>
                                     <div class="btn-group" role="group">

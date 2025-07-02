@@ -29,6 +29,7 @@ public class SpringWebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/js/**").addResourceLocations("/resources/core/js/");
         registry.addResourceHandler("/images/**").addResourceLocations("/resources/core/images/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("/webjars/");
+        registry.addResourceHandler("/uploads/**").addResourceLocations("file:/app/uploads/");
         registry.addResourceHandler("/resources/**")
                 .addResourceLocations("/resources/")
                 .setCachePeriod(31556926);

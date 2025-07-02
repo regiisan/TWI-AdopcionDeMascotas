@@ -27,6 +27,7 @@ public class ControladorAdminTest {
         controladorAdmin = new ControladorAdmin(servicioSolicitudAdoptarMock);
     }
 
+
     @Test
     public void siElUsuarioNoEsAdminDebeRedirigirAlHome() {
         // Preparación
@@ -73,6 +74,19 @@ public class ControladorAdminTest {
         List<SolicitudAdopcion> solicitudesFiltradas = (List<SolicitudAdopcion>) modelAndView.getModel().get("solicitudes");
         assertThat(solicitudesFiltradas, hasSize(1));
         assertThat(solicitudesFiltradas.get(0).getEstado(), is("APROBADA"));
+
+
+    @Test
+    public void debeRetornarLaVistaSolicitudesDeAdopcionCuandoSeEjecutaElMetodoMostrarSolicitudesYElUsuarioEsADMIN(){
+        List<SolicitudAdopcion> solicitudesMock = Arrays.asList(mock(SolicitudAdopcion.class), mock(SolicitudAdopcion.class));
+        when(sessionMock.getAttribute("ROL")).thenReturn("ADMIN");
+        when(servicioSolicitudAdoptar.obtenerSolicitudes()).thenReturn(solicitudesMock);
+
+        ModelAndView modelAndView = controladorAdmin.mostrarSolicitudes(null,sessionMock);
+
+        assertThat(modelAndView.getViewName(), equalToIgnoringCase("solicitudesDeAdopcion"));
+        assertThat(modelAndView.getModel().get("solicitudes"), is(solicitudesMock));
+
     }
 
     @Test
@@ -81,8 +95,12 @@ public class ControladorAdminTest {
         when(sessionMock.getAttribute("ROL")).thenReturn("USUARIO");
         Long idSolicitud = 1L;
 
+
         // Ejecución
         ModelAndView modelAndView = controladorAdmin.aprobarSolicitud(idSolicitud, sessionMock);
+
+        ModelAndView modelAndView = controladorAdmin.mostrarSolicitudes(null,sessionMock);
+
 
         // Verificación
         verify(servicioSolicitudAdoptarMock, never()).aprobarSolicitud(idSolicitud);
@@ -95,8 +113,12 @@ public class ControladorAdminTest {
         when(sessionMock.getAttribute("ROL")).thenReturn("ADMIN");
         Long idSolicitud = 1L;
 
+
         // Ejecución
         ModelAndView modelAndView = controladorAdmin.aprobarSolicitud(idSolicitud, sessionMock);
+
+        ModelAndView modelAndView = controladorAdmin.mostrarSolicitudes(null,sessionMock);
+
 
         // Verificación
         verify(servicioSolicitudAdoptarMock).aprobarSolicitud(idSolicitud);
@@ -104,6 +126,7 @@ public class ControladorAdminTest {
     }
 
     @Test
+
     public void alRechazarSolicitudSiNoEsAdminNoDebeHacerNada() {
         // Preparación
         when(sessionMock.getAttribute("ROL")).thenReturn("USUARIO");
@@ -145,4 +168,18 @@ public class ControladorAdminTest {
         List<SolicitudAdopcion> solicitudes = (List<SolicitudAdopcion>) modelAndView.getModel().get("solicitudes");
         assertThat(solicitudes, empty());
     }
+
+    public void debeFiltrarSolicitudesPorEstado() {
+        List<SolicitudAdopcion> solicitudesFiltradas = Arrays.asList(mock(SolicitudAdopcion.class));
+        when(sessionMock.getAttribute("ROL")).thenReturn("ADMIN");
+        when(servicioSolicitudAdoptar.obtenerSolicitudesPorEstado("Pendiente")).thenReturn(solicitudesFiltradas);
+
+        ModelAndView modelAndView = controladorAdmin.mostrarSolicitudes("Pendiente", sessionMock);
+
+        assertThat(modelAndView.getViewName(), equalToIgnoringCase("solicitudesDeAdopcion"));
+        assertThat(modelAndView.getModel().get("solicitudes"), is(solicitudesFiltradas));
+        assertThat(modelAndView.getModel().get("estadoSeleccionado"), is("Pendiente"));
+    }
+
+
 }

@@ -60,4 +60,68 @@ public class RepositorioSolicitudAdoptarTest {
         assertTrue(solicitudes.isEmpty());
     }
 
+    @Test
+    public void dadoQueLaSolicitudTieneMascotaListarSolicitudesDevuelveLaMascotaAsociada() {
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Luna");
+
+        SolicitudAdopcion solicitud = new SolicitudAdopcion();
+        solicitud.setMascota(mascota);
+        solicitud.setEstado("Pendiente");
+
+        this.sessionFactory.getCurrentSession().save(mascota);
+        this.sessionFactory.getCurrentSession().save(solicitud);
+
+        List<SolicitudAdopcion> solicitudes = repositorioSolicitudAdoptar.listarSolicitudes();
+
+        assertNotNull(solicitudes.get(0).getMascota());
+        assertEquals("Luna", solicitudes.get(0).getMascota().getNombre());
+    }
+
+    @Test
+    public void dadoQueHayaSolicitudesEnLaBDConEstadoPendienteListarSolicitudesPorEstadoDevuelveSoloLasPendientes(){
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Luna");
+
+        SolicitudAdopcion solicitudPendiente = new SolicitudAdopcion();
+        solicitudPendiente.setEstado("Pendiente");
+        solicitudPendiente.setMascota(mascota);
+
+        SolicitudAdopcion solicitudAprobada = new SolicitudAdopcion();
+        solicitudAprobada.setEstado("Aprobada");
+        solicitudAprobada.setMascota(mascota);
+
+        this.sessionFactory.getCurrentSession().save(mascota);
+        this.sessionFactory.getCurrentSession().save(solicitudPendiente);
+        this.sessionFactory.getCurrentSession().save(solicitudAprobada);
+
+        List<SolicitudAdopcion> solicitudesPendientes = repositorioSolicitudAdoptar.listarSolicitudesPorEstado("Pendiente");
+
+        assertEquals(1, solicitudesPendientes.size());
+        assertEquals("Pendiente", solicitudesPendientes.get(0).getEstado());
+    }
+
+    @Test
+    public void dadoQueNoHayaSolicitudesEnLaBDConEstadoPendienteListarSolicitudesPorEstadoDevuelveUnaListaVacia() {
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Luna");
+
+        SolicitudAdopcion solicitud = new SolicitudAdopcion();
+        solicitud.setEstado("Aprobada");
+        solicitud.setMascota(mascota);
+
+        this.sessionFactory.getCurrentSession().save(mascota);
+        this.sessionFactory.getCurrentSession().save(solicitud);
+
+        List<SolicitudAdopcion> solicitudes = repositorioSolicitudAdoptar.listarSolicitudesPorEstado("Pendiente");
+
+        assertTrue(solicitudes.isEmpty());
+    }
+
+    @Test
+    public void dadoQueHayaSolicitudesConEstadoNullListarSolicitudesPorEstadoDevuelveListaVacia() {
+        List<SolicitudAdopcion> resultado = repositorioSolicitudAdoptar.listarSolicitudesPorEstado(null);
+        assertTrue(resultado.isEmpty());
+    }
+
 }
