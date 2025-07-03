@@ -12,8 +12,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ServicioSolicitudAdoptarImplTest {
 
@@ -27,26 +26,113 @@ public class ServicioSolicitudAdoptarImplTest {
     }
 
     @Test
-    public void dadoQueNoExistanSolicitudesDebeDevolverUnaListaVacia(){
+    public void alGuardarUnaSolicitudDebeGuardarlaEnElRepositorio() {
+        // Preparación
+        SolicitudAdopcion solicitud = new SolicitudAdopcion();
+
+        // Ejecución
+        servicioSolicitudAdoptar.guardar(solicitud);
+
+        // Verificación
+        verify(repositorioSolicitudAdoptarMock).guardar(solicitud);
+    }
+
+    @Test
+    public void alBuscarPorIdDebeRetornarLaSolicitudCorrespondiente() {
+        // Preparación
+        Long id = 1L;
+        SolicitudAdopcion solicitudEsperada = new SolicitudAdopcion();
+        when(repositorioSolicitudAdoptarMock.buscarSolicitudPorId(id)).thenReturn(solicitudEsperada);
+
+        // Ejecución
+        SolicitudAdopcion resultado = servicioSolicitudAdoptar.buscarPorId(id);
+
+        // Verificación
+        assertThat(resultado, is(solicitudEsperada));
+    }
+
+    @Test
+    public void alObtenerSolicitudesDebeRetornarTodasLasSolicitudes() {
+        // Preparación
+        List<SolicitudAdopcion> solicitudesEsperadas = Arrays.asList(new SolicitudAdopcion(), new SolicitudAdopcion());
+        when(repositorioSolicitudAdoptarMock.listarSolicitudes()).thenReturn(solicitudesEsperadas);
+
+        // Ejecución
+        List<SolicitudAdopcion> resultado = servicioSolicitudAdoptar.obtenerSolicitudes();
+
+        // Verificación
+        assertThat(resultado, is(solicitudesEsperadas));
+    }
+
+    @Test
+    public void alAprobarSolicitudDebeActualizarElEstadoAAprobada() {
+        // Preparación
+        Long id = 1L;
+        SolicitudAdopcion solicitud = new SolicitudAdopcion();
+        when(repositorioSolicitudAdoptarMock.buscarSolicitudPorId(id)).thenReturn(solicitud);
+
+        // Ejecución
+        servicioSolicitudAdoptar.aprobarSolicitud(id);
+
+        // Verificación
+        assertThat(solicitud.getEstado(), is("Aprobada"));
+        verify(repositorioSolicitudAdoptarMock).modificar(solicitud);
+    }
+
+    @Test
+    public void alRechazarSolicitudDebeActualizarElEstadoARechazada() {
+        // Preparación
+        Long id = 1L;
+        SolicitudAdopcion solicitud = new SolicitudAdopcion();
+        when(repositorioSolicitudAdoptarMock.buscarSolicitudPorId(id)).thenReturn(solicitud);
+
+        // Ejecución
+        servicioSolicitudAdoptar.rechazarSolicitud(id);
+
+        // Verificación
+        assertThat(solicitud.getEstado(), is("Rechazada"));
+        verify(repositorioSolicitudAdoptarMock).modificar(solicitud);
+    }
+
+    @Test
+
+    public void siLaSolicitudNoExisteAlAprobarNoDebeHacerNada() {
+        // Preparación
+        Long id = 1L;
+        when(repositorioSolicitudAdoptarMock.buscarSolicitudPorId(id)).thenReturn(null);
+
+        // Ejecución
+        servicioSolicitudAdoptar.aprobarSolicitud(id);
+
+        // Verificación
+        verify(repositorioSolicitudAdoptarMock, never()).modificar(any());
+    }
+
+    @Test
+    public void siLaSolicitudNoExisteAlRechazarNoDebeHacerNada() {
+        // Preparación
+        Long id = 1L;
+        when(repositorioSolicitudAdoptarMock.buscarSolicitudPorId(id)).thenReturn(null);
+
+        // Ejecución
+        servicioSolicitudAdoptar.rechazarSolicitud(id);
+
+        // Verificación
+        verify(repositorioSolicitudAdoptarMock, never()).modificar(any());
+    }
+
+    @Test
+    public void siNoHaySolicitudesDebeRetornarUnaListaVacia() {
+        // Preparación
         when(repositorioSolicitudAdoptarMock.listarSolicitudes()).thenReturn(new ArrayList<>());
 
-        List<SolicitudAdopcion> solicitudes = servicioSolicitudAdoptar.obtenerSolicitudes();
+        // Ejecución
+        List<SolicitudAdopcion> resultado = servicioSolicitudAdoptar.obtenerSolicitudes();
 
-        assertThat(solicitudes, empty());
+        // Verificación
+        assertThat(resultado, empty());
     }
 
-    @Test
-    public void dadoQueSeCreenDosSolicitudesDebeDevolverUnaListaConDosSolicitudes(){
-        List<SolicitudAdopcion> solicitudesMock = Arrays.asList(mock(SolicitudAdopcion.class), mock(SolicitudAdopcion.class));
-        when(repositorioSolicitudAdoptarMock.listarSolicitudes()).thenReturn(solicitudesMock);
-
-        List<SolicitudAdopcion> solicitudes = servicioSolicitudAdoptar.obtenerSolicitudes();
-
-        assertThat(solicitudes.size(), is(2));
-        assertThat(solicitudes.get(0), instanceOf(SolicitudAdopcion.class));
-    }
-
-    @Test
     public void dadoQueExistenSolicitudesConEstadoPendienteDebeDevolverSoloLasPendientes() {
         List<SolicitudAdopcion> solicitudesMock = Arrays.asList(mock(SolicitudAdopcion.class));
         when(repositorioSolicitudAdoptarMock.listarSolicitudesPorEstado("Pendiente")).thenReturn(solicitudesMock);

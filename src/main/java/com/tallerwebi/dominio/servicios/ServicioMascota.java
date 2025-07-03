@@ -16,4 +16,5 @@ public interface ServicioMascota {
     void rechazarMascota(Long id);
     List<MascotaDto> obtenerMascotasPorEstado(String estado);
     List<Mascota> obtenerMascotasPorEstadoEntidad(String estado);
+    int contarMascotasPendientes();
 }

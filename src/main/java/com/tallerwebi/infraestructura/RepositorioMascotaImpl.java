@@ -83,4 +83,16 @@ public class RepositorioMascotaImpl implements RepositorioMascota {
     public void modificar(Mascota mascota) {
         sessionFactory.getCurrentSession().update(mascota);
     }
+
+    @Override
+    public int contarMascotasPendientes() {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "SELECT COUNT(*) FROM Mascota WHERE estado = :estado";
+        Long count = session.createQuery(hql, Long.class)
+                .setParameter("estado", "Pendiente")
+                .uniqueResult();
+        return count.intValue();
+    }
+
+
 }

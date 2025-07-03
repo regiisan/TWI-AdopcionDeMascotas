@@ -1,7 +1,9 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.entidades.SolicitudAdopcion;
+import com.tallerwebi.dominio.servicios.ServicioMascota;
 import com.tallerwebi.dominio.servicios.ServicioSolicitudAdoptar;
+import com.tallerwebi.dominio.servicios.ServicioUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,10 +19,14 @@ import java.util.List;
 public class ControladorAdmin {
 
     private ServicioSolicitudAdoptar servicioSolicitudAdoptar;
+    private ServicioMascota servicioMascota;
+    private ServicioUsuario servicioUsuario;
 
     @Autowired
-    public ControladorAdmin(ServicioSolicitudAdoptar servicioSolicitudAdoptar) {
+    public ControladorAdmin(ServicioSolicitudAdoptar servicioSolicitudAdoptar, ServicioMascota servicioMascota, ServicioUsuario servicioUsuario) {
         this.servicioSolicitudAdoptar = servicioSolicitudAdoptar;
+        this.servicioMascota = servicioMascota;
+        this.servicioUsuario = servicioUsuario;
     }
 
     @RequestMapping(path = "/admin/solicitudes", method = RequestMethod.GET)
@@ -29,6 +35,7 @@ public class ControladorAdmin {
         ModelAndView model;
 
         if (rol != null && rol.equalsIgnoreCase("ADMIN")) {
+
             List<SolicitudAdopcion> solicitudes;
 
             if (estado != null && !estado.isEmpty()) {
@@ -42,6 +49,7 @@ public class ControladorAdmin {
             model.addObject("solicitudes", solicitudes);
             model.addObject("estadoSeleccionado", estado);
             return model;
+
         } else {
             model = new ModelAndView("redirect:/home");
         }
@@ -69,5 +77,27 @@ public class ControladorAdmin {
         }
 
         return new ModelAndView("redirect:/admin/solicitudes");
+    }
+
+    @RequestMapping(path = "/admin/home", method = RequestMethod.GET)
+    public ModelAndView mostrarEstadisticas(HttpSession session) {
+        String rol = (String) session.getAttribute("ROL");
+
+        if (rol == null || !rol.equalsIgnoreCase("ADMIN")) {
+            return new ModelAndView("redirect:/home");
+        }
+
+        int solicitudesPendientes = servicioSolicitudAdoptar.contarSolicitudesPendientes();
+        int mascotasPendientes = servicioMascota.contarMascotasPendientes();
+        int adopcionesExitosas = servicioSolicitudAdoptar.contarSolicitudesAprobadas();
+        int usuariosActivos = servicioUsuario.contarUsuariosActivos();
+
+        ModelAndView model = new ModelAndView("homeAdmin");
+        model.addObject("solicitudesPendientes", solicitudesPendientes);
+        model.addObject("mascotasPendientes", mascotasPendientes);
+        model.addObject("adopcionesExitosas", adopcionesExitosas);
+        model.addObject("usuariosActivos", usuariosActivos);
+
+        return model;
     }
 }
