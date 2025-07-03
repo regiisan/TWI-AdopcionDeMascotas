@@ -124,4 +124,126 @@ public class RepositorioSolicitudAdoptarTest {
         assertTrue(resultado.isEmpty());
     }
 
+    @Test
+    public void dadoQueHayaSolicitudesPendientesEnLaBDContarSolicitudesPendientesDevuelveCuantasHay(){
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Luna");
+
+        SolicitudAdopcion solicitudPendiente1 = new SolicitudAdopcion();
+        solicitudPendiente1.setEstado("Pendiente");
+        solicitudPendiente1.setMascota(mascota);
+
+        SolicitudAdopcion solicitudPendiente2 = new SolicitudAdopcion();
+        solicitudPendiente2.setEstado("Pendiente");
+        solicitudPendiente2.setMascota(mascota);
+
+        this.sessionFactory.getCurrentSession().save(mascota);
+        this.sessionFactory.getCurrentSession().save(solicitudPendiente1);
+        this.sessionFactory.getCurrentSession().save(solicitudPendiente2);
+
+        int solicitudesPendientes = repositorioSolicitudAdoptar.contarSolicitudesPendientes();
+
+        assertEquals(2, solicitudesPendientes);
+    }
+
+    @Test
+    public void dadoQueHayaSolicitudesConDiferentesEstadosEnLaBDContarSolicitudesPendientesDevuelveSoloCuantasPendientesHay(){
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Luna");
+
+        SolicitudAdopcion solicitudPendiente = new SolicitudAdopcion();
+        solicitudPendiente.setEstado("Pendiente");
+        solicitudPendiente.setMascota(mascota);
+
+        SolicitudAdopcion solicitudAprobada = new SolicitudAdopcion();
+        solicitudAprobada.setEstado("Aprobada");
+        solicitudAprobada.setMascota(mascota);
+
+        this.sessionFactory.getCurrentSession().save(mascota);
+        this.sessionFactory.getCurrentSession().save(solicitudPendiente);
+        this.sessionFactory.getCurrentSession().save(solicitudAprobada);
+
+        int solicitudesPendientes = repositorioSolicitudAdoptar.contarSolicitudesPendientes();
+
+        assertEquals(1, solicitudesPendientes);
+    }
+
+    @Test
+    public void dadoQueNoHayaSolicitudesPendientesDebeRetornarCero() {
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Luna");
+
+        SolicitudAdopcion solicitud = new SolicitudAdopcion();
+        solicitud.setEstado("Aprobada");
+        solicitud.setMascota(mascota);
+
+        this.sessionFactory.getCurrentSession().save(mascota);
+        this.sessionFactory.getCurrentSession().save(solicitud);
+
+        int solicitudesPendientes = repositorioSolicitudAdoptar.contarSolicitudesPendientes();
+
+        assertEquals(0, solicitudesPendientes);
+    }
+
+    @Test
+    public void dadoQueHayaSolicitudesAprobadasEnLaBDContarSolicitudesAprobadasDevuelveCuantasHay(){
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Luna");
+
+        SolicitudAdopcion solicitudAprobada1 = new SolicitudAdopcion();
+        solicitudAprobada1.setEstado("Aprobada");
+        solicitudAprobada1.setMascota(mascota);
+
+        SolicitudAdopcion solicitudAprobada2 = new SolicitudAdopcion();
+        solicitudAprobada2.setEstado("Aprobada");
+        solicitudAprobada2.setMascota(mascota);
+
+        this.sessionFactory.getCurrentSession().save(mascota);
+        this.sessionFactory.getCurrentSession().save(solicitudAprobada1);
+        this.sessionFactory.getCurrentSession().save(solicitudAprobada2);
+
+        int solicitudesAprobadas = repositorioSolicitudAdoptar.contarSolicitudesAprobadas();
+
+        assertEquals(2, solicitudesAprobadas);
+    }
+
+    @Test
+    public void dadoQueHayaSolicitudesConDiferentesEstadosEnLaBDContarSolicitudesAprobadasDevuelveSoloCuantasAprobadasHay(){
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Luna");
+
+        SolicitudAdopcion solicitudPendiente = new SolicitudAdopcion();
+        solicitudPendiente.setEstado("Pendiente");
+        solicitudPendiente.setMascota(mascota);
+
+        SolicitudAdopcion solicitudAprobada = new SolicitudAdopcion();
+        solicitudAprobada.setEstado("Aprobada");
+        solicitudAprobada.setMascota(mascota);
+
+        this.sessionFactory.getCurrentSession().save(mascota);
+        this.sessionFactory.getCurrentSession().save(solicitudPendiente);
+        this.sessionFactory.getCurrentSession().save(solicitudAprobada);
+
+        int solicitudesAprobadas = repositorioSolicitudAdoptar.contarSolicitudesAprobadas();
+
+        assertEquals(1, solicitudesAprobadas);
+    }
+
+    @Test
+    public void dadoQueNoHayaSolicitudesAprobadasDebeRetornarCero() {
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Luna");
+
+        SolicitudAdopcion solicitud = new SolicitudAdopcion();
+        solicitud.setEstado("Pendiente");
+        solicitud.setMascota(mascota);
+
+        this.sessionFactory.getCurrentSession().save(mascota);
+        this.sessionFactory.getCurrentSession().save(solicitud);
+
+        int solicitudesAprobadas = repositorioSolicitudAdoptar.contarSolicitudesAprobadas();
+
+        assertEquals(0, solicitudesAprobadas);
+    }
+
 }
