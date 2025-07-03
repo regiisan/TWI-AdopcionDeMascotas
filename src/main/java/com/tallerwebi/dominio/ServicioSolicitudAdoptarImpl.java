@@ -27,6 +27,7 @@ public class ServicioSolicitudAdoptarImpl implements ServicioSolicitudAdoptar {
     @Autowired
     public ServicioSolicitudAdoptarImpl(final RepositorioSolicitudAdoptar repositorioSolicitudAdoptar) {
         this.repositorioSolicitudAdoptar = repositorioSolicitudAdoptar;
+        this.servicioMail = servicioMail;
     }
 
 <<<<<<< HEAD
@@ -75,21 +76,45 @@ public class ServicioSolicitudAdoptarImpl implements ServicioSolicitudAdoptar {
 
 
     @Override
-    public void aprobarSolicitud(Long id) {
-        SolicitudAdopcion solicitud = buscarPorId(id);
-        if (solicitud != null) {
-            solicitud.setEstado("Aprobada");
-            repositorioSolicitudAdoptar.modificar(solicitud);
-        }
-    }
+public void aprobarSolicitud(Long id) {
+    SolicitudAdopcion solicitud = buscarPorId(id);
+    if (solicitud != null) {
+        solicitud.setEstado("Aprobada");
+        repositorioSolicitudAdoptar.modificar(solicitud);
 
-    @Override
-    public void rechazarSolicitud(Long id) {
-        SolicitudAdopcion solicitud = buscarPorId(id);
-        if (solicitud != null) {
-            solicitud.setEstado("Rechazada");
-            repositorioSolicitudAdoptar.modificar(solicitud);
+        if (solicitud.getUsuario() != null) {
+            try {
+                servicioMail.enviarMail(
+                    solicitud.getUsuario().getEmail(),
+                    "Tu solicitud fue aprobada",
+                    "¡Felicitaciones! Tu solicitud N°" + solicitud.getId() + " fue aprobada."
+                );
+            } catch (MessagingException e) {
+                System.err.println("Error al enviar mail: " + e.getMessage());
+            }
         }
     }
+}
+
+@Override
+public void rechazarSolicitud(Long id) {
+    SolicitudAdopcion solicitud = buscarPorId(id);
+    if (solicitud != null) {
+        solicitud.setEstado("Rechazada");
+        repositorioSolicitudAdoptar.modificar(solicitud);
+
+        if (solicitud.getUsuario() != null) {
+            try {
+                servicioMail.enviarMail(
+                    solicitud.getUsuario().getEmail(),
+                    "Tu solicitud fue rechazada",
+                    "Lamentablemente, tu solicitud N°" + solicitud.getId() + " fue rechazada."
+                );
+            } catch (MessagingException e) {
+                System.err.println("Error al enviar mail: " + e.getMessage());
+            }
+        }
+    }
+}
 >>>>>>> e74298ed02e547e84712e47f62922004fb5db00e
 }
