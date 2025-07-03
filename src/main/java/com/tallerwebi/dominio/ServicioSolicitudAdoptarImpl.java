@@ -102,7 +102,7 @@ public void rechazarSolicitud(Long id) {
             }
         }
     }
-
+}
     @Override
     public int contarSolicitudesPendientes() {
         return repositorioSolicitudAdoptar.contarSolicitudesPendientes();
