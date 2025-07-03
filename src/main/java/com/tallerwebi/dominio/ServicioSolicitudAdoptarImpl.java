@@ -69,10 +69,10 @@ public void aprobarSolicitud(Long id) {
         solicitud.setEstado("Aprobada");
         repositorioSolicitudAdoptar.modificar(solicitud);
 
-        if (solicitud.getUsuario() != null) {
+        if (solicitud.getEmail() != null) {
             try {
                 servicioMail.enviarMail(
-                    solicitud.getUsuario().getEmail(),
+                    solicitud.getEmail(),
                     "Tu solicitud fue aprobada",
                     "¡Felicitaciones! Tu solicitud N°" + solicitud.getId() + " fue aprobada."
                 );
@@ -90,10 +90,10 @@ public void rechazarSolicitud(Long id) {
         solicitud.setEstado("Rechazada");
         repositorioSolicitudAdoptar.modificar(solicitud);
 
-        if (solicitud.getUsuario() != null) {
+        if (solicitud.getEmail() != null) {
             try {
                 servicioMail.enviarMail(
-                    solicitud.getUsuario().getEmail(),
+                    solicitud.getEmail(),
                     "Tu solicitud fue rechazada",
                     "Lamentablemente, tu solicitud N°" + solicitud.getId() + " fue rechazada."
                 );
