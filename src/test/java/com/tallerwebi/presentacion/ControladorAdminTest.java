@@ -46,6 +46,18 @@ public class ControladorAdminTest {
     }
 
     @Test
+    public void siElUsuarioEsNullDebeRedirigirAlHome() {
+        // Preparación
+        when(sessionMock.getAttribute("ROL")).thenReturn(null);
+
+        // Ejecución
+        ModelAndView modelAndView = controladorAdmin.mostrarSolicitudes(null, sessionMock);
+
+        // Verificación
+        assertThat(modelAndView.getViewName(), is("redirect:/home"));
+    }
+
+    @Test
     public void siElUsuarioEsAdminDebeMostrarTodasLasSolicitudes() {
         // Preparación
         when(sessionMock.getAttribute("ROL")).thenReturn("ADMIN");
@@ -101,7 +113,6 @@ public class ControladorAdminTest {
         when(sessionMock.getAttribute("ROL")).thenReturn("USUARIO");
         Long idSolicitud = 1L;
 
-
         // Ejecución
         ModelAndView modelAndView = controladorAdmin.aprobarSolicitud(idSolicitud, sessionMock);
 
@@ -115,7 +126,6 @@ public class ControladorAdminTest {
         // Preparación
         when(sessionMock.getAttribute("ROL")).thenReturn("ADMIN");
         Long idSolicitud = 1L;
-
 
         // Ejecución
         ModelAndView modelAndView = controladorAdmin.aprobarSolicitud(idSolicitud, sessionMock);
@@ -168,6 +178,7 @@ public class ControladorAdminTest {
         assertThat(solicitudes, empty());
     }
 
+    @Test
     public void debeFiltrarSolicitudesPorEstado() {
         List<SolicitudAdopcion> solicitudesFiltradas = Arrays.asList(mock(SolicitudAdopcion.class));
         when(sessionMock.getAttribute("ROL")).thenReturn("ADMIN");
@@ -180,5 +191,68 @@ public class ControladorAdminTest {
         assertThat(modelAndView.getModel().get("estadoSeleccionado"), is("Pendiente"));
     }
 
+    @Test
+    public void debeRedirigirAlHomeCuandoElUsuarioNoEsAdminYQuiereAccederAlHomeAdmin() {
+        when(sessionMock.getAttribute("ROL")).thenReturn("USUARIO");
+
+        ModelAndView modelAndView = controladorAdmin.mostrarEstadisticas(sessionMock);
+
+        assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect:/home"));
+    }
+
+    @Test
+    public void debeRedirigirAlHomeCuandoElUsuarioEsNullYQuiereAccederAlHomeAdmin() {
+        when(sessionMock.getAttribute("ROL")).thenReturn(null);
+
+        ModelAndView modelAndView = controladorAdmin.mostrarEstadisticas(sessionMock);
+
+        assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect:/home"));
+    }
+
+    @Test
+    public void debeMostrarVistaHomeAdminSiElUsuarioEsAdmin() {
+        when(sessionMock.getAttribute("ROL")).thenReturn("ADMIN");
+
+        ModelAndView modelAndView = controladorAdmin.mostrarEstadisticas(sessionMock);
+
+        assertThat(modelAndView.getViewName(), is("homeAdmin"));
+        verify(sessionMock, times(1)).getAttribute("ROL");
+    }
+
+    @Test
+    public void debeMostrarEstadisticasSiElUsuarioEsAdmin() {
+        when(sessionMock.getAttribute("ROL")).thenReturn("ADMIN");
+        when(servicioSolicitudAdoptar.contarSolicitudesPendientes()).thenReturn(3);
+        when(servicioMascota.contarMascotasPendientes()).thenReturn(2);
+        when(servicioSolicitudAdoptar.contarSolicitudesAprobadas()).thenReturn(5);
+        when(servicioUsuario.contarUsuariosActivos()).thenReturn(10);
+
+        ModelAndView modelAndView = controladorAdmin.mostrarEstadisticas(sessionMock);
+
+        assertThat(modelAndView.getModel().get("solicitudesPendientes"), is(3));
+        assertThat(modelAndView.getModel().get("mascotasPendientes"), is(2));
+        assertThat(modelAndView.getModel().get("adopcionesExitosas"), is(5));
+        assertThat(modelAndView.getModel().get("usuariosActivos"), is(10));
+        verify(servicioSolicitudAdoptar, times(1)).contarSolicitudesPendientes();
+        verify(servicioMascota, times(1)).contarMascotasPendientes();
+        verify(servicioSolicitudAdoptar, times(1)).contarSolicitudesAprobadas();
+        verify(servicioUsuario, times(1)).contarUsuariosActivos();
+    }
+
+    @Test
+    public void debeRetornarCerosEnLasEstadisticasSiNoHaySolicitudesNiUsuarios() {
+        when(sessionMock.getAttribute("ROL")).thenReturn("ADMIN");
+        when(servicioSolicitudAdoptar.contarSolicitudesPendientes()).thenReturn(0);
+        when(servicioMascota.contarMascotasPendientes()).thenReturn(0);
+        when(servicioSolicitudAdoptar.contarSolicitudesAprobadas()).thenReturn(0);
+        when(servicioUsuario.contarUsuariosActivos()).thenReturn(0);
+
+        ModelAndView modelAndView = controladorAdmin.mostrarEstadisticas(sessionMock);
+
+        assertThat(modelAndView.getModel().get("solicitudesPendientes"), is(0));
+        assertThat(modelAndView.getModel().get("mascotasPendientes"), is(0));
+        assertThat(modelAndView.getModel().get("adopcionesExitosas"), is(0));
+        assertThat(modelAndView.getModel().get("usuariosActivos"), is(0));
+    }
 
 }

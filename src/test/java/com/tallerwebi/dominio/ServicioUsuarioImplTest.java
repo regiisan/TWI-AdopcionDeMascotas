@@ -67,4 +67,24 @@ public class ServicioUsuarioImplTest {
         assertThat(resultado, is(false));
     }
 
+    @Test
+    public void dadoQueExistanUsuariosActivosDebeContarlos() {
+        when(repositorioUsuarioMock.contarUsuariosActivos()).thenReturn(5);
+
+        int usuariosActivos = servicioUsuario.contarUsuariosActivos();
+
+        assertThat(usuariosActivos, is(5));
+        verify(repositorioUsuarioMock, times(1)).contarUsuariosActivos();
+    }
+
+    @Test
+    public void dadoQueNoExistanUsuariosActivosDebeRetornarCero() {
+        when(repositorioUsuarioMock.contarUsuariosActivos()).thenReturn(0);
+
+        int usuariosActivos = servicioUsuario.contarUsuariosActivos();
+
+        assertThat(usuariosActivos, is(0));
+        verify(repositorioUsuarioMock, times(1)).contarUsuariosActivos();
+    }
+
 }

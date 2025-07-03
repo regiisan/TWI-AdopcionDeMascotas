@@ -133,6 +133,7 @@ public class ServicioSolicitudAdoptarImplTest {
         assertThat(resultado, empty());
     }
 
+    @Test
     public void dadoQueExistenSolicitudesConEstadoPendienteDebeDevolverSoloLasPendientes() {
         List<SolicitudAdopcion> solicitudesMock = Arrays.asList(mock(SolicitudAdopcion.class));
         when(repositorioSolicitudAdoptarMock.listarSolicitudesPorEstado("Pendiente")).thenReturn(solicitudesMock);
@@ -151,5 +152,50 @@ public class ServicioSolicitudAdoptarImplTest {
 
         assertThat(solicitudes, empty());
     }
+
+    @Test
+    public void dadoQueExistanSolicitudesPendientesDebeContarlas() {
+        when(repositorioSolicitudAdoptarMock.contarSolicitudesPendientes()).thenReturn(5);
+
+        int solicitudesPendientes = servicioSolicitudAdoptar.contarSolicitudesPendientes();
+
+        assertThat(solicitudesPendientes, is(5));
+        verify(repositorioSolicitudAdoptarMock, times(1)).contarSolicitudesPendientes();
+    }
+
+    @Test
+    public void dadoQueNoExistanSolicitudesPendientesDebeRetornarCero() {
+        when(repositorioSolicitudAdoptarMock.contarSolicitudesPendientes()).thenReturn(0);
+
+        int solicitudesPendientes = servicioSolicitudAdoptar.contarSolicitudesPendientes();
+
+        assertThat(solicitudesPendientes, is(0));
+        verify(repositorioSolicitudAdoptarMock, times(1)).contarSolicitudesPendientes();
+    }
+
+    @Test
+    public void dadoQueExistanSolicitudesAprobadasDebeContarlas() {
+        when(repositorioSolicitudAdoptarMock.contarSolicitudesAprobadas()).thenReturn(5);
+
+        int solicitudesAprobadas = servicioSolicitudAdoptar.contarSolicitudesAprobadas();
+
+        assertThat(solicitudesAprobadas, is(5));
+        verify(repositorioSolicitudAdoptarMock, times(1)).contarSolicitudesAprobadas();
+    }
+
+    @Test
+    public void dadoQueNoExistanSolicitudesAprobadasDebeRetornarCero() {
+        when(repositorioSolicitudAdoptarMock.contarSolicitudesAprobadas()).thenReturn(0);
+
+        int solicitudesAprobadas = servicioSolicitudAdoptar.contarSolicitudesAprobadas();
+
+        assertThat(solicitudesAprobadas, is(0));
+        verify(repositorioSolicitudAdoptarMock, times(1)).contarSolicitudesAprobadas();
+    }
+
+
+
+
+
 
 }

@@ -21,7 +21,7 @@
           <!-- HOME (diferente según rol) -->
           <li class="nav-item" th:if="${session.ROL == 'ADMIN'}">
             <a th:href="@{/admin/home}" th:classappend="${uri == '/admin/home'} ? ' active' : ''"
-               class="nav-link fs-6 me-4 text-white">Home Admin</a>
+               class="nav-link fs-6 me-4 text-white">Inicio</a>
           </li>
           <li class="nav-item" th:unless="${session.ROL == 'ADMIN'}">
             <a th:href="@{/home}" th:classappend="${uri == '/' or uri == '/home'} ? ' active' : ''"
