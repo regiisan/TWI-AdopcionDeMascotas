@@ -34,8 +34,9 @@ public class ControladorUsuario {
         }
 
         Usuario usuario = servicioUsuario.buscarPorId(id);
+        UsuarioDto usuarioDto = new UsuarioDto(usuario);
 
-        modelo.addAttribute("usuario", usuario);
+        modelo.addAttribute("usuario", usuarioDto);
         modelo.addAttribute("tipos", Tipo.values());
         modelo.addAttribute("sexos", Sexo.values());
         modelo.addAttribute("tamanos", Tamano.values());
@@ -45,7 +46,7 @@ public class ControladorUsuario {
     }
 
     @PostMapping("/guardar-preferencias")
-    public ModelAndView guardarPreferencias(@ModelAttribute("usuario") Usuario usuarioConPreferencias, HttpSession session) {
+    public ModelAndView guardarPreferencias(@ModelAttribute("usuario") UsuarioDto usuarioConPreferencias, HttpSession session) {
         Long id = (Long) session.getAttribute("idUsuario");
 
         if (id == null) {
@@ -53,12 +54,7 @@ public class ControladorUsuario {
         }
 
         Usuario usuario = servicioUsuario.buscarPorId(id);
-
-        usuario.setTipoPreferido(usuarioConPreferencias.getTipoPreferido());
-        usuario.setSexoPreferido(usuarioConPreferencias.getSexoPreferido());
-        usuario.setEdadPreferida(usuarioConPreferencias.getEdadPreferida());
-        usuario.setTamanoPreferido(usuarioConPreferencias.getTamanoPreferido());
-        usuario.setNivelEnergiaPreferido(usuarioConPreferencias.getNivelEnergiaPreferido());
+        usuarioConPreferencias.obtenerEntidad(usuario);
 
         servicioUsuario.modificar(usuario);
 
@@ -75,10 +71,10 @@ public class ControladorUsuario {
         }
 
         Usuario usuario = servicioUsuario.buscarPorId(id);
+        UsuarioDto usuarioDto = new UsuarioDto(usuario);
 
-        modelo.addAttribute("usuario", usuario);
+        modelo.addAttribute("usuario", usuarioDto);
 
-        //  ➜  enviamos los enums para poblar los <select>
         modelo.addAttribute("tipos", Tipo.values());
         modelo.addAttribute("sexos", Sexo.values());
         modelo.addAttribute("tamanos", Tamano.values());
@@ -88,7 +84,7 @@ public class ControladorUsuario {
     }
 
     @PostMapping("/editar-perfil")
-    public ModelAndView editarPerfil(@ModelAttribute("usuario") Usuario formUsuario,
+    public ModelAndView editarPerfil(@ModelAttribute("usuario") UsuarioDto formUsuario,
                                      HttpSession session) {
 
         Long id = (Long) session.getAttribute("idUsuario");
@@ -97,19 +93,8 @@ public class ControladorUsuario {
         }
 
         Usuario usuario = servicioUsuario.buscarPorId(id);
-
-        // ► actualizamos TODOS los campos editables
-        usuario.setEmail(formUsuario.getEmail());
-        usuario.setEdadPreferida(formUsuario.getEdadPreferida());
-        usuario.setTipoPreferido(formUsuario.getTipoPreferido());
-        usuario.setTamanoPreferido(formUsuario.getTamanoPreferido());
-        usuario.setSexoPreferido(formUsuario.getSexoPreferido());
-        usuario.setNivelEnergiaPreferido(formUsuario.getNivelEnergiaPreferido());
-
-        if (formUsuario.getPassword() != null && !formUsuario.getPassword().isBlank()) {
-            usuario.setPassword(formUsuario.getPassword());
-        }
-
+        formUsuario.obtenerEntidad(usuario);
+        
         servicioUsuario.modificar(usuario);
         return new ModelAndView("redirect:/perfil");
     }
