@@ -11,7 +11,7 @@ public class Usuario {
     private String email;
     private String password;
     private String rol;
-    private Boolean activo = false;
+    private Boolean activo = true;
     private String nombre;
 
     private Integer edadPreferida;

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="templates/head :: head"></head>
+
+<body>
+<header th:insert="templates/header :: header"></header>
+
+<main class="chat-container">
+
+    <h1>Sala de chat </h1>
+
+    <div class="chat-messages" id="chat-messages">
+        <!-- Acá se mostrarán los mensajes -->
+    </div>
+
+    <input type="text" class="chat-input" id="message" placeholder="Escribe tu mensaje" />
+    <button onclick="sendMessage()">send</button>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
+<script th:src="@{/js/chat.js}"></script>
+
+</body>
+</html>
