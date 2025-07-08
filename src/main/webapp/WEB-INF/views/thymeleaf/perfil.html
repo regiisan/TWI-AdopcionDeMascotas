@@ -2,82 +2,73 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="templates/head :: head"></head>
 <link rel="stylesheet" href="../../../resources/core/css/main.css">
-<body>
 
+
+<body>
 <header th:insert="templates/header :: encabezado"></header>
 
-<main class="d-flex align-items-center justify-content-center vh-100">
-    <div class="container">
-        <div class="card card-perfil mx-auto p-4 rounded-4"
-             style="max-width: 500px; background-color: rgba(94,58,156,.9); color:white;">
-            <h3 class="text-center mb-3">Mi Perfil</h3>
-            <hr style="border-color:rgba(255,255,255,.3);"/>
+<main class="fondo-degradado">
+    <div class="card card-perfil">
+        <h3 class="text-center mb-3">Mi Perfil</h3>
+        <hr />
 
-            <form th:action="@{/editar-perfil}" th:object="${usuario}" method="POST">
+        <form th:action="@{/editar-perfil}" th:object="${usuario}" method="POST">
+            <input type="hidden" th:field="*{id}" />
 
-                <input type="hidden" th:field="*{id}" />
+            <!-- Email -->
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" th:field="*{email}" />
+            </div>
 
-                <!-- Email -->
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" th:field="*{email}"/>
-                </div>
+            <!-- Edad preferida -->
+            <div class="mb-3" th:if="${session.ROL != 'ADMIN'}">
+                <label class="form-label">Edad preferida</label>
+                <input type="number" class="form-control" th:field="*{edadPreferida}" />
+            </div>
 
-                <!-- Edad preferida -->
-                <div class="mb-3" th:if="${session.ROL != 'ADMIN'}">
-                    <label class="form-label">Edad preferida</label>
-                    <input type="number" class="form-control" th:field="*{edadPreferida}"/>
-                </div>
+            <!-- Tipo preferido -->
+            <div class="mb-3" th:if="${session.ROL != 'ADMIN'}">
+                <label class="form-label">Tipo preferido</label>
+                <select class="form-select" th:field="*{tipoPreferido}">
+                    <option value="" th:if="${usuario.tipoPreferido == null}" selected>-- Seleccionar tipo --</option>
+                    <option th:each="t : ${tipos}" th:value="${t}" th:text="${t}"></option>
+                </select>
+            </div>
 
-                <!-- Tipo preferido -->
-                <div class="mb-3" th:if="${session.ROL != 'ADMIN'}">
-                    <label class="form-label">Tipo preferido</label>
-                    <select class="form-select" th:field="*{tipoPreferido}">
-                        <option value="" th:if="${usuario.tipoPreferido == null}" selected>-- Seleccionar tipo --</option>
-                        <option th:each="t : ${tipos}" th:value="${t}" th:text="${t}"></option>
-                    </select>
-                </div>
+            <!-- Tamaño preferido -->
+            <div class="mb-3" th:if="${session.ROL != 'ADMIN'}">
+                <label class="form-label">Tamaño preferido</label>
+                <select class="form-select" th:field="*{tamanoPreferido}">
+                    <option value="" th:if="${usuario.tamanoPreferido == null}" selected>-- Seleccionar tamaño --</option>
+                    <option th:each="tam : ${tamanos}" th:value="${tam}" th:text="${tam}"></option>
+                </select>
+            </div>
 
-                <!-- Tamaño preferido -->
-                <div class="mb-3" th:if="${session.ROL != 'ADMIN'}">
-                    <label class="form-label">Tamaño preferido</label>
-                    <select class="form-select" th:field="*{tamanoPreferido}">
-                        <option value="" th:if="${usuario.tamanoPreferido == null}" selected>-- Seleccionar tamaño --</option>
-                        <option th:each="tam : ${tamanos}" th:value="${tam}" th:text="${tam}"></option>
-                    </select>
-                </div>
+            <!-- Sexo preferido -->
+            <div class="mb-3" th:if="${session.ROL != 'ADMIN'}">
+                <label class="form-label">Sexo preferido</label>
+                <select class="form-select" th:field="*{sexoPreferido}">
+                    <option value="" th:if="${usuario.sexoPreferido == null}" selected>-- Seleccionar sexo --</option>
+                    <option th:each="s : ${sexos}" th:value="${s}" th:text="${s}"></option>
+                </select>
+            </div>
 
-                <!-- Sexo preferido -->
-                <div class="mb-3" th:if="${session.ROL != 'ADMIN'}">
-                    <label class="form-label">Sexo preferido</label>
-                    <select class="form-select" th:field="*{sexoPreferido}">
-                        <option value="" th:if="${usuario.sexoPreferido == null}" selected>-- Seleccionar sexo --</option>
-                        <option th:each="s : ${sexos}" th:value="${s}" th:text="${s}"></option>
-                    </select>
-                </div>
+            <!-- Nivel de energía preferido -->
+            <div class="mb-4" th:if="${session.ROL != 'ADMIN'}">
+                <label class="form-label">Nivel de energía preferido</label>
+                <select class="form-select" th:field="*{nivelEnergiaPreferido}">
+                    <option value="" th:if="${usuario.nivelEnergiaPreferido == null}" selected>-- Seleccionar energía --</option>
+                    <option th:each="n : ${nivelesEnergia}" th:value="${n}" th:text="${n}"></option>
+                </select>
+            </div>
 
-                <!-- Nivel de energía preferido -->
-                <div class="mb-4" th:if="${session.ROL != 'ADMIN'}">
-                    <label class="form-label">Nivel de energía preferido</label>
-                    <select class="form-select" th:field="*{nivelEnergiaPreferido}">
-                        <option value="" th:if="${usuario.nivelEnergiaPreferido == null}" selected>-- Seleccionar energía --</option>
-                        <option th:each="n : ${nivelesEnergia}" th:value="${n}" th:text="${n}"></option>
-                    </select>
-                </div>
+            <button type="submit" class="btn btn-violeta-invertida w-100 mb-2">Guardar cambios</button>
+        </form>
 
-                <!-- Cambiar contraseña
-                <div class="mb-4">
-                    <label class="form-label">Cambiar contraseña</label>
-                    <input type="password" class="form-control" name="password" placeholder="Nueva contraseña"/>
-                </div> -->
-
-                <button type="submit" class="btn btn-violeta-invertida w-100 mb-2">Guardar cambios</button>
-            </form>
-
-            <form th:if="${session.idUsuario != null}" th:action="@{/logout}" method="POST" class="m-0">
-                <button type="submit" class="btn btn-outline-light w-100">Cerrar sesión</button>
-            </form>
-        </div>
+        <form th:if="${session.idUsuario != null}" th:action="@{/logout}" method="POST" class="m-0">
+            <button type="submit" class="btn btn-outline-secondary w-100">Cerrar sesión</button>
+        </form>
     </div>
 </main>
 
