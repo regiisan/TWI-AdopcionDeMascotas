@@ -12,11 +12,16 @@ public class ControladorChat {
     @RequestMapping(path = "/sala-chat", method = RequestMethod.GET)
     public ModelAndView irAHome(HttpSession session) {
         Long idUsuario = (Long) session.getAttribute("idUsuario");
+        String nombreUsuario = (String) session.getAttribute("nombreUsuario");
 
         if (idUsuario == null) {
             return new ModelAndView("redirect:/login");
         }
 
-        return new ModelAndView("sala-chat");
+        ModelAndView mav = new ModelAndView("sala-chat");
+        mav.addObject("idUsuario", idUsuario);
+        mav.addObject("nombreUsuario", nombreUsuario);
+
+        return mav;
     }
 }

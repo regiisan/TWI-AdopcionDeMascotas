@@ -13,7 +13,7 @@
 >
     <div class="login-box">
         <form th:action="@{/validar-login}" method="POST" th:object="${datosLogin}">
-            <h3 class="text-center mb-3">Taller web I</h3>
+            <h3 class="text-center mb-3">Iniciar Sesión</h3>
             <hr/>
 
             <input
@@ -38,7 +38,7 @@
                     class="btn btn-lg btn-violeta-invertida w-100 mb-3"
                     type="submit"
             >
-                Login
+                Iniciar Sesión
             </button>
 
             <p th:if="${error != null}" class="alert alert-danger" th:text="'Error ' + ${error}"></p>
