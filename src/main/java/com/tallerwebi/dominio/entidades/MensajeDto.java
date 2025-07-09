@@ -1,26 +1,25 @@
 package com.tallerwebi.dominio.entidades;
 
-public class MensajeRecibido {
+public class MensajeDto {
 
-    private String message;
+    private String texto;
     private Long emisorId;
     private String nombreUsuario;
 
-    public MensajeRecibido() {
-    }
+    public MensajeDto() {}
 
-    public MensajeRecibido(String message, Long emisorId, String nombreUsuario) {
-        this.message = message;
+    public MensajeDto(String texto, Long emisorId, String nombreUsuario) {
+        this.texto = texto;
         this.emisorId = emisorId;
         this.nombreUsuario = nombreUsuario;
     }
 
-    public String getMessage() {
-        return message;
+    public String getTexto() {
+        return texto;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 
     public Long getEmisorId() {
