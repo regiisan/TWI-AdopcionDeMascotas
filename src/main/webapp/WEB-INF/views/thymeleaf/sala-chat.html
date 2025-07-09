@@ -28,26 +28,5 @@
 <script src="https://cdn.jsdelivr.net/npm/@stomp/stompjs@7.0.0/bundles/stomp.umd.min.js"></script>
 <script th:src="@{/js/chat.js}"></script>
 
-<script>
-    function sendMessage() {
-        const input = document.getElementById('message');
-        const text = input.value.trim();
-        if (!text) return;
-
-        const container = document.createElement('div');
-        container.className = 'd-flex justify-content-end mb-2'; // alineado a la derecha
-
-        const msgBubble = document.createElement('div');
-        msgBubble.className = 'text-white p-2 rounded-3';
-        msgBubble.style.backgroundColor = '#5D3A9B'; // violeta personalizado
-        msgBubble.style.maxWidth = '75%';
-        msgBubble.textContent = text;
-
-        container.appendChild(msgBubble);
-        document.getElementById('chat-messages').appendChild(container);
-        input.value = '';
-    }
-</script>
-
 </body>
 </html>

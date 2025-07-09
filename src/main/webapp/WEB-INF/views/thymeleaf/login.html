@@ -9,66 +9,45 @@
 
 <main
         role="main"
-        class="d-flex align-items-center justify-content-center vh-100"
+        class="fondo-degradado d-flex align-items-center justify-content-center vh-100"
 >
-    <div class="container">
-        <div
-                id="loginbox"
-                class="mx-auto p-4 rounded-3 shadow"
-                style="max-width: 400px; background-color: rgba(94, 58, 156, 0.9);"
-        >
-            <form
-                    action="#"
-                    th:action="@{/validar-login}"
-                    method="POST"
-                    th:object="${datosLogin}"
+    <div class="login-box">
+        <form th:action="@{/validar-login}" method="POST" th:object="${datosLogin}">
+            <h3 class="text-center mb-3">Taller web I</h3>
+            <hr/>
+
+            <input
+                    th:field="*{email}"
+                    id="email"
+                    type="email"
+                    placeholder="Ingrese su email"
+                    class="form-control mb-3"
+                    required
+            />
+            <input
+                    th:field="*{password}"
+                    type="password"
+                    id="password"
+                    placeholder="Ingrese su contraseña"
+                    class="form-control mb-3"
+                    required
+            />
+
+            <button
+                    id="btn-login"
+                    class="btn btn-lg btn-violeta-invertida w-100 mb-3"
+                    type="submit"
             >
-                <h3 class="form-signin-heading text-center text-white">
-                    Taller web I
-                </h3>
-                <hr class="colorgraph"/>
-                <br/>
+                Login
+            </button>
 
-                <input
-                        th:field="*{email}"
-                        id="email"
-                        type="email"
-                        placeholder="Ingrese su email"
-                        class="form-control mb-3"
-                        required
-                />
-                <input
-                        th:field="*{password}"
-                        type="password"
-                        id="password"
-                        placeholder="Ingrese su contraseña"
-                        class="form-control mb-3"
-                        required
-                />
+            <p th:if="${error != null}" class="alert alert-danger" th:text="'Error ' + ${error}"></p>
+        </form>
 
-                <button
-                        id="btn-login"
-                        class="btn btn-lg btn-violeta-invertida w-100 mb-3"
-                        type="submit"
-                >
-                    Login
-                </button>
-
-                <p
-                        th:if="${error != null}"
-                        class="alert alert-danger"
-                        th:text="'Error ' + ${error}"
-                ></p>
-            </form>
-            <div class="text-center">
-                <a
-                        id="ir-a-registrarme"
-                        href="nuevo-usuario"
-                        class="btn btn-violeta mt-2"
-                >
-                    Registrarme
-                </a>
-            </div>
+        <div class="text-center">
+            <a id="ir-a-registrarme" href="nuevo-usuario" class="btn btn-violeta mt-2">
+                Registrarme
+            </a>
         </div>
     </div>
 </main>
