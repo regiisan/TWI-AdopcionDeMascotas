@@ -1,0 +1,228 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\DockerfileJetty||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DockerfileJetty||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\java\\com\\tallerwebi\\presentacion\\ControladorUsuario.java||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main\\java\\com\\tallerwebi\\presentacion\\ControladorUsuario.java||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\home.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\home.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\pom.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pom.xml||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\java\\com\\tallerwebi\\infraestructura\\RepositorioUsuarioImpl.java||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main\\java\\com\\tallerwebi\\infraestructura\\RepositorioUsuarioImpl.java||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\java\\com\\tallerwebi\\config\\WebSocketConfig.java||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main\\java\\com\\tallerwebi\\config\\WebSocketConfig.java||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\java\\com\\tallerwebi\\config\\SpringWebConfig.java||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main\\java\\com\\tallerwebi\\config\\SpringWebConfig.java||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\templates\\header.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\templates\\header.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\nosotros.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\nosotros.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\formulario-adopcion.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\formulario-adopcion.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\templates\\head.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\templates\\head.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\sala-chat.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\sala-chat.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DockerfileJetty",
+              "DocumentMoniker": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\DockerfileJetty",
+              "RelativeDocumentMoniker": "DockerfileJetty",
+              "ToolTip": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\DockerfileJetty",
+              "RelativeToolTip": "DockerfileJetty",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-07-10T00:13:01.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "pom.xml",
+              "DocumentMoniker": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\pom.xml",
+              "RelativeDocumentMoniker": "pom.xml",
+              "ToolTip": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\pom.xml",
+              "RelativeToolTip": "pom.xml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003576|",
+              "WhenOpened": "2025-07-10T00:12:57.021Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RepositorioUsuarioImpl.java",
+              "DocumentMoniker": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\java\\com\\tallerwebi\\infraestructura\\RepositorioUsuarioImpl.java",
+              "RelativeDocumentMoniker": "src\\main\\java\\com\\tallerwebi\\infraestructura\\RepositorioUsuarioImpl.java",
+              "ToolTip": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\java\\com\\tallerwebi\\infraestructura\\RepositorioUsuarioImpl.java",
+              "RelativeToolTip": "src\\main\\java\\com\\tallerwebi\\infraestructura\\RepositorioUsuarioImpl.java",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001630|",
+              "WhenOpened": "2025-07-10T00:11:05.932Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WebSocketConfig.java",
+              "DocumentMoniker": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\java\\com\\tallerwebi\\config\\WebSocketConfig.java",
+              "RelativeDocumentMoniker": "src\\main\\java\\com\\tallerwebi\\config\\WebSocketConfig.java",
+              "ToolTip": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\java\\com\\tallerwebi\\config\\WebSocketConfig.java",
+              "RelativeToolTip": "src\\main\\java\\com\\tallerwebi\\config\\WebSocketConfig.java",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001630|",
+              "WhenOpened": "2025-07-10T00:10:52.122Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SpringWebConfig.java",
+              "DocumentMoniker": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\java\\com\\tallerwebi\\config\\SpringWebConfig.java",
+              "RelativeDocumentMoniker": "src\\main\\java\\com\\tallerwebi\\config\\SpringWebConfig.java",
+              "ToolTip": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\java\\com\\tallerwebi\\config\\SpringWebConfig.java",
+              "RelativeToolTip": "src\\main\\java\\com\\tallerwebi\\config\\SpringWebConfig.java",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001630|",
+              "WhenOpened": "2025-07-10T00:10:35.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ControladorUsuario.java",
+              "DocumentMoniker": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\java\\com\\tallerwebi\\presentacion\\ControladorUsuario.java",
+              "RelativeDocumentMoniker": "src\\main\\java\\com\\tallerwebi\\presentacion\\ControladorUsuario.java",
+              "ToolTip": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\java\\com\\tallerwebi\\presentacion\\ControladorUsuario.java",
+              "RelativeToolTip": "src\\main\\java\\com\\tallerwebi\\presentacion\\ControladorUsuario.java",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAAAGkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001630|",
+              "WhenOpened": "2025-07-10T00:06:38.081Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "formulario-adopcion.html",
+              "DocumentMoniker": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\formulario-adopcion.html",
+              "RelativeDocumentMoniker": "src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\formulario-adopcion.html",
+              "ToolTip": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\formulario-adopcion.html",
+              "RelativeToolTip": "src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\formulario-adopcion.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-07-10T00:04:47.543Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "header.html",
+              "DocumentMoniker": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\templates\\header.html",
+              "RelativeDocumentMoniker": "src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\templates\\header.html",
+              "ToolTip": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\templates\\header.html",
+              "RelativeToolTip": "src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\templates\\header.html",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-07-10T00:00:02.138Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "home.html",
+              "DocumentMoniker": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\home.html",
+              "RelativeDocumentMoniker": "src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\home.html",
+              "ToolTip": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\home.html",
+              "RelativeToolTip": "src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\home.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIsAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-07-09T23:59:41.876Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "head.html",
+              "DocumentMoniker": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\templates\\head.html",
+              "RelativeDocumentMoniker": "src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\templates\\head.html",
+              "ToolTip": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\templates\\head.html",
+              "RelativeToolTip": "src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\templates\\head.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-07-09T23:59:52.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "sala-chat.html",
+              "DocumentMoniker": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\sala-chat.html",
+              "RelativeDocumentMoniker": "src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\sala-chat.html",
+              "ToolTip": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\sala-chat.html",
+              "RelativeToolTip": "src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\sala-chat.html",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-07-09T23:59:29.448Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "nosotros.html",
+              "DocumentMoniker": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\nosotros.html",
+              "RelativeDocumentMoniker": "src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\nosotros.html",
+              "ToolTip": "C:\\Users\\Nach0\\Documents\\GitHub\\TWI-AdopcionDeMascotas\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\nosotros.html",
+              "RelativeToolTip": "src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\nosotros.html",
+              "ViewState": "AgIAADsAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-07-09T23:47:10.482Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
