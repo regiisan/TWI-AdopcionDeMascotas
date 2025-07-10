@@ -1,0 +1,20 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\main",
+    "\\src\\main\\java",
+    "\\src\\main\\java\\com",
+    "\\src\\main\\java\\com\\tallerwebi",
+    "\\src\\main\\java\\com\\tallerwebi\\config",
+    "\\src\\main\\java\\com\\tallerwebi\\infraestructura",
+    "\\src\\main\\java\\com\\tallerwebi\\presentacion",
+    "\\src\\main\\webapp",
+    "\\src\\main\\webapp\\WEB-INF",
+    "\\src\\main\\webapp\\WEB-INF\\views",
+    "\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf",
+    "\\src\\main\\webapp\\WEB-INF\\views\\thymeleaf\\templates"
+  ],
+  "SelectedNode": "\\src\\main\\java\\com\\tallerwebi\\presentacion\\ControladorUsuario.java",
+  "PreviewInSolutionExplorer": false
+}

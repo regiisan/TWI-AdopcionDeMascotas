@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head th:insert="templates/head :: head">
+    <title>Sobre Nosotros - AdoPets</title>
+</head>
+<body>
+    <header th:insert="templates/header :: header"></header>
+
+    <main class="container mt-5 mb-5">
+        <h1 class="text-center text-primary mb-5">Sobre Nosotros</h1>
+
+        <!-- Qué hacemos -->
+        <section id="que-hacemos" class="mb-5">
+            <h2 class="text-secondary">¿Qué hacemos?</h2>
+            <p>
+                <strong>AdoPets</strong> es una plataforma que conecta a personas que desean adoptar mascotas con quienes buscan un nuevo hogar para ellas.
+                No somos un refugio ni una organización de rescate, pero sí nos comprometemos a que cada adopción se realice con responsabilidad y cuidado.
+            </p>
+            <p>
+                Facilitamos el contacto, damos visibilidad a mascotas que necesitan familia y promovemos la tenencia responsable mediante seguimiento y asesoramiento posterior.
+            </p>
+        </section>
+
+        <!-- Cómo garantizamos la seguridad -->
+        <section id="seguimiento" class="mb-5">
+            <h2 class="text-secondary">Acompañamos todo el proceso</h2>
+            <ul>
+                <li>Verificamos que las mascotas estén en condiciones sanitarias adecuadas antes de publicarlas.</li>
+                <li>Revisamos que los formularios de adopción y entrega estén completos y sean claros.</li>
+                <li>Realizamos seguimiento posterior para asegurar el bienestar del animal.</li>
+                <li>Promovemos acuerdos éticos entre partes y fomentamos reportes ante cualquier incumplimiento.</li>
+            </ul>
+        </section>
+
+        <!-- Cómo empezar -->
+        <section id="como-empezar" class="mb-5">
+            <h2 class="text-secondary">¿Querés adoptar o dar en adopción?</h2>
+            <p>
+                Solo tenés que registrarte en la plataforma, completar tu perfil y llenar el formulario correspondiente.
+                Nosotros te acompañamos en todo el proceso.
+            </p>
+            <div class="text-center mt-4">
+                <a href="/registro" class="btn btn-outline-primary rounded-pill px-4 py-2">Registrate ahora</a>
+            </div>
+        </section>
+
+        <!-- Comunidad -->
+        <section id="comunidad" class="mb-5">
+            <h2 class="text-secondary">Una comunidad que cuida</h2>
+            <p>
+                Ya se han realizado más de <strong>100 adopciones</strong> exitosas en nuestra plataforma, y cada historia es un paso más hacia un mundo donde todas las mascotas puedan ser valoradas, amadas y respetadas.
+            </p>
+            <p>
+                AdoPets es de todos: vos también podés formar parte.
+            </p>
+        </section>
+    </main>
+
+    <footer th:insert="templates/footer :: footer"></footer>
+</body>
+</html>

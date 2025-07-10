@@ -114,4 +114,10 @@ public class ControladorUsuario {
         return new ModelAndView("redirect:/perfil");
     }
 
+    @GetMapping("/nosotros")
+public String nosotros() {
+    return "nosotros";
+}
+
+
 }
