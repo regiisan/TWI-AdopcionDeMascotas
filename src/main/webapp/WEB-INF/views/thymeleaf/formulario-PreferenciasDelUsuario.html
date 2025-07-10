@@ -5,10 +5,11 @@
 
 <header th:insert="templates/header :: header"></header>
 
+<main class="fondo-degradado" style="min-height: 100vh;">
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-lg-8">
-            <div class="card shadow rounded-3">
+            <div class="card shadow rounded-3" style="border:none;">
                 <div class="card-header text-center py-4">
                     <h3 class="mb-2 fw-bold text-white mt-3">Encontrá a tu mascota ideal</h3>
                     <p class="mb-0 text-white" style="font-size: 0.9rem;">Contanos qué tipo de mascota estás buscando para encontrar tu mascota perfecta</p>
@@ -72,7 +73,7 @@
                         </div>
 
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end pt-3">
-                            <a th:href="@{/mascotas}" class="btn btn-secondary rounded-pill px-3 fw-bold">Cancelar</a>
+                            <a th:href="@{/mascotas}" class="btn btn-secondary rounded-pill px-3 fw-bold" style="background-color: #7a8b8b !important; border: none !important">Cancelar</a>
                             <button type="submit" class="btn btn-primary rounded-pill px-3 fw-bold">
                                 <i class="fas fa-search me-2"></i>Buscar Mascotas
                             </button>
@@ -85,4 +86,5 @@
 </div>
 
 </body>
+</main>
 </html>

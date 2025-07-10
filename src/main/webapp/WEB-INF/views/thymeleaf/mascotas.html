@@ -11,7 +11,7 @@
         <div class="col-12 col-md-2">
             <div class="card shadow-lg border-0 mb-4" style="border-radius: 1rem;" th:if="${mostrarSugerenciaDePreferencias}">
                 <div class="card-body text-center d-flex flex-column justify-content-center align-items-center p-4">
-                    <div class="bg-secondary bg-opacity-25 rounded-circle d-flex justify-content-center align-items-center mb-3" style="background-color: #d0ebc4   !important; width: 60px; height: 60px;">
+                    <div class="bg-secondary bg-opacity-25 rounded-circle d-flex justify-content-center align-items-center mb-3" style="background-color: #cef1fc !important; width: 60px; height: 60px;">
                         <i class="fa-solid fa-paw fa-lg" style="color: #5d3a9b;"></i>
                     </div>
                     <h5 class="card-title text-primary-emphasis fw-bold mb-2">¿Cómo sería tu mascota ideal?</h5>
@@ -58,7 +58,7 @@
             <div class="row g-4">
                 <div th:each="mascotaDto : ${mascotas}" class="col-12 col-sm-6 col-lg-6 col-xl-4">
                         <div class="card shadow-lg border-0" style="border-radius: 1rem">
-                            <span th:if="${mascotaDto.esMatch}" class="badge rounded-pill bg-primary position-absolute top-0 end-0 m-3" style="background-color: #d0ebc4 !important; color: #333;" >
+                            <span th:if="${mascotaDto.esMatch}" class="badge rounded-pill bg-primary position-absolute top-0 end-0 m-3" style="background-color: #cef1fc !important; color: #333;" >
                                 <i class="fa-solid fa-star"></i> Recomendado
                             </span>
                             <img th:src="@{'/' + ${mascotaDto.img}}" class="card-img-top" alt="Mascota" style="height: 280px; object-fit: cover; border-top-left-radius: 1em; border-top-right-radius: 1rem;"/>
@@ -110,6 +110,8 @@
         </div>
     </div>
 </div>
+
+<footer th:insert="templates/footer :: footer"></footer>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

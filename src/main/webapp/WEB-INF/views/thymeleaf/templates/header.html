@@ -45,6 +45,11 @@
                class="nav-link fs-6 me-4 text-white">Dar en Adopción</a>
           </li>
 
+          <li class="nav-item">
+            <a th:href="@{/sala-chat}" th:classappend="${uri == '/sala-chat'} ? ' active' : ''"
+                class="nav-link fs-6 me-4 text-white">Chat</a>
+          </li>
+
           <!-- Solo admin -->
           <li class="nav-item" th:if="${session.ROL == 'ADMIN'}">
             <a th:href="@{/admin/solicitudes}" th:classappend="${uri == '/admin/solicitudes'} ? ' active' : ''"

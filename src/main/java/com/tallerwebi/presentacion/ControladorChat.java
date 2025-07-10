@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 public class ControladorChat {
 
     @RequestMapping(path = "/sala-chat", method = RequestMethod.GET)
-    public ModelAndView irAHome(HttpSession session) {
+    public ModelAndView mostrarChat(HttpSession session) {
         Long idUsuario = (Long) session.getAttribute("idUsuario");
         String nombreUsuario = (String) session.getAttribute("nombreUsuario");
 
