@@ -1,5 +1,5 @@
 const stompClient = new StompJs.Client({
-  brokerURL: 'ws://localhost:8080/spring/wschat'
+  brokerURL: 'ws://localhost:8080/tallerwebi-base-1.0-SNAPSHOT/wschat'
 });
 
 stompClient.debug = function(str) {
@@ -18,22 +18,39 @@ stompClient.onConnect = (frame) => {
     const usuarioId = document.getElementById("usuarioId").value;
     const tipo = emisorId == usuarioId ? "enviado" : "recibido";
 
-    const container = document.createElement("div");
-    container.className = tipo === "enviado" ? "d-flex justify-content-end mb-2" : "d-flex justify-content-start mb-2";
+    // Nombre arriba
+    const userLabel = document.createElement("div");
+    userLabel.textContent = nombre;
+    userLabel.style.fontSize = "0.85rem";
+    userLabel.style.fontWeight = "bold";
+    userLabel.style.color = "#888";
+    userLabel.style.marginBottom = "2px";
+    userLabel.style.marginLeft = tipo === "enviado" ? "auto" : "0";
 
+    // Burbuja de mensaje
     const msgBubble = document.createElement("div");
     msgBubble.className = "p-2 rounded-3";
     msgBubble.style.maxWidth = "75%";
+    msgBubble.style.minWidth = "fit-content";
     msgBubble.style.backgroundColor = tipo === "enviado" ? "#5D3A9B" : "#d3d3d3";
     msgBubble.style.color = tipo === "enviado" ? "white" : "black";
+    msgBubble.style.wordBreak = "break-word";
+    msgBubble.style.whiteSpace = "pre-wrap";
+    msgBubble.textContent = texto;
 
-    msgBubble.innerHTML = `<strong>${nombre}:</strong> ${texto}`;
+    // Agrupamos
+    const contentWrapper = document.createElement("div");
+    contentWrapper.className = "d-flex flex-column";
+    contentWrapper.appendChild(userLabel);
+    contentWrapper.appendChild(msgBubble);
 
-    container.appendChild(msgBubble);
+    const container = document.createElement("div");
+    container.className = tipo === "enviado" ? "d-flex justify-content-end mb-2" : "d-flex justify-content-start mb-2";
+    container.appendChild(contentWrapper);
+
     const chatMessages = document.getElementById("chat-messages");
     chatMessages.appendChild(container);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-
   });
 
 };
