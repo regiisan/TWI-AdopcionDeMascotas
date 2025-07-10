@@ -46,24 +46,33 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
     color: #d0ebc4 !important;
 }
 
-.btn-logIn {
-    text-decoration: none;
-    outline: none;
-    font-size: inherit;
-    cursor: pointer;
+.btn-violeta, .btn-primary, .btn-outline-primary, .btn-success, .btn-danger, .btn-secondary, .btn-logIn, .chat-send-btn {
+    background-color: #5E3A9C !important;
+    color: white !important;
+    border: 1px solid #5E3A9C !important;
+    border-radius: 10px !important;
     font-weight: bold;
-    padding: 12px 22px;
-    background-color: transparent;
-    color: #ffffff;
-    border-radius: 10px;
-    border: 2px solid #d0ebc4;
-    transition: 0.2s;
+    transition: 0.3s ease-in-out;
 }
 
-.btn-logIn:hover {
-    background-color: #d0ebc4;
-    color: black !important;
+.btn-violeta:hover, .btn-primary:hover, .btn-outline-primary:hover, .btn-success:hover, .btn-danger:hover, .btn-secondary:hover, .btn-logIn:hover, .chat-send-btn:hover {
+    background-color: #4a2b82 !important;
+    color: #fff !important;
+    border-color: #4a2b82 !important;
+}
+
+.btn-violeta-invertida {
+    background-color: #fff !important;
+    color: #5E3A9C !important;
+    border: 1px solid #5E3A9C !important;
+    border-radius: 10px !important;
     font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-violeta-invertida:hover {
+    background-color: #5E3A9C !important;
+    color: #fff !important;
 }
 
 .custom {
@@ -71,18 +80,6 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
     height: 90px;
     background-color: #5d3a9b;
     padding: 20px 40px;
-}
-
-.btn-primary{
-    background-color: #5d3a9b;
-    color: white;
-    border-color: #5d3a9b;
-}
-
-.btn-primary:hover {
-    background-color: #d0ebc4  ;
-    border-color: #d0ebc4  ;
-    color: black;
 }
 
 .card-header {
@@ -129,29 +126,7 @@ body {
     height: 100%;
 }
 
-.btn-violeta {
-    background-color: #fff;
-    color: #5E3A9C;
-    border: 1px solid #5E3A9C;
-    transition: 0.3s ease-in-out;
-}
-
-.btn-violeta:hover {
-    background-color: #5E3A9C;
-    color: white;
-}
-
-.btn-violeta-invertida {
-        background-color: #5D3A9B;
-        color: white;
-        border: none;
-    }
-
-    .btn-violeta-invertida:hover {
-        background-color: #4a2b82;
-    }
-
-   main.fondo-degradado {
+main.fondo-degradado {
        min-height: 100vh;
        background: linear-gradient(135deg, #B992FB, #7863A6, #8979F2, #7761B7, #9575BF);
        background-size: 200% 200%;
