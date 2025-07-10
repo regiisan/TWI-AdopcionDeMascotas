@@ -41,28 +41,28 @@
             <div class="row">
                 <!-- Mascota -->
                 <div class="col-md-6 mb-3">
-                    <div class="border rounded p-3" style="background-color: #faf8fe !important;">
+                    <div class="p-3">
                         <div class="d-flex align-items-center mb-3">
                             <i class="fa-solid fa-paw me-2" style="color: #5d3a9b;"></i>
-                            <h6 class="mb-0 fw-bold" style="color: #5d3a9b;">Mascota</h6>
+                            <h6 class="mb-0 fw-bold">Información de la Mascota</h6>
                         </div>
                         <div class="d-flex mb-2">
                             <img th:src="@{'/' + ${solicitud.mascota.img}}"
                                  th:alt="${solicitud.mascota.nombre}" class="mascota-img me-3">
                             <div class="flex-grow-1">
-                                <div class="info-item">
+                                <div class="info-item" style="background-color: #f4f4f5;">
                                     <strong>Nombre:</strong> <span th:text="${solicitud.mascota.nombre}"></span>
                                 </div>
-                                <div class="info-item">
+                                <div class="info-item" style="background-color: #f4f4f5;">
                                     <strong>Descripción:</strong> <span th:text="${solicitud.mascota.descripcion}"></span>
                                 </div>
-                                <div class="info-item">
+                                <div class="info-item" style="background-color: #f4f4f5;">
                                     <strong>Edad:</strong> <span th:text="${solicitud.mascota.edad}"></span>
                                 </div>
-                                <div class="info-item">
+                                <div class="info-item" style="background-color: #f4f4f5;">
                                     <strong>Tamaño:</strong> <span th:text="${solicitud.mascota.tamano.displayValue}"></span>
                                 </div>
-                                <div class="info-item">
+                                <div class="info-item" style="background-color: #f4f4f5;">
                                     <strong>Nivel de Energía:</strong> <span th:text="${solicitud.mascota.nivelEnergia.displayValue}"></span>
                                 </div>
                             </div>
@@ -72,24 +72,27 @@
 
                 <!-- Solicitante -->
                 <div class="col-md-6 mb-3">
-                    <div class="border rounded p-3" style="background-color: #faf8fe !important;">
+                    <div class="p-3">
                         <div class="d-flex align-items-center mb-3">
                             <i class="fa-solid fa-user me-2" style="color: #5d3a9b;"></i>
-                            <h6 class="mb-0 fw-bold" style="color: #5d3a9b;">Información del Solicitante</h6>
+                            <h6 class="mb-0 fw-bold">Información del Solicitante</h6>
                         </div>
-                        <div class="info-item">
+                        <div class="info-item" style="background-color: #f4f4f5;">
+                            <strong>Nombre:</strong> <span th:text="${solicitud.nombre}"></span>
+                        </div>
+                        <div class="info-item" style="background-color: #f4f4f5;">
                             <strong>Email:</strong> <span th:text="${solicitud.email}"></span>
                         </div>
-                        <div class="info-item">
+                        <div class="info-item" style="background-color: #f4f4f5;">
                             <strong>Tipo de vivienda:</strong> <span th:text="${solicitud.tipoVivienda}"></span>
                         </div>
-                        <div class="info-item">
+                        <div class="info-item" style="background-color: #f4f4f5;">
                             <strong>Espacio disponible:</strong> <span th:text="${solicitud.espacioDisponible}"></span>
                         </div>
-                        <div class="info-item">
+                        <div class="info-item" style="background-color: #f4f4f5;">
                             <strong>Otros animales:</strong> <span th:text="${solicitud.otrosAnimales}"></span>
                         </div>
-                        <div class="info-item">
+                        <div class="info-item" style="background-color: #f4f4f5;">
                             <strong>Experiencia:</strong> <span th:text="${solicitud.experiencia}"></span>
                         </div>
                     </div>

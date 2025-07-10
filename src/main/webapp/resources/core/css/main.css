@@ -46,24 +46,33 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
     color: #d0ebc4 !important;
 }
 
-.btn-logIn {
-    text-decoration: none;
-    outline: none;
-    font-size: inherit;
-    cursor: pointer;
+.btn-violeta, .btn-primary, .btn-outline-primary, .btn-success, .btn-danger, .btn-secondary, .btn-logIn, .chat-send-btn {
+    background-color: #5E3A9C !important;
+    color: white !important;
+    border: 1px solid #5E3A9C !important;
+    border-radius: 10px !important;
     font-weight: bold;
-    padding: 12px 22px;
-    background-color: transparent;
-    color: #ffffff;
-    border-radius: 10px;
-    border: 2px solid #d0ebc4;
-    transition: 0.2s;
+    transition: 0.3s ease-in-out;
 }
 
-.btn-logIn:hover {
-    background-color: #d0ebc4;
-    color: black !important;
+.btn-violeta:hover, .btn-primary:hover, .btn-outline-primary:hover, .btn-success:hover, .btn-danger:hover, .btn-secondary:hover, .btn-logIn:hover, .chat-send-btn:hover {
+    background-color: #4a2b82 !important;
+    color: #fff !important;
+    border-color: #4a2b82 !important;
+}
+
+.btn-violeta-invertida {
+    background-color: #fff !important;
+    color: #5E3A9C !important;
+    border: 1px solid #5E3A9C !important;
+    border-radius: 10px !important;
     font-weight: bold;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-violeta-invertida:hover {
+    background-color: #5E3A9C !important;
+    color: #fff !important;
 }
 
 .custom {
@@ -71,18 +80,6 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
     height: 90px;
     background-color: #5d3a9b;
     padding: 20px 40px;
-}
-
-.btn-primary{
-    background-color: #5d3a9b;
-    color: white;
-    border-color: #5d3a9b;
-}
-
-.btn-primary:hover {
-    background-color: #d0ebc4  ;
-    border-color: #d0ebc4  ;
-    color: black;
 }
 
 .card-header {
@@ -129,35 +126,52 @@ body {
     height: 100%;
 }
 
-.btn-violeta {
-    background-color: #fff;
-    color: #5E3A9C;
-    border: 1px solid #5E3A9C;
-    transition: 0.3s ease-in-out;
-}
+main.fondo-degradado {
+       min-height: 100vh;
+       background: linear-gradient(135deg, #B992FB, #7863A6, #8979F2, #7761B7, #9575BF);
+       background-size: 200% 200%;
+       animation: gradientShift 15s ease infinite;
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       padding: 2rem;
+   }
 
-.btn-violeta:hover {
-    background-color: #5E3A9C;
-    color: white;
-}
+   @keyframes gradientShift {
+       0% { background-position: 0% 50%; }
+       50% { background-position: 100% 50%; }
+       100% { background-position: 0% 50%; }
+   }
 
-.btn-violeta-invertida {
-    background-color: #5E3A9C;
-    color: white;
-    border: 1px solid #5E3A9C;
-    transition: 0.3s ease-in-out;
-}
+   .login-box {
+           background-color: white;
+           color: #333;
+           border-radius: 1.25rem;
+           padding: 2rem;
+           max-width: 400px;
+           width: 100%;
+           box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+       }
 
-.btn-violeta-invertida:hover {
-    background-color: white;
-    color: #5E3A9C;
-}
+       .registro-box {
+               background-color: white;
+               color: #333;
+               border-radius: 1.25rem;
+               padding: 2rem;
+               max-width: 400px;
+               width: 100%;
+               box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+           }
 
-.card-perfil {
-    background-color: #5e3a9c;
-    color: white;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
+ .card-perfil {
+        background-color: white;
+        color: #333;
+        border-radius: 1.5rem;
+        padding: 2rem;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
 
 .info-item {
     margin-bottom: 0.8rem;
@@ -174,6 +188,82 @@ body {
     border: 3px solid white;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
+
+.chat-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 80px); /* Descontamos header */
+  padding: 20px;
+}
+
+.chat-container {
+  width: 100%;
+  max-width: 600px;
+  height: 80%;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.chat-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #5a2ea6;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  margin-bottom: 15px;
+}
+
+/* Estilo para cada mensaje */
+.chat-messages div {
+  margin-bottom: 10px;
+  background-color: #e0dcf8;
+  padding: 10px 15px;
+  border-radius: 10px;
+  max-width: 80%;
+  word-wrap: break-word;
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+.chat-send-btn {
+  padding: 12px 20px;
+  background-color: #5a2ea6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.chat-send-btn:hover {
+  background-color: #46228a;
+}
+
+
 @media (max-width: 768px) {
     .mascota-img {
         width: 80px;

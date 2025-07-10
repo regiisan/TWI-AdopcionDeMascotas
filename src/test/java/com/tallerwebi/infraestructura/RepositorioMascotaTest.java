@@ -134,4 +134,53 @@ public class RepositorioMascotaTest {
         assertThat(resultado.get(0).getNombre(), is("Toby"));
     }
 
+    @Test
+    public void dadoQueHayaMascotasPendientesEnLaBDContarMascotasPendientesDevuelveCuantasHay(){
+        Mascota mascota1 = new Mascota();
+        mascota1.setNombre("Luna");
+        mascota1.setEstado("Pendiente");
+
+        Mascota mascota2 = new Mascota();
+        mascota2.setNombre("Simba");
+        mascota2.setEstado("Pendiente");
+
+        this.sessionFactory.getCurrentSession().save(mascota1);
+        this.sessionFactory.getCurrentSession().save(mascota2);
+
+        int mascotasPendientes = repositorioMascota.contarMascotasPendientes();
+
+        assertEquals(2, mascotasPendientes);
+    }
+
+    @Test
+    public void dadoQueHayaSolicitudesConMascotasConDiferentesEstadosEnLaBDContarMascotasPendientesDevuelveSoloCuantasPendientesHay(){
+        Mascota mascota1 = new Mascota();
+        mascota1.setNombre("Luna");
+        mascota1.setEstado("Pendiente");
+
+        Mascota mascota2 = new Mascota();
+        mascota2.setNombre("Coco");
+        mascota2.setEstado("Aprobada");
+
+        this.sessionFactory.getCurrentSession().save(mascota1);
+        this.sessionFactory.getCurrentSession().save(mascota2);
+
+        int mascotasPendientes = repositorioMascota.contarMascotasPendientes();
+
+        assertEquals(1, mascotasPendientes);
+    }
+
+    @Test
+    public void dadoQueNoHayaMascotasPendientesDebeRetornarCero() {
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Luna");
+        mascota.setEstado("Aprobada");
+
+        this.sessionFactory.getCurrentSession().save(mascota);
+
+        int mascotasPendientes = repositorioMascota.contarMascotasPendientes();
+
+        assertEquals(0, mascotasPendientes);
+    }
+
 }

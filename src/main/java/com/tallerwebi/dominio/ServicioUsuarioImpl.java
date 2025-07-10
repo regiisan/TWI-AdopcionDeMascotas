@@ -1,6 +1,5 @@
 package com.tallerwebi.dominio;
 
-import com.tallerwebi.dominio.entidades.Mascota;
 import com.tallerwebi.dominio.entidades.Usuario;
 import com.tallerwebi.dominio.repositorios.RepositorioUsuario;
 import com.tallerwebi.dominio.servicios.ServicioUsuario;

@@ -234,4 +234,24 @@ public class ServicioMascotaImplTest {
         // Verificación
         assertThat(resultado, hasSize(1));
     }
+
+    @Test
+    public void dadoQueExistanMascotasPedientesDebeContarlas() {
+        when(repositorioMascotaMock.contarMascotasPendientes()).thenReturn(4);
+
+        int mascotasPendientes = servicioMascota.contarMascotasPendientes();
+
+        assertThat(mascotasPendientes, is(4));
+        verify(repositorioMascotaMock, times(1)).contarMascotasPendientes();
+    }
+
+    @Test
+    public void dadoQueNoExistanMascotasPedientesDebeRetornarCero() {
+        when(repositorioMascotaMock.contarMascotasPendientes()).thenReturn(0);
+
+        int mascotasPendientes = servicioMascota.contarMascotasPendientes();
+
+        assertThat(mascotasPendientes, is(0));
+        verify(repositorioMascotaMock, times(1)).contarMascotasPendientes();
+    }
 }

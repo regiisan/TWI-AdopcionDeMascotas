@@ -1,5 +1,6 @@
 package com.tallerwebi.presentacion;
 
+import com.tallerwebi.dominio.entidades.UsuarioDto;
 import com.tallerwebi.dominio.servicios.ServicioLogin;
 import com.tallerwebi.dominio.entidades.Usuario;
 import com.tallerwebi.dominio.excepcion.UsuarioExistente;
@@ -36,9 +37,11 @@ public class ControladorLogin {
         ModelMap model = new ModelMap();
 
         Usuario usuarioBuscado = servicioLogin.consultarUsuario(datosLogin.getEmail(), datosLogin.getPassword());
+
         if (usuarioBuscado != null) {
             request.getSession().setAttribute("ROL", usuarioBuscado.getRol());
             request.getSession().setAttribute("idUsuario", usuarioBuscado.getId());
+            request.getSession().setAttribute("nombreUsuario", usuarioBuscado.getNombre());
 
             if ("ADMIN".equalsIgnoreCase(usuarioBuscado.getRol())) {
                 return new ModelAndView("redirect:/admin/home");
@@ -53,9 +56,10 @@ public class ControladorLogin {
     }
 
     @RequestMapping(path = "/registrarme", method = RequestMethod.POST)
-    public ModelAndView registrarme(@ModelAttribute("usuario") Usuario usuario) {
+    public ModelAndView registrarme(@ModelAttribute("registro") DatosRegistro datosRegistro) {
         ModelMap model = new ModelMap();
         try{
+            Usuario usuario = datosRegistro.toUsuario();
             servicioLogin.registrar(usuario);
         } catch (UsuarioExistente e){
             model.put("error", "El usuario ya existe");
@@ -70,7 +74,7 @@ public class ControladorLogin {
     @RequestMapping(path = "/nuevo-usuario", method = RequestMethod.GET)
     public ModelAndView nuevoUsuario() {
         ModelMap model = new ModelMap();
-        model.put("usuario", new Usuario());
+        model.put("registro", new DatosRegistro());
         return new ModelAndView("nuevo-usuario", model);
     }
 
