@@ -1,9 +1,6 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.entidades.Usuario;
-import com.tallerwebi.dominio.entidades.UsuarioDto;
-
-import java.util.Objects;
 
 public class DatosRegistro {
 

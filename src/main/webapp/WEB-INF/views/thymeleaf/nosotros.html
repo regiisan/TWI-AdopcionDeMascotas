@@ -40,7 +40,7 @@
                 Nosotros te acompañamos en todo el proceso.
             </p>
             <div class="text-center mt-4">
-                <a href="/registro" class="btn btn-outline-primary rounded-pill px-4 py-2">Registrate ahora</a>
+                <a th:href="@{/registrarme}" class="btn btn-outline-primary rounded-pill px-4 py-2">Registrate ahora</a>
             </div>
         </section>
 
@@ -55,6 +55,8 @@
             </p>
         </section>
     </main>
+
+    <footer th:insert="templates/footer :: footer"></footer>
 
 </body>
 </html>

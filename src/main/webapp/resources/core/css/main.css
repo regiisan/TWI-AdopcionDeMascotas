@@ -20,7 +20,7 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: #d0ebc4   ;
+    background-color: #cef1fc   ;
     transition: width 0.4s ease;
 }
 
@@ -29,7 +29,7 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
 }
 
 .nav-link:hover {
-    color: #d0ebc4    !important;
+    color: #cef1fc    !important;
 }
 
 .nav-link.active::after {
@@ -39,11 +39,11 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #d0ebc4;
+  background-color: #cef1fc;
 }
 
 .nav-link.active {
-    color: #d0ebc4 !important;
+    color: #cef1fc !important;
 }
 
 .btn-violeta, .btn-primary, .btn-outline-primary, .btn-success, .btn-danger, .btn-secondary, .btn-logIn, .chat-send-btn {
@@ -84,6 +84,7 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
 
 .card-header {
     background: #5d3a9b !important;
+    border: none;
 }
 
 .card-mascota:hover {

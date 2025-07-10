@@ -15,13 +15,12 @@ import javax.transaction.Transactional;
 public class ServicioLoginImpl implements ServicioLogin {
 
     private RepositorioUsuario repositorioUsuario;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public ServicioLoginImpl(RepositorioUsuario repositorioUsuario){
+    public ServicioLoginImpl(RepositorioUsuario repositorioUsuario, PasswordEncoder passwordEncoder) {
         this.repositorioUsuario = repositorioUsuario;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override

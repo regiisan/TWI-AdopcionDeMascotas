@@ -100,9 +100,8 @@ public class ControladorUsuario {
     }
 
     @GetMapping("/nosotros")
-public String nosotros() {
+    public String nosotros() {
     return "nosotros";
 }
-
 
 }
