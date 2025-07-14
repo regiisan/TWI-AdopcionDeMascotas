@@ -26,7 +26,7 @@ public class ServicioRecomendacionImpl implements ServicioRecomendacion {
     @Override
     public List<MascotaDto> obtenerMascotasRecomendadas(Usuario usuario) {
         List<Mascota> mascotas = repositorioMascota.listarMascotas().stream()
-                .filter(m -> "Aprobada".equals(m.getEstado()))
+                .filter(m -> "Aprobada".equals(m.getEstado()) && Boolean.FALSE.equals(m.getAdoptado()))
                 .collect(Collectors.toList());
         List<MascotaDto> mascotasDtos = new ArrayList<>();
 

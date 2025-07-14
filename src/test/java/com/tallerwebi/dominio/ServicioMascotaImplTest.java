@@ -128,8 +128,10 @@ public class ServicioMascotaImplTest {
         // Preparación
         Mascota mascotaAprobada = new Mascota();
         mascotaAprobada.setEstado("Aprobada");
+        mascotaAprobada.setAdoptado(false);
         Mascota mascotaPendiente = new Mascota();
         mascotaPendiente.setEstado("Pendiente");
+        mascotaPendiente.setAdoptado(false);
         List<Mascota> todasLasMascotas = Arrays.asList(mascotaAprobada, mascotaPendiente);
         when(repositorioMascotaMock.listarMascotas()).thenReturn(todasLasMascotas);
 
@@ -219,12 +221,14 @@ public class ServicioMascotaImplTest {
     }
 
     @Test
-    public void alObtenerMascotasDestacadasDebeRetornarSoloLasAprobadas() {
+    public void alObtenerMascotasDestacadasDebeRetornarSoloLasAprobadasYNoAdoptadas() {
         // Preparación
         Mascota mascotaAprobada = new Mascota();
         mascotaAprobada.setEstado("Aprobada");
+        mascotaAprobada.setAdoptado(false);
         Mascota mascotaPendiente = new Mascota();
         mascotaPendiente.setEstado("Pendiente");
+        mascotaAprobada.setAdoptado(false);
         List<Mascota> mascotas = Arrays.asList(mascotaAprobada, mascotaPendiente);
         when(repositorioMascotaMock.listarMascotasDestacadas()).thenReturn(mascotas);
 

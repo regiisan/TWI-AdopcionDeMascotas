@@ -36,7 +36,6 @@ public class ControladorMascota {
         this.servicioMascota = servicioMascota;
         this.servicioRecomendacion = servicioRecomendacion;
         this.servicioUsuario = servicioUsuario;
-        // Crear el directorio de subida si no existe
         File uploadDir = new File(UPLOAD_DIRECTORY);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
