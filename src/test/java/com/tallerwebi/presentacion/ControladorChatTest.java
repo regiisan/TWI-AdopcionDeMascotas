@@ -1,6 +1,7 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.entidades.Usuario;
+import com.tallerwebi.dominio.servicios.ServicioChat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,14 +17,16 @@ import static org.mockito.Mockito.when;
 public class ControladorChatTest {
 
     private ControladorChat controladorChat;
+    private ServicioChat servicioChat;
     private HttpSession sessionMock;
     private Usuario usuarioMock;
 
     @BeforeEach
     public void init(){
-        controladorChat = new ControladorChat();
+        servicioChat = mock(ServicioChat.class);
         sessionMock = mock(HttpSession.class);
         usuarioMock = mock(Usuario.class);
+        controladorChat = new ControladorChat(servicioChat);
     }
 
     @Test

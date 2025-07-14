@@ -59,7 +59,7 @@ public class ServicioMascotaImpl implements ServicioMascota {
     @Override
     public List<MascotaDto> obtenerMascotas() {
         return repositorioMascota.listarMascotas().stream()
-                .filter(m -> "Aprobada".equals(m.getEstado()))
+                .filter(m -> "Aprobada".equals(m.getEstado()) && Boolean.FALSE.equals(m.getAdoptado()))
                 .map(MascotaDto::new)
                 .collect(Collectors.toList());
     }
@@ -67,7 +67,7 @@ public class ServicioMascotaImpl implements ServicioMascota {
     @Override
     public List<MascotaDto> obtenerMascotasDestacadas() {
         return repositorioMascota.listarMascotasDestacadas().stream()
-                .filter(m -> "Aprobada".equals(m.getEstado()))
+                .filter(m -> "Aprobada".equals(m.getEstado()) && Boolean.FALSE.equals(m.getAdoptado()))
                 .map(MascotaDto::new)
                 .collect(Collectors.toList());
     }
