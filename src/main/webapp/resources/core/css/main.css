@@ -265,6 +265,77 @@ main.fondo-degradado {
 }
 
 
+.sobre-nosotros-card {
+    background-color: white;
+    color: #5D3A9B;
+    max-width: 900px;
+    padding: 3rem;
+    border-radius: 2rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.titulo-nosotros {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(93, 58, 155, 0.2);
+}
+
+.seccion-nosotros {
+    margin-bottom: 2rem;
+}
+
+.seccion-nosotros h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #5D3A9B;
+}
+
+.icono-texto {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.icono-texto img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.icono-texto p {
+    margin: 0;
+}
+
+.proceso-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.proceso-icono {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+
 @media (max-width: 768px) {
     .mascota-img {
         width: 80px;
