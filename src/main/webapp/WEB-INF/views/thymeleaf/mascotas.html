@@ -28,39 +28,38 @@
                 </div>
             </div>
             <div class="px-2">
-            <form class="mt-1" method="GET" th:href="@{/mascotas}">
-                <div class="custom-select mb-3">
-                    <select class="form-select" name="tipo" onchange="this.form.submit()">
-                        <option selected disabled>Tipo</option>
-                        <option value="perro">Perro</option>
-                        <option value="gato">Gato</option>
-                    </select>
-                </div>
-                <div class="custom-select mb-3">
-                    <select class="form-select" name="sexo" onchange="this.form.submit()">
-                        <option selected disabled>Sexo</option>
-                        <option value="hembra">Hembra</option>
-                        <option value="macho">Macho</option>
-                    </select>
-                </div>
-                <div class="custom-select mb-3">
-                    <select class="form-select" name="tamano" onchange="this.form.submit()">
-                        <option selected disabled>Tamaño</option>
-                        <option value="chico">Chico</option>
-                        <option value="mediano">Mediano</option>
-                        <option value="grande">Grande</option>
-                    </select>
-                </div>
-                <div class="custom-select mb-3">
-                    <select class="form-select" name="energia" onchange="this.form.submit()">
-                        <option selected disabled>Nivel de energía</option>
-                        <option value="bajo">Bajo</option>
-                        <option value="medio">Medio</option>
-                        <option value="medio">Medio</option>
-                        <option value="alto">Alto</option>
-                    </select>
-                </div>
-            </form>
+                <form class="mt-1" method="GET" th:action="@{/mascotas}">
+                    <div class="custom-select mb-3">
+                        <select class="form-select" name="tipo" onchange="this.form.submit()">
+                            <option disabled th:if="${tipoSeleccionado == null}" selected>Tipo</option>
+                            <option value="perro" th:selected="${tipoSeleccionado == 'perro'}">Perro</option>
+                            <option value="gato" th:selected="${tipoSeleccionado == 'gato'}">Gato</option>
+                        </select>
+                    </div>
+                    <div class="custom-select mb-3">
+                        <select class="form-select" name="sexo" onchange="this.form.submit()">
+                            <option disabled th:if="${sexoSeleccionado == null}" selected>Sexo</option>
+                            <option value="hembra" th:selected="${sexoSeleccionado == 'hembra'}">Hembra</option>
+                            <option value="macho" th:selected="${sexoSeleccionado == 'macho'}">Macho</option>
+                        </select>
+                    </div>
+                    <div class="custom-select mb-3">
+                        <select class="form-select" name="tamano" onchange="this.form.submit()">
+                            <option disabled th:if="${tamanoSeleccionado == null}" selected>Tamaño</option>
+                            <option value="chico" th:selected="${tamanoSeleccionado == 'chico'}">Chico</option>
+                            <option value="mediano" th:selected="${tamanoSeleccionado == 'mediano'}">Mediano</option>
+                            <option value="grande" th:selected="${tamanoSeleccionado == 'grande'}">Grande</option>
+                        </select>
+                    </div>
+                    <div class="custom-select mb-3">
+                        <select class="form-select" name="energia" onchange="this.form.submit()">
+                            <option disabled th:if="${energiaSeleccionada == null}" selected>Nivel de energía</option>
+                            <option value="bajo" th:selected="${energiaSeleccionada == 'bajo'}">Bajo</option>
+                            <option value="medio" th:selected="${energiaSeleccionada == 'medio'}">Medio</option>
+                            <option value="alto" th:selected="${energiaSeleccionada == 'alto'}">Alto</option>
+                        </select>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="col-12 col-md-10">
