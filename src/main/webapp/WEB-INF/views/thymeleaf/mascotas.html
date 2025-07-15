@@ -6,6 +6,9 @@
 
 <header th:insert="templates/header :: header"></header>
 
+<p th:if="${mensaje != null}" class="alert alert-success" th:text="${mensaje}"></p>
+
+
 <div class="container mt-5 pb-5">
     <div class="row g-4" >
         <div class="col-12 col-md-2">
@@ -48,6 +51,7 @@
                         <option selected disabled>Nivel de energía</option>
                         <option value="bajo">Bajo</option>
                         <option value="medio">Medio</option>
+                        <option value="medio">Medio</option>
                         <option value="alto">Alto</option>
                     </select>
                 </div>
@@ -57,7 +61,7 @@
         <div class="col-12 col-md-10">
             <div class="row g-4">
                 <div th:each="mascotaDto : ${mascotas}" class="col-12 col-sm-6 col-lg-6 col-xl-4">
-                        <div class="card shadow-lg border-0" style="border-radius: 1rem">
+                        <div class="card card-mascota shadow-lg border-0" style="border-radius: 1rem">
                             <span th:if="${mascotaDto.esMatch}" class="badge rounded-pill bg-primary position-absolute top-0 end-0 m-3" style="background-color: #cef1fc !important; color: #333;" >
                                 <i class="fa-solid fa-star"></i> Recomendado
                             </span>

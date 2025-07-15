@@ -37,7 +37,7 @@
           </li>
 
           <li class="nav-item" th:unless="${session.ROL == 'ADMIN'}">
-            <a th:href="@{/mascotas}" th:classappend="${uri.startsWith('/mascotas')} ? ' active' : ''"
+            <a th:href="@{/mascotas}" id="ir-a-mascotas" th:classappend="${uri.startsWith('/mascotas')} ? ' active' : ''"
                class="nav-link fs-6 me-4 text-white">En Adopción</a>
           </li>
 

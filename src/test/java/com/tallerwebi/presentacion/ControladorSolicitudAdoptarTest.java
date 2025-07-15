@@ -9,6 +9,8 @@ import com.tallerwebi.dominio.servicios.ServicioSolicitudAdoptar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import javax.servlet.http.HttpSession;
 import java.util.Arrays;
@@ -74,12 +76,13 @@ public class ControladorSolicitudAdoptarTest {
         Long idMascota = 10L;
         Mascota mascotaMock = mock(Mascota.class);
         SolicitudAdopcion solicitudMock = new SolicitudAdopcion();
+        RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
 
         when(servicioMascotaMock.obtenerMascotaPorId(idMascota)).thenReturn(mascotaMock);
 
-        String vista = controladorSolicitudAdoptar.guardarSolicitudAdopcion(solicitudMock, idMascota);
+        ModelAndView vista = controladorSolicitudAdoptar.guardarSolicitudAdopcion(solicitudMock, idMascota, redirectAttributes);
 
-        assertThat(vista, equalToIgnoringCase("redirect:/mascotas"));
+        assertThat(vista.getViewName(), equalToIgnoringCase("redirect:/mascotas"));
         assertThat(solicitudMock.getMascota(), is(mascotaMock));
         assertThat(solicitudMock.getEstado(), is("Pendiente"));
         verify(servicioSolicitudAdoptarMock).guardar(solicitudMock);
