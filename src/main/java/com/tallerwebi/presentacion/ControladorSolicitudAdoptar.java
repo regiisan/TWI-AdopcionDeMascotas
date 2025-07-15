@@ -7,6 +7,7 @@ import com.tallerwebi.dominio.servicios.ServicioSolicitudAdoptar;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
@@ -42,14 +43,18 @@ public class ControladorSolicitudAdoptar {
     }
 
     @PostMapping("/mascota/{id}/adoptar/guardar")
-    public String guardarSolicitudAdopcion(@ModelAttribute("solicitud") SolicitudAdopcion solicitud, @PathVariable Long id) {
+    public ModelAndView guardarSolicitudAdopcion(@ModelAttribute("solicitud") SolicitudAdopcion solicitud, @PathVariable Long id, RedirectAttributes redirectAttributes ) {
         Mascota mascota = servicioMascota.obtenerMascotaPorId(id);
-        solicitud.setMascota(mascota);
-        solicitud.setEstado("Pendiente");
+        ModelAndView model = new ModelAndView("redirect:/mascotas");
 
-        servicioSolicitudAdoptar.guardar(solicitud);
+        if(mascota != null) {
+            solicitud.setMascota(mascota);
+            solicitud.setEstado("Pendiente");
+            servicioSolicitudAdoptar.guardar(solicitud);
+            redirectAttributes.addFlashAttribute("mensaje", "¡Tu solicitud fue enviada con éxito!");
+        }
 
-        return "redirect:/mascotas";
+        return model;
     }
 
 }

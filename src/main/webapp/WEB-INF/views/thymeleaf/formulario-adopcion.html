@@ -21,19 +21,19 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Nombre completo:</label>
-                                    <input type="text" class="form-control" th:field="*{nombre}" required/>
+                                    <input id="nombre" type="text" class="form-control" th:field="*{nombre}" required/>
                                 </div>
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email:</label>
-                                    <input type="email" class="form-control" th:field="*{email}" required/>
+                                    <input id="email" type="email" class="form-control" th:field="*{email}" required/>
                                 </div>
                             </div>
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Tipo de vivienda:</label>
-                                    <select class="form-select" th:field="*{tipoVivienda}">
+                                    <select id="tipoVivienda" class="form-select" th:field="*{tipoVivienda}">
                                         <option value="Casa">Casa</option>
                                         <option value="Departamento">Departamento</option>
                                         <option value="Otro">Otro</option>
@@ -42,7 +42,7 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">¿Tenés otros animales?</label>
-                                    <select class="form-select" th:field="*{otrosAnimales}">
+                                    <select id="tieneAnimales" class="form-select" th:field="*{otrosAnimales}">
                                         <option value="true">Sí</option>
                                         <option value="false">No</option>
                                     </select>
@@ -51,16 +51,16 @@
 
                             <div class="mb-3">
                                 <label class="form-label">Experiencia con mascotas:</label>
-                                <textarea class="form-control" th:field="*{experiencia}" rows="3" placeholder="Contanos tu experiencia con mascotas..."></textarea>
+                                <textarea id="experiencia" class="form-control" th:field="*{experiencia}" rows="3" placeholder="Contanos tu experiencia con mascotas..."></textarea>
                             </div>
 
                             <div class="mb-4">
                                 <label class="form-label">Espacio disponible para la mascota:</label>
-                                <textarea class="form-control" th:field="*{espacioDisponible}" rows="2" placeholder="Describí el espacio que tendrá la mascota..."></textarea>
+                                <textarea id="espacio" class="form-control" th:field="*{espacioDisponible}" rows="2" placeholder="Describí el espacio que tendrá la mascota..."></textarea>
                             </div>
 
                             <div class="text-center">
-                                <button type="submit" class="btn btn-violeta-invertida px-4 me-2">Enviar solicitud</button>
+                                <button type="submit" id="btn-solicitud-adopcion" class="btn btn-violeta-invertida px-4 me-2">Enviar solicitud</button>
                                 <a th:href="@{/mascotas}" class="btn btn-violeta">Cancelar</a>
                             </div>
                         </form>
