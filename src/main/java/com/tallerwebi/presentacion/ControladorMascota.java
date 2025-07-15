@@ -168,6 +168,12 @@ public class ControladorMascota {
         }
 
         model.addObject("mascotas", mascotas);
+        model.addObject("mascotas", mascotas);
+        model.addObject("tipoSeleccionado", tipo);
+        model.addObject("sexoSeleccionado", sexo);
+        model.addObject("tamanoSeleccionado", tamano);
+        model.addObject("energiaSeleccionada", energia);
+
         return model;
     }
 
@@ -182,6 +188,13 @@ public class ControladorMascota {
         ModelAndView model = new ModelAndView("mascotas");
         model.addObject("mascotas", mascotasFiltradas);
         model.addObject("mostrarSugerenciaDePreferencias", true);
+
+        // 👉 Añadimos los valores seleccionados para mantenerlos en el HTML
+        model.addObject("tipoSeleccionado", tipo);
+        model.addObject("sexoSeleccionado", sexo);
+        model.addObject("tamanoSeleccionado", tamano);
+        model.addObject("energiaSeleccionada", energia);
+
         return model;
     }
 
