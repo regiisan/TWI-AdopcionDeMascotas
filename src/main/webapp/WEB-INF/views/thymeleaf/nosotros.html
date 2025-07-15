@@ -53,7 +53,13 @@
                 Nosotros nos ocupamos de acompañarte para que el proceso sea simple, seguro y transparente.
             </p>
             <div class="text-center mt-3">
-                <a th:href="@{/registrarme}" class="btn btn-primary px-4 py-2 rounded-pill mt-2">Registrate ahora</a>
+                <div th:if="${session.idUsuario == null}">
+                    <a th:href="@{/nuevo-usuario}" class="btn btn-violeta-invertida px-4 py-2 rounded-pill mt-2">Registrate ahora</a>
+                </div>
+                <div th:if="${session.idUsuario != null}" class="d-flex justify-content-center gap-3">
+                    <a th:href="@{/mascotas}" class="btn btn-violeta-invertida px-4 py-2 rounded-pill mt-2">En adopción</a>
+                    <a th:href="@{/mascota/nueva}" class="btn btn-violeta-invertida px-4 py-2 rounded-pill mt-2">Dar en adopción</a>
+                </div>
             </div>
         </section>
 
