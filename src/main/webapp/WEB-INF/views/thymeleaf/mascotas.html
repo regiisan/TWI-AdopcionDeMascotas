@@ -6,7 +6,12 @@
 
 <header th:insert="templates/header :: header"></header>
 
-<p th:if="${mensaje != null}" class="alert alert-success" th:text="${mensaje}"></p>
+<!--<p th:if="${mensaje != null}" class="alert alert-success" th:text="${mensaje}"></p>-->
+
+<div th:if="${mensaje != null}" class="alerta-flotante-success">
+    <i class="bi bi-check-circle-fill"></i>
+    <span th:text="${mensaje}"></span>
+</div>
 
 
 <div class="container mt-5 pb-5">

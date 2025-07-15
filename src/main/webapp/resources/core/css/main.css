@@ -335,6 +335,35 @@ main.fondo-degradado {
   flex-shrink: 0;
 }
 
+.alerta-flotante-success {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1050;
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+    border-radius: 12px;
+    padding: 0.75rem 1.25rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeInOut 4s ease forwards;
+}
+
+.alerta-flotante-success i {
+    font-size: 1.2rem;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateY(-10px); }
+    10% { opacity: 1; transform: translateY(0); }
+    90% { opacity: 1; }
+    100% { opacity: 0; transform: translateY(-10px); }
+}
+
 
 @media (max-width: 768px) {
     .mascota-img {
