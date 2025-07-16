@@ -41,16 +41,19 @@ public class ControladorSolicitudAdoptar {
         return model;
     }
 
-    @PostMapping("/mascota/{id}/adoptar/guardar")
-    public String guardarSolicitudAdopcion(@ModelAttribute("solicitud") SolicitudAdopcion solicitud, @PathVariable Long id) {
-        Mascota mascota = servicioMascota.obtenerMascotaPorId(id);
+        @PostMapping("/mascota/{id}/adoptar/guardar")
+public ModelAndView guardarSolicitudAdopcion(@ModelAttribute("solicitud") SolicitudAdopcion solicitud, @PathVariable Long id, RedirectAttributes redirectAttributes ) {
+    Mascota mascota = servicioMascota.obtenerMascotaPorId(id);
+
+    if(mascota != null) {
         solicitud.setMascota(mascota);
         solicitud.setEstado("Pendiente");
-
         servicioSolicitudAdoptar.guardar(solicitud);
-
-        return "redirect:/mascotas";
+        redirectAttributes.addFlashAttribute("mensaje", "¡Tu formulario se envió correctamente! Te enviaremos un correo electrónico con tu número de solicitud y nos pondremos en contacto cuando resolvamos tu petición. ¡Gracias por formar parte de AdoPets!");
     }
+
+    return new ModelAndView("redirect:/home");
+}
 
 }
 
