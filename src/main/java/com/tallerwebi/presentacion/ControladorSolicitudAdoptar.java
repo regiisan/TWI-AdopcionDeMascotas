@@ -43,34 +43,20 @@ public class ControladorSolicitudAdoptar {
     }
 
 
-        @PostMapping("/mascota/{id}/adoptar/guardar")
-public ModelAndView guardarSolicitudAdopcion(@ModelAttribute("solicitud") SolicitudAdopcion solicitud, @PathVariable Long id, RedirectAttributes redirectAttributes ) {
-    Mascota mascota = servicioMascota.obtenerMascotaPorId(id);
-
-    if(mascota != null) {
-        solicitud.setMascota(mascota);
-        solicitud.setEstado("Pendiente");
-        servicioSolicitudAdoptar.guardar(solicitud);
-        redirectAttributes.addFlashAttribute("mensaje", "¡Tu formulario se envió correctamente! Te enviaremos un correo electrónico con tu número de solicitud y nos pondremos en contacto cuando resolvamos tu petición. ¡Gracias por formar parte de AdoPets!");
-
     @PostMapping("/mascota/{id}/adoptar/guardar")
-    public ModelAndView guardarSolicitudAdopcion(@ModelAttribute("solicitud") SolicitudAdopcion solicitud, @PathVariable Long id, RedirectAttributes redirectAttributes ) {
+    public ModelAndView guardarSolicitudAdopcion(@ModelAttribute("solicitud") SolicitudAdopcion solicitud, @PathVariable Long id, RedirectAttributes redirectAttributes) {
         Mascota mascota = servicioMascota.obtenerMascotaPorId(id);
         ModelAndView model = new ModelAndView("redirect:/mascotas");
 
-        if(mascota != null) {
+        if (mascota != null) {
             solicitud.setMascota(mascota);
             solicitud.setEstado("Pendiente");
             servicioSolicitudAdoptar.guardar(solicitud);
-            redirectAttributes.addFlashAttribute("mensaje", "¡Tu solicitud fue enviada con éxito!");
+            redirectAttributes.addFlashAttribute("mensaje", "¡Tu formulario se envió correctamente! Te enviaremos un correo electrónico con tu número de solicitud y nos pondremos en contacto cuando resolvamos tu petición. ¡Gracias por formar parte de AdoPets!");
         }
 
         return model;
-
     }
-
-    return new ModelAndView("redirect:/home");
-}
 
 }
 
