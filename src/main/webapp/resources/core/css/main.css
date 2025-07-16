@@ -354,8 +354,8 @@ main.fondo-degradado {
 
 .alerta-flotante-success {
     position: fixed;
-    top: 1rem;
-    right: 1rem;
+    bottom: 1rem;
+    left: 1rem;
     z-index: 1050;
     background-color: #d1e7dd;
     color: #0f5132;
