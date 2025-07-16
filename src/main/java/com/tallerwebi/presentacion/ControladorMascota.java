@@ -78,45 +78,48 @@ public class ControladorMascota {
         return mav;
     }
 
-    @RequestMapping(path = "/mascota/guardar", method = RequestMethod.POST)
-    public ModelAndView guardarMascota(@ModelAttribute("mascota") Mascota mascota, 
-                                     @RequestParam("imagen") MultipartFile imagen,
-                                     HttpSession session) {
-        Long idUsuario = (Long) session.getAttribute("idUsuario");
-        String rol = (String) session.getAttribute("ROL");
+       @RequestMapping(path = "/mascota/guardar", method = RequestMethod.POST)
+public ModelAndView guardarMascota(@ModelAttribute("mascota") Mascota mascota, 
+                                  @RequestParam("imagen") MultipartFile imagen,
+                                  HttpSession session,
+                                  RedirectAttributes redirectAttributes) {
+    Long idUsuario = (Long) session.getAttribute("idUsuario");
+    String rol = (String) session.getAttribute("ROL");
 
-        if (idUsuario == null) {
-            return new ModelAndView("redirect:/login");
-        }
-
-        try {
-            // Generar un nombre único para el archivo
-            String nombreArchivo = UUID.randomUUID().toString() + "_" + imagen.getOriginalFilename();
-            Path rutaCompleta = Paths.get(UPLOAD_DIRECTORY + nombreArchivo);
-            
-            // Guardar el archivo
-            Files.write(rutaCompleta, imagen.getBytes());
-            
-            // Actualizar el campo img de la mascota con la ruta relativa
-            mascota.setImg("uploads/mascotas/" + nombreArchivo);
-            
-            Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
-            mascota.setUsuario(usuario);
-            
-            servicioMascota.guardar(mascota);
-
-            if (rol != null && rol.equalsIgnoreCase("ADMIN")) {
-                return new ModelAndView("redirect:/mascotas");
-            }
-            
-            return new ModelAndView("redirect:/home");
-            
-        } catch (IOException e) {
-            ModelAndView model = new ModelAndView("formulario-dar-en-adopcion");
-            model.addObject("error", "Error al subir la imagen. Por favor, intente nuevamente.");
-            return model;
-        }
+    if (idUsuario == null) {
+        return new ModelAndView("redirect:/login");
     }
+
+    try {
+        // Generar un nombre único para el archivo
+        String nombreArchivo = UUID.randomUUID().toString() + "_" + imagen.getOriginalFilename();
+        Path rutaCompleta = Paths.get(UPLOAD_DIRECTORY + nombreArchivo);
+        
+        // Guardar el archivo
+        Files.write(rutaCompleta, imagen.getBytes());
+        
+        // Actualizar el campo img de la mascota con la ruta relativa
+        mascota.setImg("uploads/mascotas/" + nombreArchivo);
+        
+        Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
+        mascota.setUsuario(usuario);
+        
+        servicioMascota.guardar(mascota);
+
+        if (rol != null && rol.equalsIgnoreCase("ADMIN")) {
+            redirectAttributes.addFlashAttribute("mensaje", "¡Mascota agregada correctamente!");
+            return new ModelAndView("redirect:/mascotas");
+        }
+
+        redirectAttributes.addFlashAttribute("mensaje", "¡Tu formulario se envió correctamente! Te enviaremos un correo electrónico con tu número de solicitud y nos pondremos en contacto cuando resolvamos tu petición. ¡Gracias por formar parte de AdoPets!");
+        return new ModelAndView("redirect:/home");
+        
+    } catch (IOException e) {
+        ModelAndView model = new ModelAndView("formulario-dar-en-adopcion");
+        model.addObject("error", "Error al subir la imagen. Por favor, intente nuevamente.");
+        return model;
+    }
+}
 
     @RequestMapping(path = "/mascotas", method = RequestMethod.GET)
     public ModelAndView mostrarMascotas(
