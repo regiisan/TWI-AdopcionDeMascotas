@@ -46,7 +46,7 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
     color: #cef1fc !important;
 }
 
-.btn-violeta, .btn-primary, .btn-outline-primary, .btn-success, .btn-danger, .btn-secondary, .btn-logIn, .chat-send-btn {
+.btn-violeta, .btn-primary, .btn-outline-primary, .btn-success, .btn-danger, .btn-secondary, .chat-send-btn {
     background-color: #5E3A9C !important;
     color: white !important;
     border: 1px solid #5E3A9C !important;
@@ -55,10 +55,27 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
     transition: 0.3s ease-in-out;
 }
 
-.btn-violeta:hover, .btn-primary:hover, .btn-outline-primary:hover, .btn-success:hover, .btn-danger:hover, .btn-secondary:hover, .btn-logIn:hover, .chat-send-btn:hover {
+.btn-violeta:hover, .btn-primary:hover, .btn-outline-primary:hover, .btn-success:hover, .btn-danger:hover, .btn-secondary:hover, .chat-send-btn:hover {
     background-color: #4a2b82 !important;
     color: #fff !important;
     border-color: #4a2b82 !important;
+}
+
+.btn-logIn {
+  color: #5f3b9c;
+  background-color: white;
+  border: 2px solid #5f3b9c;
+  padding: 8px 20px;
+  border-radius: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-logIn:hover {
+  background-color: #5f3b9c;
+  color: white;
+  text-decoration: none;
 }
 
 .btn-violeta-invertida {
