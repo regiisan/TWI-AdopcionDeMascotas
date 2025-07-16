@@ -12,8 +12,11 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import static org.hamcrest.Matchers.instanceOf;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class ControladorLoginTest {
@@ -46,7 +49,7 @@ public class ControladorLoginTest {
 		assertThat(modelAndView.getModel().get("error").toString(), equalToIgnoringCase("Usuario o clave incorrecta"));
 		verify(sessionMock, times(0)).setAttribute("ROL", "ADMIN");
 	}
-	
+
 	@Test
 	public void loginConUsuarioYPasswordCorrectosDeberiaLLevarAHomeAdminSiEsAdmin(){
 		Usuario usuarioEncontradoMock = mock(Usuario.class);
@@ -60,6 +63,20 @@ public class ControladorLoginTest {
 		assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect:/admin/home"));
 		verify(sessionMock, times(1)).setAttribute("ROL", usuarioEncontradoMock.getRol());
 	}
+
+	@Test
+	public void loginConUsuarioYPasswordCorrectosDeberiaLLevarAHomeSiNoEsAdmin(){
+		Usuario usuarioEncontradoMock = mock(Usuario.class);
+		when(usuarioEncontradoMock.getRol()).thenReturn("USUARIO");
+		when(requestMock.getSession()).thenReturn(sessionMock);
+		when(servicioLoginMock.consultarUsuario(anyString(), anyString())).thenReturn(usuarioEncontradoMock);
+
+		ModelAndView modelAndView = controladorLogin.validarLogin(datosLoginMock, requestMock);
+
+		assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect:/home"));
+		verify(sessionMock, times(1)).setAttribute("ROL", usuarioEncontradoMock.getRol());
+	}
+
 
 	@Test
 	public void registrameSiUsuarioNoExisteDeberiaCrearUsuarioYVolverAlLogin() throws UsuarioExistente {
@@ -87,5 +104,25 @@ public class ControladorLoginTest {
 
 		assertThat(modelAndView.getViewName(), equalToIgnoringCase("nuevo-usuario"));
 		assertThat(modelAndView.getModel().get("error").toString(), equalToIgnoringCase("Error al registrar el nuevo usuario"));
+	}
+
+	@Test
+	public void debeMostrarVistaNuevoUsuarioConFormularioDeRegistroVacioCuandoSeEjecutaElMetodoNuevoUsuario() {
+		ModelAndView modelAndView = controladorLogin.nuevoUsuario();
+
+		assertThat(modelAndView.getViewName(), equalToIgnoringCase("nuevo-usuario"));
+		assertThat(modelAndView.getModel().get("registro"), is(instanceOf(DatosRegistro.class)));
+	}
+
+	@Test
+	public void debeCerrarSesion() {
+		HttpServletRequest requestMock = mock(HttpServletRequest.class);
+		HttpSession sessionMock = mock(HttpSession.class);
+		when(requestMock.getSession()).thenReturn(sessionMock);
+
+		ModelAndView modelAndView = controladorLogin.cerrarSesion(requestMock);
+
+		verify(sessionMock, times(1)).invalidate();
+		assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect:/login"));
 	}
 }

@@ -6,12 +6,20 @@
 
 <header th:insert="templates/header :: header"></header>
 
+<!--<p th:if="${mensaje != null}" class="alert alert-success" th:text="${mensaje}"></p>-->
+
+<div th:if="${mensaje != null}" class="alerta-flotante-success">
+    <i class="bi bi-check-circle-fill"></i>
+    <span th:text="${mensaje}"></span>
+</div>
+
+
 <div class="container mt-5 pb-5">
     <div class="row g-4" >
         <div class="col-12 col-md-2">
             <div class="card shadow-lg border-0 mb-4" style="border-radius: 1rem;" th:if="${mostrarSugerenciaDePreferencias}">
                 <div class="card-body text-center d-flex flex-column justify-content-center align-items-center p-4">
-                    <div class="bg-secondary bg-opacity-25 rounded-circle d-flex justify-content-center align-items-center mb-3" style="background-color: #d0ebc4   !important; width: 60px; height: 60px;">
+                    <div class="bg-secondary bg-opacity-25 rounded-circle d-flex justify-content-center align-items-center mb-3" style="background-color: #cef1fc !important; width: 60px; height: 60px;">
                         <i class="fa-solid fa-paw fa-lg" style="color: #5d3a9b;"></i>
                     </div>
                     <h5 class="card-title text-primary-emphasis fw-bold mb-2">¿Cómo sería tu mascota ideal?</h5>
@@ -20,45 +28,45 @@
                 </div>
             </div>
             <div class="px-2">
-            <form class="mt-1" method="GET" th:href="@{/mascotas}">
-                <div class="custom-select mb-3">
-                    <select class="form-select" name="tipo" onchange="this.form.submit()">
-                        <option selected disabled>Tipo</option>
-                        <option value="perro">Perro</option>
-                        <option value="gato">Gato</option>
-                    </select>
-                </div>
-                <div class="custom-select mb-3">
-                    <select class="form-select" name="sexo" onchange="this.form.submit()">
-                        <option selected disabled>Sexo</option>
-                        <option value="hembra">Hembra</option>
-                        <option value="macho">Macho</option>
-                    </select>
-                </div>
-                <div class="custom-select mb-3">
-                    <select class="form-select" name="tamano" onchange="this.form.submit()">
-                        <option selected disabled>Tamaño</option>
-                        <option value="chico">Chico</option>
-                        <option value="mediano">Mediano</option>
-                        <option value="grande">Grande</option>
-                    </select>
-                </div>
-                <div class="custom-select mb-3">
-                    <select class="form-select" name="energia" onchange="this.form.submit()">
-                        <option selected disabled>Nivel de energía</option>
-                        <option value="bajo">Bajo</option>
-                        <option value="medio">Medio</option>
-                        <option value="alto">Alto</option>
-                    </select>
-                </div>
-            </form>
+                <form class="mt-1" method="GET" th:action="@{/mascotas}">
+                    <div class="custom-select mb-3">
+                        <select class="form-select" name="tipo" onchange="this.form.submit()">
+                            <option disabled th:if="${tipoSeleccionado == null}" selected>Tipo</option>
+                            <option value="perro" th:selected="${tipoSeleccionado == 'perro'}">Perro</option>
+                            <option value="gato" th:selected="${tipoSeleccionado == 'gato'}">Gato</option>
+                        </select>
+                    </div>
+                    <div class="custom-select mb-3">
+                        <select class="form-select" name="sexo" onchange="this.form.submit()">
+                            <option disabled th:if="${sexoSeleccionado == null}" selected>Sexo</option>
+                            <option value="hembra" th:selected="${sexoSeleccionado == 'hembra'}">Hembra</option>
+                            <option value="macho" th:selected="${sexoSeleccionado == 'macho'}">Macho</option>
+                        </select>
+                    </div>
+                    <div class="custom-select mb-3">
+                        <select class="form-select" name="tamano" onchange="this.form.submit()">
+                            <option disabled th:if="${tamanoSeleccionado == null}" selected>Tamaño</option>
+                            <option value="chico" th:selected="${tamanoSeleccionado == 'chico'}">Chico</option>
+                            <option value="mediano" th:selected="${tamanoSeleccionado == 'mediano'}">Mediano</option>
+                            <option value="grande" th:selected="${tamanoSeleccionado == 'grande'}">Grande</option>
+                        </select>
+                    </div>
+                    <div class="custom-select mb-3">
+                        <select class="form-select" name="energia" onchange="this.form.submit()">
+                            <option disabled th:if="${energiaSeleccionada == null}" selected>Nivel de energía</option>
+                            <option value="bajo" th:selected="${energiaSeleccionada == 'bajo'}">Bajo</option>
+                            <option value="medio" th:selected="${energiaSeleccionada == 'medio'}">Medio</option>
+                            <option value="alto" th:selected="${energiaSeleccionada == 'alto'}">Alto</option>
+                        </select>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="col-12 col-md-10">
             <div class="row g-4">
                 <div th:each="mascotaDto : ${mascotas}" class="col-12 col-sm-6 col-lg-6 col-xl-4">
-                        <div class="card shadow-lg border-0" style="border-radius: 1rem">
-                            <span th:if="${mascotaDto.esMatch}" class="badge rounded-pill bg-primary position-absolute top-0 end-0 m-3" style="background-color: #d0ebc4 !important; color: #333;" >
+                        <div class="card card-mascota shadow-lg border-0" style="border-radius: 1rem">
+                            <span th:if="${mascotaDto.esMatch}" class="badge rounded-pill bg-primary position-absolute top-0 end-0 m-3" style="background-color: #cef1fc !important; color: #333;" >
                                 <i class="fa-solid fa-star"></i> Recomendado
                             </span>
                             <img th:src="@{'/' + ${mascotaDto.img}}" class="card-img-top" alt="Mascota" style="height: 280px; object-fit: cover; border-top-left-radius: 1em; border-top-right-radius: 1rem;"/>
@@ -110,6 +118,8 @@
         </div>
     </div>
 </div>
+
+<footer th:insert="templates/footer :: footer"></footer>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

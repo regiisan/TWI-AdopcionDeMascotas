@@ -36,6 +36,32 @@ public class RepositorioSolicitudAdoptarTest {
     }
 
     @Test
+    public void dadoQueExisteSolicitudBuscarSolicitudPorIdDevuelveLaSolicitud() {
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Luna");
+
+        SolicitudAdopcion solicitud = new SolicitudAdopcion();
+        solicitud.setMascota(mascota);
+
+        sessionFactory.getCurrentSession().save(mascota);
+        Long id = (Long) sessionFactory.getCurrentSession().save(solicitud);
+
+        SolicitudAdopcion resultado = repositorioSolicitudAdoptar.buscarSolicitudPorId(id);
+
+        // Asserts
+        assertNotNull(resultado);
+        assertEquals(id, resultado.getId());
+        assertEquals("Luna", resultado.getMascota().getNombre());
+    }
+
+    @Test
+    public void dadoQueNoExisteSolicitudBuscarSolicitudPorIdDevuelveNull() {
+        SolicitudAdopcion resultado = repositorioSolicitudAdoptar.buscarSolicitudPorId(9999L);
+
+        assertNull(resultado);
+    }
+
+    @Test
     public void dadoQueHayaSolicitudesEnLaBDListarSolicitudesDevuelveTodas(){
         Mascota mascota = new Mascota();
         mascota.setNombre("Luna");
@@ -58,6 +84,24 @@ public class RepositorioSolicitudAdoptarTest {
         List<SolicitudAdopcion> solicitudes = repositorioSolicitudAdoptar.listarSolicitudes();
 
         assertTrue(solicitudes.isEmpty());
+    }
+
+    @Test
+    public void dadoQueSeGuardeUnaSolicitudDeberiaPersistirLaEntidad() {
+        Mascota mascota = new Mascota();
+        mascota.setNombre("Luna");
+        sessionFactory.getCurrentSession().save(mascota);
+
+        SolicitudAdopcion solicitud = new SolicitudAdopcion();
+        solicitud.setMascota(mascota);
+        solicitud.setEstado("Pendiente");
+
+        repositorioSolicitudAdoptar.guardar(solicitud);
+
+        assertNotNull(solicitud.getId());
+        SolicitudAdopcion buscada = sessionFactory.getCurrentSession().get(SolicitudAdopcion.class, solicitud.getId());
+        assertNotNull(buscada);
+        assertEquals("Luna", buscada.getMascota().getNombre());
     }
 
     @Test

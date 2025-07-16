@@ -62,6 +62,7 @@ public class ServicioRecomendacionImplTest {
         mascota1.setEdad(5);
         mascota1.setTamano(Tamano.GRANDE);
         mascota1.setNivelEnergia(NivelEnergia.MEDIO);
+        mascota1.setAdoptado(false);
 
         Mascota mascota2 = crearMascota();
         mascota2.setTipo(Tipo.GATO);
@@ -69,6 +70,7 @@ public class ServicioRecomendacionImplTest {
         mascota2.setEdad(2);
         mascota2.setTamano(Tamano.MEDIANO);
         mascota2.setNivelEnergia(NivelEnergia.ALTO);
+        mascota2.setAdoptado(false);
 
         List<Mascota> mascotas = Arrays.asList(mascota1, mascota2);
         when(repositorioMascotaMock.listarMascotas()).thenReturn(mascotas);
@@ -95,6 +97,7 @@ public class ServicioRecomendacionImplTest {
         mascota.setEdad(1);
         mascota.setTamano(Tamano.CHICO);
         mascota.setNivelEnergia(NivelEnergia.MEDIO);
+        mascota.setAdoptado(false);
 
         List<Mascota> mascotas = Arrays.asList(mascota);
         when(repositorioMascotaMock.listarMascotas()).thenReturn(mascotas);

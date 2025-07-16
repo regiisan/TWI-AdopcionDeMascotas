@@ -4,57 +4,77 @@
     <title>Sobre Nosotros - AdoPets</title>
 </head>
 <body>
-    <header th:insert="templates/header :: header"></header>
+<header th:insert="templates/header :: header"></header>
 
-    <main class="container mt-5 mb-5">
-        <h1 class="text-center mb-5">Sobre Nosotros</h1>
+<main class="fondo-degradado">
+    <div class="sobre-nosotros-card">
 
-        <!-- Qué hacemos -->
-        <section id="que-hacemos" class="mb-5">
-            <h2 class="text-secondary">¿Qué hacemos?</h2>
+        <h1 class="titulo-nosotros">Sobre Nosotros</h1>
+
+        <section class="seccion-nosotros">
+            <h3>¿Qué hacemos?</h3>
             <p>
-                <strong>AdoPets</strong> es una plataforma que conecta a personas que desean adoptar mascotas con quienes buscan un nuevo hogar para ellas.
-                No somos un refugio ni una organización de rescate, pero si nos comprometemos a que cada adopción se realice con responsabilidad y cuidado.
+                <strong>AdoPets</strong> es una plataforma que conecta a personas que desean adoptar mascotas con quienes buscan darles un nuevo hogar.
+                No somos un refugio ni una organización de rescate, pero sí promovemos <strong>adopciones responsables</strong>, brindando herramientas, seguimiento y asesoramiento para que cada historia tenga un final feliz.
             </p>
             <p>
-                Facilitamos el contacto, damos visibilidad a mascotas que necesitan familia y promovemos la tenencia responsable mediante seguimiento y asesoramiento posterior.
+                Nos enfocamos en <strong>dar visibilidad</strong> a animales que buscan una familia, y en acompañar cada paso del proceso para garantizar su bienestar.
             </p>
         </section>
 
-        <!-- Cómo garantizamos la seguridad -->
-        <section id="seguimiento" class="mb-5">
-            <h2 class="text-secondary">Acompañamos todo el proceso</h2>
-            <ul>
-                <li>Verificamos que las mascotas estén en condiciones sanitarias adecuadas antes de publicarlas.</li>
-                <li>Revisamos que los formularios de adopción y entrega estén completos y sean claros.</li>
-                <li>Realizamos seguimiento posterior para asegurar el bienestar del animal.</li>
-                <li>Promovemos acuerdos éticos entre partes y fomentamos reportes ante cualquier incumplimiento.</li>
-            </ul>
-        </section>
+        <section class="seccion-nosotros">
+            <h3>Acompañamos todo el proceso</h3>
 
-        <!-- C�mo empezar -->
-        <section id="como-empezar" class="mb-5">
-            <h2 class="text-secondary">¿Querés adoptar o dar en adopción?</h2>
-            <p>
-                Solo tenés que registrarte en la plataforma, completar tu perfil y llenar el formulario correspondiente.
-                Nosotros te acompañamos en todo el proceso.
-            </p>
-            <div class="text-center mt-4">
-                <a href="/registro" class="btn btn-outline-primary rounded-pill px-4 py-2">Registrate ahora</a>
+            <div class="proceso-item">
+                <img th:src="@{/images/icon-check.png}" alt="Verificación sanitaria" class="proceso-icono">
+                <p class="mb-0">Verificamos que las mascotas estén en condiciones óptimas de salud antes de ser publicadas.</p>
+            </div>
+
+            <div class="proceso-item">
+                <img th:src="@{/images/icon-form.png}" alt="Formulario completo" class="proceso-icono">
+                <p class="mb-0">Revisamos los formularios de adopción y entrega para asegurar que sean claros y completos.</p>
+            </div>
+
+            <div class="proceso-item">
+                <img th:src="@{/images/icon-follow.png}" alt="Seguimiento" class="proceso-icono">
+                <p class="mb-0">Hacemos seguimiento posterior para confirmar que el animal esté siendo bien cuidado.</p>
+            </div>
+
+            <div class="proceso-item">
+                <img th:src="@{/images/icon-ethics.png}" alt="Ética" class="proceso-icono">
+                <p class="mb-0">Fomentamos acuerdos responsables y actuamos frente a cualquier incumplimiento reportado.</p>
             </div>
         </section>
 
-        <!-- Comunidad -->
-        <section id="comunidad" class="mb-5">
-            <h2 class="text-secondary">Una comunidad que cuida</h2>
+        <section class="seccion-nosotros">
+            <h3>¿Querés adoptar o dar en adopción?</h3>
             <p>
-                Ya se han realizado más de <strong>100 adopciones</strong> exitosas en nuestra plataforma, y cada historia es un paso más hacia un mundo donde todas las mascotas puedan ser valoradas, amadas y respetadas.
+                Es muy fácil: registrate, completá tu perfil y cargá la información necesaria.
+                Nosotros nos ocupamos de acompañarte para que el proceso sea simple, seguro y transparente.
             </p>
-            <p>
-                AdoPets es de todos: vos también podés formar parte.
-            </p>
+            <div class="text-center mt-3">
+                <div th:if="${session.idUsuario == null}">
+                    <a th:href="@{/nuevo-usuario}" class="btn btn-violeta-invertida px-4 py-2 rounded-pill mt-2">Registrate ahora</a>
+                </div>
+                <div th:if="${session.idUsuario != null}" class="d-flex justify-content-center gap-3">
+                    <a th:href="@{/mascotas}" class="btn btn-violeta-invertida px-4 py-2 rounded-pill mt-2">En adopción</a>
+                    <a th:href="@{/mascota/nueva}" class="btn btn-violeta-invertida px-4 py-2 rounded-pill mt-2">Dar en adopción</a>
+                </div>
+            </div>
         </section>
-    </main>
 
+        <section class="seccion-nosotros">
+            <h3>Una comunidad que transforma</h3>
+            <p>
+                Más de <strong>100 adopciones exitosas</strong> ya se concretaron a través de nuestra plataforma.
+                Cada una representa una vida cambiada para siempre: una mascota que encontró amor, y una familia que se agrandó.
+            </p>
+            <p><strong>Vos también podés ser parte de este cambio.</strong></p>
+        </section>
+
+    </div>
+</main>
+
+<footer th:insert="templates/footer :: footer"></footer>
 </body>
 </html>

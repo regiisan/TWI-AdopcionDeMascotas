@@ -14,13 +14,14 @@ stompClient.onConnect = (frame) => {
     const texto = data.texto;
     const emisorId = data.emisorId;
     const nombre = data.nombreUsuario;
+    const hora = data.hora;
 
     const usuarioId = document.getElementById("usuarioId").value;
     const tipo = emisorId == usuarioId ? "enviado" : "recibido";
 
     // Nombre arriba
     const userLabel = document.createElement("div");
-    userLabel.textContent = nombre;
+    userLabel.textContent = nombre + ' · ' + hora;
     userLabel.style.fontSize = "0.85rem";
     userLabel.style.fontWeight = "bold";
     userLabel.style.color = "#888";

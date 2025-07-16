@@ -15,7 +15,20 @@
 
             <!-- Mensajes -->
             <div id="chat-messages" class="flex-grow-1 overflow-auto border rounded-4 p-3 mb-3 bg-white">
-                <!-- Ejemplo de mensaje estático -->
+                <div th:each="mensaje : ${mensajes}"
+                     th:class="${mensaje.emisorId} == ${idUsuario} ? 'd-flex justify-content-end mb-2' : 'd-flex justify-content-start mb-2'">
+
+                    <div class="d-flex flex-column">
+                        <div th:text="${mensaje.nombreUsuario} + ' · ' + ${mensaje.hora}"
+                             style="font-size: 0.85rem; font-weight: bold; color: #888; margin-bottom: 2px;">
+                        </div>
+                        <div class="p-2 rounded-3"
+                             th:text="${mensaje.texto}"
+                             th:style="'max-width: 75%; min-width: fit-content; background-color:' + (${mensaje.emisorId} == ${idUsuario} ? '#5D3A9B' : '#d3d3d3') + '; color:' + (${mensaje.emisorId} == ${idUsuario} ? 'white' : 'black') + '; word-break: break-word; white-space: pre-wrap;'">
+                        </div>
+                    </div>
+
+                </div>
             </div>
 
             <!-- Input y botón -->

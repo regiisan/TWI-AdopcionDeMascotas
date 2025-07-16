@@ -5,7 +5,9 @@
   <nav class="navbar navbar-expand-lg navbar-light custom">
     <div class="container-fluid">
 
-      <a class="navbar-brand text-white fw-bold" th:href="@{/home}">ADOPETS</a>
+      <a class="navbar-brand d-flex align-items-center" th:href="@{/home}">
+        <img th:src="@{/resources/core/images/logo/logo_principal_blanco.png}" alt="Adopets Logo" style="height: 72px; max-height: 80px; width: auto;"/>
+      </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
               data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
@@ -35,7 +37,7 @@
           </li>
 
           <li class="nav-item" th:unless="${session.ROL == 'ADMIN'}">
-            <a th:href="@{/mascotas}" th:classappend="${uri.startsWith('/mascotas')} ? ' active' : ''"
+            <a th:href="@{/mascotas}" id="ir-a-mascotas" th:classappend="${uri.startsWith('/mascotas')} ? ' active' : ''"
                class="nav-link fs-6 me-4 text-white">En Adopción</a>
           </li>
 
@@ -43,6 +45,11 @@
           <li class="nav-item">
             <a th:href="@{/mascota/nueva}" th:classappend="${uri == '/mascota/nueva'} ? ' active' : ''"
                class="nav-link fs-6 me-4 text-white">Dar en Adopción</a>
+          </li>
+
+          <li class="nav-item">
+            <a th:href="@{/sala-chat}" th:classappend="${uri == '/sala-chat'} ? ' active' : ''"
+                class="nav-link fs-6 me-4 text-white">Chat</a>
           </li>
 
           <!-- Solo admin -->

@@ -36,7 +36,6 @@ public class ControladorMascota {
         this.servicioMascota = servicioMascota;
         this.servicioRecomendacion = servicioRecomendacion;
         this.servicioUsuario = servicioUsuario;
-        // Crear el directorio de subida si no existe
         File uploadDir = new File(UPLOAD_DIRECTORY);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
@@ -172,6 +171,12 @@ public ModelAndView guardarMascota(@ModelAttribute("mascota") Mascota mascota,
         }
 
         model.addObject("mascotas", mascotas);
+        model.addObject("mascotas", mascotas);
+        model.addObject("tipoSeleccionado", tipo);
+        model.addObject("sexoSeleccionado", sexo);
+        model.addObject("tamanoSeleccionado", tamano);
+        model.addObject("energiaSeleccionada", energia);
+
         return model;
     }
 
@@ -186,6 +191,13 @@ public ModelAndView guardarMascota(@ModelAttribute("mascota") Mascota mascota,
         ModelAndView model = new ModelAndView("mascotas");
         model.addObject("mascotas", mascotasFiltradas);
         model.addObject("mostrarSugerenciaDePreferencias", true);
+
+        // 👉 Añadimos los valores seleccionados para mantenerlos en el HTML
+        model.addObject("tipoSeleccionado", tipo);
+        model.addObject("sexoSeleccionado", sexo);
+        model.addObject("tamanoSeleccionado", tamano);
+        model.addObject("energiaSeleccionada", energia);
+
         return model;
     }
 

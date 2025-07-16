@@ -7,6 +7,7 @@ import com.tallerwebi.dominio.servicios.ServicioSolicitudAdoptar;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
@@ -41,6 +42,7 @@ public class ControladorSolicitudAdoptar {
         return model;
     }
 
+
         @PostMapping("/mascota/{id}/adoptar/guardar")
 public ModelAndView guardarSolicitudAdopcion(@ModelAttribute("solicitud") SolicitudAdopcion solicitud, @PathVariable Long id, RedirectAttributes redirectAttributes ) {
     Mascota mascota = servicioMascota.obtenerMascotaPorId(id);
@@ -50,6 +52,21 @@ public ModelAndView guardarSolicitudAdopcion(@ModelAttribute("solicitud") Solici
         solicitud.setEstado("Pendiente");
         servicioSolicitudAdoptar.guardar(solicitud);
         redirectAttributes.addFlashAttribute("mensaje", "¡Tu formulario se envió correctamente! Te enviaremos un correo electrónico con tu número de solicitud y nos pondremos en contacto cuando resolvamos tu petición. ¡Gracias por formar parte de AdoPets!");
+
+    @PostMapping("/mascota/{id}/adoptar/guardar")
+    public ModelAndView guardarSolicitudAdopcion(@ModelAttribute("solicitud") SolicitudAdopcion solicitud, @PathVariable Long id, RedirectAttributes redirectAttributes ) {
+        Mascota mascota = servicioMascota.obtenerMascotaPorId(id);
+        ModelAndView model = new ModelAndView("redirect:/mascotas");
+
+        if(mascota != null) {
+            solicitud.setMascota(mascota);
+            solicitud.setEstado("Pendiente");
+            servicioSolicitudAdoptar.guardar(solicitud);
+            redirectAttributes.addFlashAttribute("mensaje", "¡Tu solicitud fue enviada con éxito!");
+        }
+
+        return model;
+
     }
 
     return new ModelAndView("redirect:/home");

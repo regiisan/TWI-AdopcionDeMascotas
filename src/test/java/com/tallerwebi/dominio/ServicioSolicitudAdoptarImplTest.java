@@ -1,5 +1,6 @@
 package com.tallerwebi.dominio;
 
+import com.tallerwebi.dominio.entidades.Mascota;
 import com.tallerwebi.dominio.entidades.SolicitudAdopcion;
 import com.tallerwebi.dominio.repositorios.RepositorioSolicitudAdoptar;
 import com.tallerwebi.dominio.servicios.ServicioSolicitudAdoptar;
@@ -69,6 +70,9 @@ public class ServicioSolicitudAdoptarImplTest {
         // Preparación
         Long id = 1L;
         SolicitudAdopcion solicitud = new SolicitudAdopcion();
+        Mascota mascota = new Mascota();
+        mascota.setAdoptado(false);
+        solicitud.setMascota(mascota);
         when(repositorioSolicitudAdoptarMock.buscarSolicitudPorId(id)).thenReturn(solicitud);
 
         // Ejecución
@@ -76,6 +80,7 @@ public class ServicioSolicitudAdoptarImplTest {
 
         // Verificación
         assertThat(solicitud.getEstado(), is("Aprobada"));
+        assertThat(mascota.getAdoptado(), is(true));
         verify(repositorioSolicitudAdoptarMock).modificar(solicitud);
     }
 
