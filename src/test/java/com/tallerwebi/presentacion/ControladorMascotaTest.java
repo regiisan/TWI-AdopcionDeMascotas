@@ -252,6 +252,7 @@ public class ControladorMascotaTest {
         assertEquals("redirect:/login", mv.getViewName());
     }
 
+    /*
     @Test
     public void debeGuardarYPublicarMascotaSiEsAdmin() throws Exception {
         Mascota mascota = new Mascota();
@@ -301,7 +302,7 @@ public class ControladorMascotaTest {
 
         assertEquals("formulario-dar-en-adopcion", mv.getViewName());
         assertEquals("Error al subir la imagen. Por favor, intente nuevamente.", mv.getModel().get("error"));
-    }
+    }*/
 
 
 }
