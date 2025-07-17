@@ -6,8 +6,6 @@
 
 <header th:insert="templates/header :: header"></header>
 
-<!--<p th:if="${mensaje != null}" class="alert alert-success" th:text="${mensaje}"></p>-->
-
 <div th:if="${mensaje != null}" class="alerta-flotante-success">
     <i class="bi bi-check-circle-fill"></i>
     <span th:text="${mensaje}"></span>
@@ -16,13 +14,13 @@
 
 <div class="container mt-5 pb-5">
     <div class="row g-4" >
-        <div class="col-12 col-md-2">
-            <div class="card shadow-lg border-0 mb-4" style="border-radius: 1rem;" th:if="${mostrarSugerenciaDePreferencias}">
+        <div class="col-12 col-md-3 col-lg-2">
+            <div class="card card-preferencias shadow-lg border-0 mb-4" style="border-radius: 1rem;" th:if="${mostrarSugerenciaDePreferencias}">
                 <div class="card-body text-center d-flex flex-column justify-content-center align-items-center p-4">
                     <div class="bg-secondary bg-opacity-25 rounded-circle d-flex justify-content-center align-items-center mb-3" style="background-color: #cef1fc !important; width: 60px; height: 60px;">
                         <i class="fa-solid fa-paw fa-lg" style="color: #5d3a9b;"></i>
                     </div>
-                    <h5 class="card-title text-primary-emphasis fw-bold mb-2">¿Cómo sería tu mascota ideal?</h5>
+                    <h5 class="card-title card-preferencias text-primary-emphasis fw-bold mb-2">¿Cómo sería tu mascota ideal?</h5>
                     <p class="card-text text-secondary mb-3" style="color: #333; font-size: 0.9rem;">Indicá tus preferencias para mejorar las coincidencias.</p>
                     <a th:href="@{/preferencias}" class="btn btn-violeta-invertida fw-bold rounded-pill px-3 py-2">Comenzar</a>
                 </div>
@@ -59,10 +57,14 @@
                             <option value="alto" th:selected="${energiaSeleccionada == 'alto'}">Alto</option>
                         </select>
                     </div>
+
+                    <div class="text-center">
+                        <a th:href="@{/mascotas}" class="limpiar-filtros-link">Limpiar Filtros</a>
+                    </div>
                 </form>
             </div>
         </div>
-        <div class="col-12 col-md-10">
+        <div class="col-12 col-md-8 col-lg-10">
             <div class="row g-4">
                 <div th:each="mascotaDto : ${mascotas}" class="col-12 col-sm-6 col-lg-6 col-xl-4">
                         <div class="card card-mascota shadow-lg border-0" style="border-radius: 1rem">
@@ -71,7 +73,7 @@
                             </span>
                             <img th:src="@{'/' + ${mascotaDto.img}}" class="card-img-top" alt="Mascota" style="height: 280px; object-fit: cover; border-top-left-radius: 1em; border-top-right-radius: 1rem;"/>
                             <div class="card-body text-center">
-                                <h5 th:text="${mascotaDto.nombre}" class="card-title fw-bold" style="color: #5d3a9b !important;"></h5>
+                                <h5 th:text="${mascotaDto.nombre}" class="card-title fw-bold"></h5>
                                 <p th:text="'Edad: ' + ${mascotaDto.edad} + ' años'" class="card-text" style="color: #333; font-size: 0.9rem;"></p>
                                 <button class="btn btn-violeta-invertida btn-sm fw-bold rounded-pill px-3 ver-detalle"
                                         th:attr="data-nombre=${mascotaDto.nombre},
@@ -101,7 +103,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalNombreMascota">Nombre</h5>
+                <h5 class="modal-title fw-bold" id="modalNombreMascota" style="color: #5d3a9b !important;">Nombre</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body text-center">

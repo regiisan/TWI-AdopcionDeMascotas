@@ -33,7 +33,7 @@ public class MascotaDto {
         this.tamano = mascota.getTamano();
         this.nivelEnergia = mascota.getNivelEnergia();
         this.coincidencias = coincidencias;
-        this.esMatch = coincidencias > 3;
+        this.esMatch = coincidencias >= 6;
         this.usuario = mascota.getUsuario();
     }
 

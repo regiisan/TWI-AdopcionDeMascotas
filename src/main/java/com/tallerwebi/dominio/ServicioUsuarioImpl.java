@@ -26,7 +26,7 @@ public class ServicioUsuarioImpl implements ServicioUsuario {
 
     @Override
     public Usuario buscar(String email) {
-        return repositorioUsuario.buscar(email);
+        return repositorioUsuario.buscarUsuario(email);
     }
 
     @Override

@@ -12,7 +12,6 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -78,7 +77,7 @@ public class ServicioRecomendacionImplTest {
         List<MascotaDto> mascotasRecomendadas = servicioRecomendacion.obtenerMascotasRecomendadas(usuario);
 
         assertEquals(2, mascotasRecomendadas.size());
-        assertEquals(6, mascotasRecomendadas.get(0).getCoincidencias()); // mascota1 debería estar primero
+        assertEquals(7, mascotasRecomendadas.get(0).getCoincidencias());
         assertEquals(4, mascotasRecomendadas.get(1).getCoincidencias());
     }
 

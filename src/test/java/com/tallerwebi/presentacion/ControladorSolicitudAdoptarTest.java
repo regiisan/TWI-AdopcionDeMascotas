@@ -1,7 +1,6 @@
 package com.tallerwebi.presentacion;
 
 import com.tallerwebi.dominio.entidades.Mascota;
-import com.tallerwebi.dominio.entidades.MascotaDto;
 import com.tallerwebi.dominio.entidades.SolicitudAdopcion;
 import com.tallerwebi.dominio.entidades.Usuario;
 import com.tallerwebi.dominio.servicios.ServicioMascota;
@@ -13,13 +12,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
-import java.util.List;
+
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.*;
 
 public class ControladorSolicitudAdoptarTest {
@@ -86,6 +85,21 @@ public class ControladorSolicitudAdoptarTest {
         assertThat(solicitudMock.getMascota(), is(mascotaMock));
         assertThat(solicitudMock.getEstado(), is("Pendiente"));
         verify(servicioSolicitudAdoptarMock).guardar(solicitudMock);
+    }
+
+    @Test
+    public void noDebeGuardarLaSolicitudCuandoMascotaEsNull() {
+        Long idMascota = 10L;
+        SolicitudAdopcion solicitudMock = new SolicitudAdopcion();
+        RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
+        when(servicioMascotaMock.obtenerMascotaPorId(idMascota)).thenReturn(null);
+
+        ModelAndView vista = controladorSolicitudAdoptar.guardarSolicitudAdopcion(solicitudMock, idMascota, redirectAttributes);
+
+        assertThat(vista.getViewName(), equalToIgnoringCase("redirect:/mascotas"));
+        assertNull(solicitudMock.getMascota());
+        assertNull(solicitudMock.getEstado());
+        verify(servicioSolicitudAdoptarMock, never()).guardar(any());
     }
 
 }

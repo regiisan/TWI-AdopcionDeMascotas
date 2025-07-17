@@ -22,7 +22,7 @@ public class ControladorChatSocket {
 
     @MessageMapping("/chat")
     @SendTo("/topic/messages")
-    public MensajeDto getMessages(Mensaje mensajeRecibido) throws Exception {
+    public MensajeDto getMessages(Mensaje mensajeRecibido){
         Mensaje mensaje = new Mensaje(
                 mensajeRecibido.getMessage(),
                 mensajeRecibido.getEmisorId(),

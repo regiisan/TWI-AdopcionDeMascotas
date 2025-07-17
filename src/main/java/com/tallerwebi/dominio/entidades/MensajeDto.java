@@ -1,8 +1,7 @@
 package com.tallerwebi.dominio.entidades;
 
-import net.bytebuddy.asm.Advice;
-
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 public class MensajeDto {
@@ -19,7 +18,7 @@ public class MensajeDto {
         this.texto = texto;
         this.emisorId = emisorId;
         this.nombreUsuario = nombreUsuario;
-        this.hora = fecha.format(DateTimeFormatter.ofPattern("HH:mm"));
+        this.hora = fecha.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("America/Argentina/Buenos_Aires")).format(DateTimeFormatter.ofPattern("HH:mm"));
     }
 
     public Long getId() {

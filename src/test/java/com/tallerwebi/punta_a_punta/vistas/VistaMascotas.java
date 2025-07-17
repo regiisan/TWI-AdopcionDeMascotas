@@ -50,7 +50,7 @@ public class VistaMascotas extends VistaWeb {
     }
 
     public String obtenerMensajeDeExito(){
-        return this.obtenerTextoDelElemento("p.alert.alert-success");
+        return this.obtenerTextoDelElemento("div.alerta-flotante-success span");
     }
 
 

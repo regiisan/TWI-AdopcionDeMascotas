@@ -60,7 +60,7 @@ public class ServicioRecomendacionImpl implements ServicioRecomendacion {
         }
 
         if(usuario.getTamanoPreferido() != null && usuario.getTamanoPreferido().equals(mascota.getTamano())){
-            coincidencias++;
+            coincidencias+=2;
         }
 
         if(usuario.getNivelEnergiaPreferido() != null && usuario.getNivelEnergiaPreferido().equals(mascota.getNivelEnergia())){
