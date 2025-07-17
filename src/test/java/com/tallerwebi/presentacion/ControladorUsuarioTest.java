@@ -6,6 +6,8 @@ import com.tallerwebi.util.UsuarioTestDataUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -119,11 +121,12 @@ public class ControladorUsuarioTest {
         formUsuario.setTipoPreferido(Tipo.GATO);
         formUsuario.setTamanoPreferido(Tamano.MEDIANO);
 
+        RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
         Usuario usuarioExistente = new Usuario();
         when(sessionMock.getAttribute("idUsuario")).thenReturn(idUsuario);
         when(servicioUsuarioMock.buscarPorId(idUsuario)).thenReturn(usuarioExistente);
 
-        ModelAndView modelAndView = controladorUsuario.editarPerfil(formUsuario, sessionMock);
+        ModelAndView modelAndView = controladorUsuario.editarPerfil(formUsuario, sessionMock, redirectAttributes);
 
         assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect:/perfil"));
         assertThat(usuarioExistente.getEdadPreferida(), is(5));
@@ -134,11 +137,19 @@ public class ControladorUsuarioTest {
 
     @Test
     public void debeRedirigirAlLoginSiElUsuarioNoEstaLogeadoAlEditarPerfil() {
+        RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
         when(sessionMock.getAttribute("idUsuario")).thenReturn(null);
 
-        ModelAndView modelAndView = controladorUsuario.editarPerfil(new UsuarioDto(), sessionMock);
+        ModelAndView modelAndView = controladorUsuario.editarPerfil(new UsuarioDto(), sessionMock, redirectAttributes);
 
         assertThat(modelAndView.getViewName(), equalToIgnoringCase("redirect:/login"));
+    }
+
+    @Test
+    public void debeRetornarLaVistaNosotrosCuandoSeEjecutaElMetodoNosotros() {
+        String vista = controladorUsuario.nosotros();
+
+        assertThat(vista, equalToIgnoringCase("nosotros"));
     }
 
 }

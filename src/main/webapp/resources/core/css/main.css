@@ -8,7 +8,7 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
 
 .nav-link {
     position: relative;
-    color: #ffffff;
+    color: #ffffff !important;
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -93,10 +93,11 @@ html, body, p, h1, h2, h3, h4, h5, h6, a, span, div, input, textarea, button, la
 }
 
 .custom {
-    background-color: #5d3a9b;
+    background-color: #5d3a9b !important;
     height: 90px;
-    background-color: #5d3a9b;
     padding: 20px 40px;
+    position: relative;
+    z-index: 10;
 }
 
 .card-header {
@@ -374,6 +375,33 @@ main.fondo-degradado {
     font-size: 1.2rem;
 }
 
+.limpiar-filtros-link {
+    color: #474747;
+    text-decoration: underline;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.limpiar-filtros-link:hover {
+    color: #5d3a9b;
+}
+
+.card-title{
+    color: #5d3a9b !important;
+}
+
+.navbar-toggler {
+    z-index: 999;
+    position: relative;
+    border-color: white;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
 @keyframes fadeInOut {
     0% { opacity: 0; transform: translateY(-10px); }
     10% { opacity: 1; transform: translateY(0); }
@@ -388,3 +416,4 @@ main.fondo-degradado {
         height: 80px;
     }
 }
+

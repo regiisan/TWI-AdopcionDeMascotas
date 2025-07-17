@@ -4,10 +4,8 @@ import com.tallerwebi.dominio.entidades.*;
 import com.tallerwebi.dominio.servicios.ServicioMascota;
 import com.tallerwebi.dominio.servicios.ServicioRecomendacion;
 import com.tallerwebi.dominio.servicios.ServicioUsuario;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -49,11 +47,11 @@ public class ControladorMascota {
     }
 
     @RequestMapping(path = "/home", method = RequestMethod.GET)
-    public ModelAndView mostrarMascotasDestacadas(){
+    public ModelAndView mostrarMascotasDestacadas() {
         List<MascotaDto> mascotasDestacadas = servicioMascota.obtenerMascotasDestacadas();
 
         ModelAndView model = new ModelAndView("home");
-        model.addObject("mascotas",mascotasDestacadas);
+        model.addObject("mascotas", mascotasDestacadas);
 
         return model;
     }
@@ -69,57 +67,57 @@ public class ControladorMascota {
 
         ModelAndView mav = new ModelAndView("formulario-dar-en-adopcion");
         mav.addObject("mascota", new Mascota());
-        
+
         if (rol != null && rol.equalsIgnoreCase("ADMIN")) {
             List<Mascota> mascotasPendientes = servicioMascota.obtenerMascotasPorEstadoEntidad("Pendiente");
             mav.addObject("mascotasPendientes", mascotasPendientes);
         }
-        
+
         return mav;
     }
 
-       @RequestMapping(path = "/mascota/guardar", method = RequestMethod.POST)
-public ModelAndView guardarMascota(@ModelAttribute("mascota") Mascota mascota, 
-                                  @RequestParam("imagen") MultipartFile imagen,
-                                  HttpSession session,
-                                  RedirectAttributes redirectAttributes) {
-    Long idUsuario = (Long) session.getAttribute("idUsuario");
-    String rol = (String) session.getAttribute("ROL");
+    @RequestMapping(path = "/mascota/guardar", method = RequestMethod.POST)
+    public ModelAndView guardarMascota(@ModelAttribute("mascota") Mascota mascota,
+                                       @RequestParam("imagen") MultipartFile imagen,
+                                       HttpSession session,
+                                       RedirectAttributes redirectAttributes) {
+        Long idUsuario = (Long) session.getAttribute("idUsuario");
+        String rol = (String) session.getAttribute("ROL");
 
-    if (idUsuario == null) {
-        return new ModelAndView("redirect:/login");
-    }
-
-    try {
-        // Generar un nombre único para el archivo
-        String nombreArchivo = UUID.randomUUID().toString() + "_" + imagen.getOriginalFilename();
-        Path rutaCompleta = Paths.get(UPLOAD_DIRECTORY + nombreArchivo);
-        
-        // Guardar el archivo
-        Files.write(rutaCompleta, imagen.getBytes());
-        
-        // Actualizar el campo img de la mascota con la ruta relativa
-        mascota.setImg("uploads/mascotas/" + nombreArchivo);
-        
-        Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
-        mascota.setUsuario(usuario);
-        
-        servicioMascota.guardar(mascota);
-
-        if (rol != null && rol.equalsIgnoreCase("ADMIN")) {
-            redirectAttributes.addFlashAttribute("mensaje", "¡Mascota agregada correctamente!");
-            return new ModelAndView("redirect:/mascotas");
+        if (idUsuario == null) {
+            return new ModelAndView("redirect:/login");
         }
 
-        redirectAttributes.addFlashAttribute("mensaje", "¡Tu formulario se envió correctamente! Te enviaremos un correo electrónico con tu número de solicitud y nos pondremos en contacto cuando resolvamos tu petición. ¡Gracias por formar parte de AdoPets!");
-        return new ModelAndView("redirect:/home");
-        
-    } catch (IOException e) {
-        ModelAndView model = new ModelAndView("formulario-dar-en-adopcion");
-        model.addObject("error", "Error al subir la imagen. Por favor, intente nuevamente.");
-        return model;
+        try {
+            // Generar un nombre único para el archivo
+            String nombreArchivo = UUID.randomUUID().toString() + "_" + imagen.getOriginalFilename();
+            Path rutaCompleta = Paths.get(UPLOAD_DIRECTORY + nombreArchivo);
+
+            // Guardar el archivo
+            Files.write(rutaCompleta, imagen.getBytes());
+
+            // Actualizar el campo img de la mascota con la ruta relativa
+            mascota.setImg("uploads/mascotas/" + nombreArchivo);
+
+            Usuario usuario = servicioUsuario.buscarPorId(idUsuario);
+            mascota.setUsuario(usuario);
+
+            servicioMascota.guardar(mascota);
+
+            if (rol != null && rol.equalsIgnoreCase("ADMIN")) {
+                redirectAttributes.addFlashAttribute("mensaje", "¡Mascota agregada correctamente!");
+                return new ModelAndView("redirect:/mascotas");
+            }
+
+            redirectAttributes.addFlashAttribute("mensaje", "¡Publicación exitosa! Te enviaremos un correo electrónico cuando tu mascota esté visible para los adoptantes.");
+            return new ModelAndView("redirect:/home");
+
+        } catch (IOException e) {
+            ModelAndView model = new ModelAndView("formulario-dar-en-adopcion");
+            model.addObject("error", "Error al subir la imagen. Por favor, intente nuevamente.");
+            return model;
+        }
     }
-}
 
     @RequestMapping(path = "/mascotas", method = RequestMethod.GET)
     public ModelAndView mostrarMascotas(
@@ -205,22 +203,22 @@ public ModelAndView guardarMascota(@ModelAttribute("mascota") Mascota mascota,
     @RequestMapping(path = "/admin/mascotas/{id}/aprobar", method = RequestMethod.POST)
     public ModelAndView aprobarMascota(@PathVariable Long id, HttpSession session) {
         String rol = (String) session.getAttribute("ROL");
-        
+
         if (rol != null && rol.equalsIgnoreCase("ADMIN")) {
             servicioMascota.aprobarMascota(id);
         }
-        
+
         return new ModelAndView("redirect:/mascota/nueva");
     }
 
     @RequestMapping(path = "/admin/mascotas/{id}/rechazar", method = RequestMethod.POST)
     public ModelAndView rechazarMascota(@PathVariable Long id, HttpSession session) {
         String rol = (String) session.getAttribute("ROL");
-        
+
         if (rol != null && rol.equalsIgnoreCase("ADMIN")) {
             servicioMascota.rechazarMascota(id);
         }
-        
+
         return new ModelAndView("redirect:/mascota/nueva");
     }
 }

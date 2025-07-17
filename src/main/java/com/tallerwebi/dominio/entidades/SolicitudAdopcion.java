@@ -20,7 +20,6 @@ public class SolicitudAdopcion {
     @JoinColumn(name="fk_mascota")
     private Mascota mascota;
 
-    // Esto ya no va
     private Long mascotaId;
 
     private String estado;

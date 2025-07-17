@@ -26,7 +26,7 @@ public class VistaMascotasE2E {
     static void abrirNavegador() {
         playwright = Playwright.create();
         browser = playwright.chromium().launch();
-        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
+        //browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false).setSlowMo(50));
     }
 
     @AfterAll
@@ -66,7 +66,7 @@ public class VistaMascotasE2E {
     }
 
     @Test
-    void deberiaPoderEnviarUnaSolicitudDeAdopcionAUnaMascota() throws MalformedURLException{
+    void deberiaPoderEnviarUnaSolicitudDeAdopcionAUnaMascota(){
         dadoQueElUsuarioIniciaSesion("regi@gmail.com", "test");
         vistaMascotas = new VistaMascotas(vistaLogin.getPage());
         dadoQueElUsuarioNavegaALaVistaMascotasEnAdopcion();
@@ -118,7 +118,7 @@ public class VistaMascotasE2E {
 
     }
 
-    private void entoncesDeberiaVerElModalConDetallesDeLaMascota() throws MalformedURLException {
+    private void entoncesDeberiaVerElModalConDetallesDeLaMascota(){
         Page page = context.pages().get(0);
         Locator modal = page.locator("#modalMascota");
         modal.waitFor(new Locator.WaitForOptions().setState(WaitForSelectorState.VISIBLE));
@@ -127,9 +127,6 @@ public class VistaMascotasE2E {
 
     private void entoncesDeberiaVerConfirmacionDeEnvio() {
         String texto = vistaMascotas.obtenerMensajeDeExito();
-        assertThat("¡Tu solicitud fue enviada con éxito!", equalToIgnoringCase(texto));
+        assertThat("¡Formulario enviado con éxito! Te enviaremos un correo electrónico y nos pondremos en contacto cuando resolvamos tu petición.", equalToIgnoringCase(texto));
     }
-
-
-
 }

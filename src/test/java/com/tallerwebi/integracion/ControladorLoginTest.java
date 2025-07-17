@@ -24,6 +24,8 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
@@ -45,10 +47,8 @@ public class ControladorLoginTest {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
 	}
 
-
 	@Test
 	public void debeRetornarLaPaginaLoginCuandoSeNavegaALaRaiz() throws Exception {
-
 		MvcResult result = this.mockMvc.perform(get("/"))
 				/*.andDo(print())*/
 				.andExpect(status().is3xxRedirection())
@@ -62,7 +62,6 @@ public class ControladorLoginTest {
 
 	@Test
 	public void debeRetornarLaPaginaLoginCuandoSeNavegaALLogin() throws Exception {
-
 		MvcResult result = this.mockMvc.perform(get("/login"))
 				.andExpect(status().isOk())
 				.andReturn();
@@ -71,6 +70,24 @@ public class ControladorLoginTest {
         assert modelAndView != null;
         assertThat(modelAndView.getViewName(), equalToIgnoringCase("login"));
 		assertThat(modelAndView.getModel().get("datosLogin").toString(),  containsString("com.tallerwebi.presentacion.DatosLogin"));
+	}
 
+	@Test
+	public void debeRetornarLaPaginaNuevoUsuarioCuandoSeNavegaAlRegistro() throws Exception {
+		MvcResult result = this.mockMvc.perform(get("/nuevo-usuario"))
+				.andExpect(status().isOk())
+				.andReturn();
+
+		ModelAndView modelAndView = result.getModelAndView();
+		assert modelAndView != null;
+		assertThat(modelAndView.getViewName(), equalToIgnoringCase("nuevo-usuario"));
+		assertThat(modelAndView.getModel().get("registro").toString(),  containsString("DatosRegistro"));
+	}
+
+	@Test
+	public void debeRedirigirAlLoginCuandoSeCierraSesion() throws Exception {
+		this.mockMvc.perform(post("/logout"))
+				.andExpect(status().is3xxRedirection())
+				.andExpect(redirectedUrl("/login"));
 	}
 }

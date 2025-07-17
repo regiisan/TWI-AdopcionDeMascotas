@@ -19,7 +19,7 @@
 
   <!-- Seccion mascotas -->
   <section class="container mt-5">
-    <h3 class="text-center mb-4">Mascotas en adopción:</h3>
+    <h3 class="text-center mb-4">Mascotas en adopción</h3>
     <div class="row g-4">
       <div th:each="mascota : ${mascotas}" class="col-12 col-sm-6 col-md-4 col-lg-3">
         <a th:href="@{/mascotas}" class="text-decoration-none" style="color: #5d3a9b;">
@@ -91,7 +91,7 @@
         <div class="card h-100 shadow-sm border-0">
           <img th:src="@{/images/personas/camila.jpg}" class="card-img-top" alt="Camila" style="height: 250px; object-fit: cover;">
           <div class="card-body">
-            <h5 class="card-title text-center">Camila</h5>
+            <h5 class="card-title text-center fw-bold">CAMILA</h5>
             <p class="card-text text-muted text-center">Adopté a Toto hace 1 año. Desde entonces, somos inseparables. Fue la mejor decisión de mi vida.</p>
           </div>
         </div>
@@ -101,7 +101,7 @@
         <div class="card h-100 shadow-sm border-0">
           <img th:src="@{/images/personas/lucas.jpg}" class="card-img-top" alt="Lucas" style="height: 250px; object-fit: cover;">
           <div class="card-body">
-            <h5 class="card-title text-center">Lucas</h5>
+            <h5 class="card-title text-center fw-bold">LUCAS</h5>
             <p class="card-text text-muted text-center">Max llegó a casa gracias a Adopets. Verlo feliz corriendo en el patio es impagable.</p>
           </div>
         </div>
@@ -111,7 +111,7 @@
         <div class="card h-100 shadow-sm border-0">
           <img th:src="@{/images/personas/sofia.jpeg}" class="card-img-top" alt="Sofía" style="height: 250px; object-fit: cover;">
           <div class="card-body">
-            <h5 class="card-title text-center">Sofía</h5>
+            <h5 class="card-title text-center fw-bold">SOFÍA</h5>
             <p class="card-text text-muted text-center">Adoptar fue una experiencia hermosa. Mi gato Bruno se volvió parte de la familia en segundos.</p>
           </div>
         </div>
@@ -120,59 +120,6 @@
   </section>
   </div>
 
-  <footer class="bg-dark text-white py-5">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-4 mb-4 mb-lg-0">
-          <h5 class="mb-3">Adopción Responsable</h5>
-          <p class="text-muted">Trabajamos para conectar mascotas abandonadas con familias amorosas que les brinden un hogar para siempre.</p>
-          <div class="d-flex gap-3 mt-3">
-            <a href="#" class="text-white"><i class="bi bi-facebook fs-5"></i></a>
-            <a href="#" class="text-white"><i class="bi bi-instagram fs-5"></i></a>
-            <a href="#" class="text-white"><i class="bi bi-twitter fs-5"></i></a>
-            <a href="#" class="text-white"><i class="bi bi-youtube fs-5"></i></a>
-          </div>
-        </div>
-        <div class="col-sm-6 col-lg-2 mb-4 mb-lg-0">
-          <h5 class="mb-3">Enlaces</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2"><a th:href="@{/home}"  class="text-muted text-decoration-none">Inicio</a></li>
-            <li class="mb-2"><a href="@{/nosotros}" class="text-muted text-decoration-none">Nosotros</a></li>
-            <li class="mb-2"><a th:href="@{/mascotas}"  class="text-muted text-decoration-none">En Adopción</a></li>
-            <li class="mb-2"><a th:href="@{/mascota/nueva}"  class="text-muted text-decoration-none">Dar en Adopción</a></li>
-          </ul>
-        </div>
-        <div class="col-sm-6 col-lg-3 mb-4 mb-lg-0">
-          <h5 class="mb-3">Recursos</h5>
-          <ul class="list-unstyled">
-            <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Preguntas frecuentes</a></li>
-            <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Consejos</a></li>
-          </ul>
-        </div>
-        <div class="col-lg-3">
-          <h5 class="mb-3">Contacto</h5>
-          <ul class="list-unstyled text-muted">
-            <li class="mb-2"><i class="bi bi-geo-alt me-2"></i>Florencio Varela 1903, San Justo.</li>
-            <li class="mb-2"><i class="bi bi-telephone me-2"></i>011 4480-8900</li>
-            <li class="mb-2"><i class="bi bi-envelope me-2"></i>Adopets@hotmail.com</li>
-            <li class="mb-2"><i class="bi bi-clock me-2"></i> Lun-Vie: 9AM - 10PM</li>
-          </ul>
-        </div>
-      </div>
-      <hr class="my-4">
-      <div class="row">
-        <div class="col-md-6 text-center text-md-start">
-          <p class="small text-muted mb-0">&copy; 2025 Adopción Responsable. Todos los derechos reservados.</p>
-        </div>
-        <div class="col-md-6 text-center text-md-end">
-          <p class="small text-muted mb-0">
-            <a href="#" class="text-muted text-decoration-none">Política de privacidad</a> |
-            <a href="#" class="text-muted text-decoration-none">Términos de uso</a>
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
 <div th:if="${mensaje != null}" class="alerta-flotante-success">
     <i class="bi bi-check-circle-fill"></i>
     <span th:text="${mensaje}"></span>

@@ -3,11 +3,16 @@
 <head th:insert="templates/head :: head"></head>
 <link rel="stylesheet" href="../../../resources/core/css/main.css">
 
-
 <body>
 <header th:insert="templates/header :: encabezado"></header>
 
 <main class="fondo-degradado">
+
+    <div th:if="${mensaje != null}" class="alerta-flotante-success">
+        <i class="bi bi-check-circle-fill"></i>
+        <span th:text="${mensaje}"></span>
+    </div>
+
     <div class="container py-4">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -22,11 +27,11 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="email" class="form-control" th:field="*{email}" />
+                                    <input type="email" class="form-control" th:field="*{email}" required/>
                                 </div>
                                 <div class="col-md-6 mb-3" th:if="${session.ROL != 'ADMIN'}">
                                     <label class="form-label">Edad preferida</label>
-                                    <input type="number" class="form-control" th:field="*{edadPreferida}" />
+                                    <input type="number" class="form-control" th:field="*{edadPreferida}"/>
                                 </div>
                             </div>
                             <div class="row" th:if="${session.ROL != 'ADMIN'}">

@@ -52,7 +52,7 @@ public class ControladorSolicitudAdoptar {
             solicitud.setMascota(mascota);
             solicitud.setEstado("Pendiente");
             servicioSolicitudAdoptar.guardar(solicitud);
-            redirectAttributes.addFlashAttribute("mensaje", "¡Tu formulario se envió correctamente! Te enviaremos un correo electrónico con tu número de solicitud y nos pondremos en contacto cuando resolvamos tu petición. ¡Gracias por formar parte de AdoPets!");
+            redirectAttributes.addFlashAttribute("mensaje", "¡Formulario enviado con éxito! Te enviaremos un correo electrónico y nos pondremos en contacto cuando resolvamos tu petición.");
         }
 
         return model;

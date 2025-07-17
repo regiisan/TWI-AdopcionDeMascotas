@@ -57,7 +57,6 @@ public class ServicioSolicitudAdoptarImpl implements ServicioSolicitudAdoptar {
         return repositorioSolicitudAdoptar.listarSolicitudesPorEstado(estado);
     }
 
-
     @Override
     public void aprobarSolicitud(Long id) {
         SolicitudAdopcion solicitud = buscarPorId(id);

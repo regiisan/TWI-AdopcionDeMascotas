@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 
@@ -85,7 +86,7 @@ public class ControladorUsuario {
 
     @PostMapping("/editar-perfil")
     public ModelAndView editarPerfil(@ModelAttribute("usuario") UsuarioDto formUsuario,
-                                     HttpSession session) {
+                                     HttpSession session, RedirectAttributes redirectAttributes) {
 
         Long id = (Long) session.getAttribute("idUsuario");
         if (id == null) {
@@ -96,6 +97,7 @@ public class ControladorUsuario {
         formUsuario.obtenerEntidad(usuario);
         
         servicioUsuario.modificar(usuario);
+        redirectAttributes.addFlashAttribute("mensaje", "Tu perfil se actualizó correctamente.");
         return new ModelAndView("redirect:/perfil");
     }
 

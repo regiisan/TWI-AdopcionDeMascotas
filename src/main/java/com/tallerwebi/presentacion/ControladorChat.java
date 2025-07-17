@@ -1,6 +1,5 @@
 package com.tallerwebi.presentacion;
 
-import com.tallerwebi.dominio.entidades.Mensaje;
 import com.tallerwebi.dominio.entidades.MensajeDto;
 import com.tallerwebi.dominio.servicios.ServicioChat;
 import org.springframework.beans.factory.annotation.Autowired;

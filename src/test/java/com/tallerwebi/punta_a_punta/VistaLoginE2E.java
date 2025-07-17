@@ -72,11 +72,6 @@ public class VistaLoginE2E {
         entoncesDeberiaSerRedirigidoALaVistaDeHome();
     }
 
-    private void entoncesDeberiaVerADOPETSEnElNavbar() {
-        String texto = vistaLogin.obtenerTextoDeLaBarraDeNavegacion();
-        assertThat("ADOPETS", equalToIgnoringCase(texto));
-    }
-
     private void dadoQueElUsuarioEstaEnLaVistaDeLogin() throws MalformedURLException {
         URL urlLogin = vistaLogin.obtenerURLActual();
         assertThat(urlLogin.getPath(), matchesPattern("^/tallerwebi-base-1.0-SNAPSHOT/login(?:;jsessionid=[^/\\s]+)?$"));

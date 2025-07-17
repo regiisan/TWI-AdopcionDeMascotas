@@ -30,13 +30,12 @@ public class ServicioMascotaImpl implements ServicioMascota {
     @Autowired
     private ServicioMail servicioMail;
 
-
     @Override
     public void guardar(Mascota mascota) {
         // Si el usuario es admin, la mascota se aprueba automáticamente
-        if (mascota.getUsuario() != null && 
-            mascota.getUsuario().getRol() != null && 
-            mascota.getUsuario().getRol().equals("ADMIN")) {
+        if (mascota.getUsuario() != null &&
+                mascota.getUsuario().getRol() != null &&
+                mascota.getUsuario().getRol().equals("ADMIN")) {
             mascota.setEstado("Aprobada");
         } else {
             // Si no es admin o no tiene rol, la mascota queda pendiente
@@ -44,16 +43,16 @@ public class ServicioMascotaImpl implements ServicioMascota {
         }
         repositorioMascota.guardar(mascota);
         if (mascota.getUsuario() != null && mascota.getUsuario().getEmail() != null) {
-    try {
-        servicioMail.enviarMail(
-            mascota.getUsuario().getEmail(),"Solicitud recibida con éxito",
-            "Tu solicitud fue recepcionada con éxito y nuestro equipo la estudiara rigurosamente"+
-            " para darte una pronta respuesta. \nEn breve nos estaremos comunicando con vos."
-        );
-    } catch (MessagingException e) {
-        e.printStackTrace(); 
-    }
-    }
+            try {
+                servicioMail.enviarMail(
+                        mascota.getUsuario().getEmail(), "Solicitud recibida con éxito",
+                        "Tu solicitud fue recepcionada con éxito y nuestro equipo la estudiara rigurosamente" +
+                                " para darte una pronta respuesta. \nEn breve nos estaremos comunicando con vos."
+                );
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -123,6 +122,4 @@ public class ServicioMascotaImpl implements ServicioMascota {
     public int contarMascotasPendientes() {
         return repositorioMascota.contarMascotasPendientes();
     }
-
-
 }

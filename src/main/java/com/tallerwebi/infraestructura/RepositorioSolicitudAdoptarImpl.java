@@ -1,7 +1,5 @@
 package com.tallerwebi.infraestructura;
 
-
-import com.tallerwebi.dominio.entidades.Mascota;
 import com.tallerwebi.dominio.repositorios.RepositorioSolicitudAdoptar;
 import com.tallerwebi.dominio.entidades.SolicitudAdopcion;
 import org.hibernate.Criteria;
@@ -22,12 +20,6 @@ public class RepositorioSolicitudAdoptarImpl implements RepositorioSolicitudAdop
     @Autowired
     public RepositorioSolicitudAdoptarImpl(SessionFactory sessionFactory){
         this.sessionFactory = sessionFactory;
-    }
-
-    public List<SolicitudAdopcion> obtenerTodas() {
-        Session session = sessionFactory.getCurrentSession();
-        Criteria criteria = session.createCriteria(SolicitudAdopcion.class);
-        return criteria.list();
     }
 
     @Override

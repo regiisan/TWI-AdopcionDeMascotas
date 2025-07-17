@@ -23,9 +23,4 @@ public class VistaNuevoUsuario extends VistaWeb {
     public void darClickEnRegistrarme(){
         this.darClickEnElElemento("#btn-registrarme");
     }
-
-    public String obtenerMensajeDeError(){
-        return this.obtenerTextoDelElemento("p.alert.alert-danger");
-    }
-
 }
