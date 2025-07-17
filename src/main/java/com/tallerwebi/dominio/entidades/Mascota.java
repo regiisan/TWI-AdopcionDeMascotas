@@ -11,7 +11,7 @@ public class Mascota {
     private Long id;
     private String nombre;
     private String descripcion;
-    private Boolean adoptado;
+    private Boolean adoptado = false;
     private String img;
     private String salud;
     private String comportamiento;
